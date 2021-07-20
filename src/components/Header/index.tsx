@@ -5,12 +5,12 @@ interface IHeaderProps {}
 export const Header: React.FC<IHeaderProps> = (props) => {
     return (
         <nav className='flex justify-between bg-neutral h-5.5 items-center px-2 pb-0.5'>
-            <a href='#' className='text-primary font-extrabold text-24'>
+            <a href='#' className='text-white font-extrabold text-24'>
                 MovieX
             </a>
-            <ul className='flex gap-1'>
+            <ul className='flex gap-2'>
                 <li>
-                    <a className='text-white font-bold text-12 hover:text-primary cursor-pointer'>
+                    <a className='text-white font-bold text-12 hover:text-primary cursor-pointer' href="#">
                         Lịch chiếu
                     </a>{' '}
                 </li>
@@ -38,7 +38,7 @@ export const Header: React.FC<IHeaderProps> = (props) => {
                         placeholder='Search movie'
                     />
                 </form>
-                <button className='bg-primary rounded-full w-3 h-3 flex items-center justify-center'>
+                <button className='bg-light rounded-full w-3 h-3 flex items-center justify-center'>
                     <UserIcon />
                 </button>
             </div>

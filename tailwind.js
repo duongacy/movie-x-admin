@@ -17,13 +17,20 @@ const config = {
         },
         colors: {
             transparent: 'transparent',
-            primary: '#C91818',
-            neutral: '#1D1616',
-            grey: '#818181',
+            primary: '#1d1616',
+            secondary: '#616161',
+            dark: '#000000',
+            light: '#443c3c',
+
+            success:'#2e7d32',
+            danger:'#771b7c',
+            warning:'#feff55',
             white: '#FFFFFF',
             black: '#2F2F2F',
         },
         fontSize: {
+            8: '0.8rem',
+            9:'0.9rem',
             11: '1.1rem',
             12: '1.2rem',
             13: '1.3rem',
@@ -32,6 +39,7 @@ const config = {
             24: '2.4rem',
             33: '3.3rem',
             36: '3.3rem',
+            50: '5rem',
         },
         /**
          * 1 means 10px
@@ -64,6 +72,23 @@ const config = {
             35: '35rem',
             40: '40rem',
             50: '50rem',
+        },
+        maxWidth: {
+            10: '10rem',
+            11: '11rem',
+            13: '13rem',
+            15: '15rem',
+            20: '20rem',
+            22: '22rem',
+            25: '25rem',
+            30: '30rem',
+            32: '32rem',
+            35: '35rem',
+            40: '40rem',
+            50: '50rem',
+            phone: '600px',
+            laptop: '1024px',
+            desktop: '1270px',
         },
         opacity: {
             0: '0',
@@ -131,7 +156,7 @@ const config = {
             borderWidth: ['last'],
         },
     },
-    plugins: [],
+    plugins: [require('@tailwindcss/aspect-ratio')],
 };
 
 module.exports = config;
