@@ -1,3 +1,13 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@layer base {
+    .dark {
+        --color-primary: #1d1616;
+        --color-secondary: #616161;
+        --color-dark: #000000;
+        --color-light: #443c3c;
+        --color-white: #ffffff;
+        --color-primary-contrast: #C91818;
+    }
+}
