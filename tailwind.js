@@ -1,7 +1,16 @@
 /**
  * @Note Please reset react app whenever you modify something inside
  */
-const { spacingConfig, screenConfig, fontSizeConfig, maxWidthConfig, opacityConfig, fontWeightConfig, minHeightConfig, minWidthConfig } = require("./tailwindConfig");
+const {
+    spacingConfig,
+    screenConfig,
+    fontSizeConfig,
+    maxWidthConfig,
+    opacityConfig,
+    fontWeightConfig,
+    minHeightConfig,
+    minWidthConfig,
+} = require('./tailwindConfig');
 
 const config = {
     darkMode: 'class',
@@ -16,7 +25,9 @@ const config = {
             'dark': 'var(--color-dark)',
             'light': 'var(--color-light)',
             'white': 'var(--color-white)',
-            'primary-contrast': 'var(--color-primary-contrast)'
+            'primary-contrast': 'var(--color-primary-contrast)',
+            'txt': 'var(--color-txt)',
+            'txt-primary': 'var(--color-txt-primary)',
         },
         fontSize: fontSizeConfig,
         spacing: spacingConfig,
@@ -40,9 +51,9 @@ const config = {
                 '-1': '-1',
             },
         },
-        fill: theme => ({
-            gray: theme('colors.gray')
-        })
+        fill: (theme) => ({
+            gray: theme('colors.gray'),
+        }),
     },
     variants: {
         extend: {

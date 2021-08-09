@@ -9,5 +9,17 @@
         --color-light: #443c3c;
         --color-white: #ffffff;
         --color-primary-contrast: #C91818;
+        
+        --color-txt: #ffffff;
+        --color-txt-primary: #C91818;
+    }
+    .light {
+        --color-primary: #ffffff;
+        --color-secondary: #616161;
+        --color-dark: #cccccc;
+        --color-light: #443c3c;
+        --color-white: #ffffff;
+        --color-text: #000000;
+        --color-primary-contrast: #C91818;
     }
 }

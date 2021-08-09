@@ -1,44 +1,22 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-## Available Scripts
+* Typescript: dùng để check tất cả các dữ liệu đầu vào cho 1 function, component sao cho nhất quán, khi data input sai(mặc dù vẫn chạy được đối với js) sẽ bị bắt lỗi => dễ debug và thường sẽ không gặp bug lớn.
 
-In the project directory, you can run:
+### Type trong project này phân làm 4 loại (thực ra loại nào cũng như nhau, để khác thư mục để dễ tìm thôi):
+1. Common type:
+    - Được định nghĩa trong thư mục common/formatTypes.
+    - Dùng để định nghĩa kiểu dữ liệu đầu vào cho các function, API.
+2. Design type:
+    - Được định nghĩa trong thư mục designs/designTypes
+    - Dùng để định nghĩa các type trong thẻ InputYDT, SelectYDT,...
 
-### `yarn start`
+3. Action type:
+    - Được định nghĩa trong thư mục redux/types.
+    - Mỗi bộ redux cần 1 thư mục type riêng cho nó.
+    - Redux type xác định type cho reducer.
+4. Props types:
+    - Được định nghĩa dạng interface ngay trong file chính của component, chủ yếu để bắt lỗi các prop bị truyền thiếu, thừa, sai định dạng.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Component: Phân ra nhiều loại component để dễ quản lý
+Có 3 loại component chính:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1
