@@ -1,14 +1,12 @@
 const fontWeightConfig =  {
-    hairline: 100,
-    'extra-light': 100,
-    thin: 200,
-    light: 300,
-    normal: 400,
-    medium: 500,
-    semibold: 600,
-    bold: 700,
-    extrabold: 800,
-    'extra-bold': 800,
-    black: 900,
+    '100': 100,
+    '200': 200,
+    '300': 300,
+    '400': 400,
+    '500': 500,
+    '600': 600,
+    '700': 700,
+    '800': 800,
+    '900': 900,
 };
 module.exports = { fontWeightConfig };

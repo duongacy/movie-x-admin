@@ -12,6 +12,7 @@ const ProvinceSelect: React.FC<IProps> = (props) => {
             options={provinceOptions}
             placeholder="Chọn khu vực"
             size="small"
+            outerClass="border-2 border-secondary hover:border-s-dark rounded-md"
             callbackChange={handleChangeProvince}
             showSearch
         />

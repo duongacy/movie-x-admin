@@ -20,6 +20,7 @@ interface IProps {
     placeholder?: string;
     size?: ISizeType;
     showSearch?: boolean;
+    outerClass?: string;
 }
 const SelectYDT: React.FC<IProps> = ({
     options,
@@ -27,28 +28,31 @@ const SelectYDT: React.FC<IProps> = ({
     callbackFocus,
     callbackBlur,
     callbackSearch,
+    outerClass,
     ...restParam
 }) => {
     const { Option } = Select;
     return (
-        <Select
-            style={{ minWidth: 150 }}
-            optionFilterProp="children"
-            onChange={callbackChange}
-            onFocus={callbackFocus}
-            onBlur={callbackBlur}
-            onSearch={callbackSearch}
-            filterOption={(input, option: any) => {
-                return option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
-            }}
-            {...restParam}
-        >
-            {options.map((opt) => (
-                <Option key={uuid()} value={opt.value}>
-                    {opt.name}
-                </Option>
-            ))}
-        </Select>
+        <div className={`overflow-hidden ${outerClass}`}>
+            <Select
+                style={{ minWidth: 150, border:"0" }}
+                optionFilterProp="children"
+                onChange={callbackChange}
+                onFocus={callbackFocus}
+                onBlur={callbackBlur}
+                onSearch={callbackSearch}
+                filterOption={(input, option: any) => {
+                    return option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+                }}
+                {...restParam}
+            >
+                {options.map((opt) => (
+                    <Option key={uuid()} value={opt.value}>
+                        {opt.name}
+                    </Option>
+                ))}
+            </Select>
+        </div>
     );
 };
 

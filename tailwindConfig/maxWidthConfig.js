@@ -39,6 +39,9 @@ const maxWidthConfig = {
     47: '47rem',
     48: '48rem',
     49: '49rem',
-    50: '50rem'
+    50: '50rem',
+    phone: '600px',
+    laptop: '920px',
+    desktop: '1024px'
 };
 module.exports = { maxWidthConfig };

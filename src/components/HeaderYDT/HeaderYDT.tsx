@@ -3,48 +3,41 @@ import ProvinceSelect from './ProvinceSelect/ProvinceSelect';
 
 import React, { Fragment } from 'react';
 import { Header } from 'antd/lib/layout/layout';
-import { Menu } from 'antd';
+import LogoYDT from './LogoYDT/LogoYDT';
+import MenuYDT from './MenuYDT/MenuYDT';
+import UserForm from './UserForm/UserForm';
 
-interface Props {}
-
-const HeaderYDT: React.FC = (props) => {
+interface IHeaderYDTProps {}
+const HeaderYDT: React.FC<IHeaderYDTProps> = (props) => {
     return (
-        <Fragment>
-            <div className="py-4px flex justify-end px-1 gap-2 items-center">
+        <div>
+            <HeaderMiniWrapper>
                 <ProvinceSelect />
                 <ChangeThemeSwitch />
-            </div>
-            <Header className="h-5 bg-primary flex items-baseline gap-3 justify-between ">
-                <a
-                    className="text-txt-primary text-20 font-semibold  opacity-80 hover:opacity-100 hover:text-txt-primary"
-                    style={{ lineHeight: '5rem' }}
-                >
-                    MovieX
-                </a>
-
-                <ul className="inline-flex gap-1.5 text-12">
-                    <li>
-                        <a className="text-txt hover:text-txt">Trang chủ</a>
-                    </li>
-                    <li>
-                        <a className="text-txt opacity-60 hover:text-txt hover:opacity-80">Lịch chiếu</a>
-                    </li>
-                    <li>
-                        <a className="text-txt opacity-60 hover:text-txt hover:opacity-80">Cụm rạp</a>
-                    </li>
-                    <li>
-                        <a className="text-txt opacity-60 hover:text-txt hover:opacity-80">Tin tức</a>
-                    </li>
-                    <li>
-                        <a className="text-txt opacity-60 hover:text-txt hover:opacity-80">Ứng dụng</a>
-                    </li>
-                </ul>
-                <form className="inline-flex gap-1.5 text-12">
-                    <a className="text-txt opacity-60 hover:text-txt hover:opacity-80">Đăng nhập</a>
-                </form>
-            </Header>
-        </Fragment>
+            </HeaderMiniWrapper>
+            <HeaderYDTWrapper>
+                <LogoYDT />
+                <MenuYDT />
+                <UserForm />
+            </HeaderYDTWrapper>
+        </div>
     );
 };
 
 export default HeaderYDT;
+
+interface IHeaderYDTWrapperProps {}
+const HeaderYDTWrapper: React.FC<IHeaderYDTWrapperProps> = ({ children }) => {
+    return (
+        <Header className="px-1 phone:px-3 h-5 bg-primary flex items-baseline gap-3 justify-between text-p-text">
+            {children}
+        </Header>
+    );
+};
+
+interface IHeaderMiniWrapperProps {}
+const HeaderMiniWrapper: React.FC<IHeaderMiniWrapperProps> = ({ children }) => {
+    return (
+        <div className="px-1 phone:px-3 py-4px flex justify-end gap-2 items-center">{children}</div>
+    );
+};

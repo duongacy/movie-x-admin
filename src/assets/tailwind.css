@@ -1,17 +1,19 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 @layer base {
     .dark {
         --color-primary: #1d1616;
-        --color-secondary: #616161;
-        --color-dark: #000000;
-        --color-light: #443c3c;
-        --color-white: #ffffff;
-        --color-primary-contrast: #C91818;
+        --color-p-light: #443c3c;
+        --color-p-dark: #000000;
+        --color-p-text: #9a0007;
+
+        --color-secondary: #d32f2f;
+        --color-s-light: #ff6659;
+        --color-s-dark: #9a0007;
+        --color-s-text: #ffffff;
         
-        --color-txt: #ffffff;
-        --color-txt-primary: #C91818;
+        --color-white:#fff;
     }
     .light {
         --color-primary: #ffffff;
@@ -20,6 +22,6 @@
         --color-light: #443c3c;
         --color-white: #ffffff;
         --color-text: #000000;
-        --color-primary-contrast: #C91818;
+        --color-primary-contrast: #c91818;
     }
 }
