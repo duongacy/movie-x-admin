@@ -64,15 +64,23 @@ p {
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    transition: all .5s;
+    transition: all 0.5s;
 }
-.film-block .slick-prev:hover {
+.film-block .slick-arrow:hover {
     background-color: var(--color-secondary);
-    transform:translate(-2px, -50%) scale(.95);
+    
 }
-.film-block .slick-next:hover {
-    background-color: var(--color-secondary);
-    transform:translate(2px, -50%) scale(.95);
+.film-block .slick-prev:hover{
+    transform-origin: translate(-2px, -50%);
+}
+.film-block .slick-next:hover{
+    transform: translate(2px, -50%);
+}
+.film-block .slick-prev:active {
+    transform: translate(-2px, -50%) scale(0.9);
+}
+.film-block .slick-next:active {
+    transform: translate(2px, -50%) scale(0.9);
 }
 
 .film-block .slick-prev {
@@ -86,7 +94,7 @@ p {
     content: '\f053';
     font-weight: 600;
     font-size: 30px;
-    transition: all .5s;
+    transition: all 0.5s;
 }
 .film-block .slick-next {
     right: 23%;
