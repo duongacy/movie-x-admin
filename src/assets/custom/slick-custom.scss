@@ -1,0 +1,55 @@
+.film-block {
+    .slick-arrow {
+        display: block;
+        border: #ccc solid 2px;
+        height: 2rem;
+        width: 2rem;
+        border-radius: 50%;
+        transition: all 0.5s;
+        .slick-arrow:hover {
+            background-color: var(--color-secondary);
+        }
+    }
+    .slick-prev {
+        left: -0.7rem;
+        top: 50%;
+        transform: translate(0, -50%);
+        z-index: 10;
+        &::before {
+            font-family: 'Font Awesome 5 Free';
+            content: '\f053';
+            font-weight: 600;
+            font-size: 20px;
+            transition: all 0.5s;
+        }
+        &:hover {
+            transform-origin: translate(-2px, -50%);
+        }
+        &:active {
+            transform: translate(-2px, -50%) scale(0.9);
+        }
+    }
+    .slick-next {
+        right: -0.7rem;
+        z-index: 10;
+        &:active {
+            transform: translate(2px, -50%) scale(0.9);
+        }
+        &:before {
+            font-family: 'Font Awesome 5 Free';
+            content: '\f054';
+            font-weight: 600;
+            font-size: 20px;
+        }
+        &:hover {
+            transform: translate(2px, -50%);
+        }
+    }
+    .slick-track {
+        display: flex;
+        gap: 1rem;
+    }
+    .slick-dots {
+        bottom: 1rem;
+    }
+}

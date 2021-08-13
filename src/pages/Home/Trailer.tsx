@@ -6,7 +6,7 @@ interface ITrailerProps {}
 
 const Trailer: React.FC<ITrailerProps> = ({}) => {
     return (
-        <Carousel>
+        <Carousel className="trailer">
             <TrailerItem
                 bgSrc="images/dai-tham-hoa-nui-bakedu.jpg"
                 film="Evil Expeller"
@@ -45,17 +45,12 @@ const TrailerItem: React.FC<ITrailerItemProps> = ({ bgSrc, film, time, trailerLi
         <div>
             <div
                 style={{ backgroundImage: `url('${bgSrc}')` }}
-                className="h-36 bg-no-repeat bg-cover relative"
+                className="bg-no-repeat bg-cover relative aspect-w-14 aspect-h-15 tablet:aspect-h-10 laptop:aspect-h-8 desktop:aspect-h-6"
             >
-                <div className="px-1 phone:px-3 text-white h-full flex flex-col items-start justify-center gap-1">
-                    <h6 className="text-17">New release</h6>
-                    <h6 className="text-45 font-900 max-w-35">{film}</h6>
-                    <h6 className="text-12">Just Arrive on MovieYDT</h6>
-                </div>
-                <div className="absolute text-white bottom-6 right-5 w-30 z-10">
-                    <h6 className="text-17 italic uppercase font-600">
-                        Time release: <span className="text-30 ">{time}</span>
-                    </h6>
+                <div className="px-1 tablet:px-2 laptop:px-3 text-white h-full flex flex-col items-start justify-end gap-1 pb-4 desktop:pb-5">
+                    <h6 className="text-25 laptop:text-40 font-800 max-w-27">{film}</h6>
+                    <h6 className="italic text-12 laptop:text-15 text-p-text font-700 bg-white px-1">{time}</h6>
+                    <h6 className="text-12 laptop:text-15">Just Arrive on MovieYDT</h6>
                 </div>
                 <div
                     className="absolute top-0 left-0 bottom-0 right-0 z-10 flex items-center justify-center group cursor-pointer"

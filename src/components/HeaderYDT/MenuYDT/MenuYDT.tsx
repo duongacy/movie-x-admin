@@ -1,9 +1,11 @@
 import React from 'react';
 
-interface IMenuYDTProps {}
-const MenuYDT: React.FC<IMenuYDTProps> = (props) => {
+interface IMenuYDTProps {
+    className?: string;
+}
+const MenuYDT: React.FC<IMenuYDTProps> = ({ className = '' }) => {
     return (
-        <ul className="inline-flex gap-1.5 text-12 text-s-text">
+        <ul className={`flex gap-1.5 text-12 text-s-text ${className}`}>
             <li>
                 <a className="font-500 ">Trang chủ</a>
             </li>

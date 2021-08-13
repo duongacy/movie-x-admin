@@ -1,6 +1,7 @@
 const screenConfig = {
-    phone: '600px',
-    laptop: '1024px',
+    phone:'320px',
+    tablet: '600px',
+    laptop: '920px',
     desktop: '1270px',
 };
 
