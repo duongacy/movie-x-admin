@@ -5,9 +5,6 @@
 .trailer .slick-dots li button:before {
     display: none !important;
 }
-.film-block  .slick-dots li button:before{
-    color: var(--color-s-text);
-}
 .ant-carousel .slick-dots li button {
     height: 8px !important;
 }
@@ -26,11 +23,12 @@
     width: 40px;
 }
 
+a,
 a:hover,
 a:focus,
 a:active {
     text-decoration: none;
-    color: inherit !important;
+    color: inherit;
 }
 
 h1,

@@ -73,7 +73,7 @@ const FooterYDT = (props: IProps) => {
 export default FooterYDT;
 
 const FooterYDTWrapper: React.FC = ({ children }) => (
-    <div className="bg-p-light py-2 px-1 tablet:px-3 text-s-text text-10 ">{children}</div>
+    <div className="bg-neutral-light py-2 px-1 tablet:px-3 text-light text-10 ">{children}</div>
 );
 
 const FooterTopWrapper: React.FC = ({ children }) => (

@@ -17,6 +17,32 @@
     - Được định nghĩa dạng interface ngay trong file chính của component, chủ yếu để bắt lỗi các prop bị truyền thiếu, thừa, sai định dạng.
 
 ### Component: Phân ra nhiều loại component để dễ quản lý
-Có 3 loại component chính:
 
-1
+
+### Color: vì project này có thêm chức năng chọn theme nên tất cả các màu đều được định nghĩa sẵn:
+<!-- @primary-color: #fff
+@link-color: 
+@success-color
+@warning-color
+@error-color
+@heading-color
+@text-color
+@text-color-secondary
+@disabled-color
+@border-color-base -->
+
+primary(màu chính, nổi bật)
+primary-dark
+primary-light
+
+neutral (màu trung tính)
+neutral-dark
+neutral-light
+
+success
+warning
+danger
+muted
+
+light
+dark

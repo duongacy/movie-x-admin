@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Carousel, Modal } from 'antd';
 import { PlayCircleOutlined } from '@ant-design/icons';
+import ContentYDTBlock from '../../components/ContentYDT/ContentYDTBlock';
 
 interface ITrailerProps {}
 
@@ -47,23 +48,27 @@ const TrailerItem: React.FC<ITrailerItemProps> = ({ bgSrc, film, time, trailerLi
                 style={{ backgroundImage: `url('${bgSrc}')` }}
                 className="bg-no-repeat bg-cover relative aspect-w-14 aspect-h-15 tablet:aspect-h-10 laptop:aspect-h-8 desktop:aspect-h-6"
             >
-                <div className="px-1 tablet:px-2 laptop:px-3 text-white h-full flex flex-col items-start justify-end gap-1 pb-4 desktop:pb-5">
-                    <h6 className="text-25 laptop:text-40 font-800 max-w-27">{film}</h6>
-                    <h6 className="italic text-12 laptop:text-15 text-p-text font-700 bg-white px-1">{time}</h6>
-                    <h6 className="text-12 laptop:text-15">Just Arrive on MovieYDT</h6>
-                </div>
+                <ContentYDTBlock>
+                    <div className="text-light h-full flex flex-col items-start justify-end gap-1 pb-4 desktop:pb-5">
+                        <h6 className="text-25 laptop:text-40 font-800 max-w-27">{film}</h6>
+                        <h6 className="italic text-12 laptop:text-15 text-primary-dark font-700 bg-light px-1">
+                            {time}
+                        </h6>
+                        <h6 className="text-12 laptop:text-15">Just Arrive on MovieYDT</h6>
+                    </div>
+                </ContentYDTBlock>
                 <div
-                    className="absolute top-0 left-0 bottom-0 right-0 z-10 flex items-center justify-center group cursor-pointer"
+                    className="absolute top-0 left-0 bottom-0 right-0 z-10 flex items-center justify-center group cursor-pointer text-primary"
                     onClick={() => {
                         handleToggleTrailer(!isTrailerOpen);
                     }}
                 >
-                    <div className="absolute top-0 left-0 bottom-0 right-0 bg-white opacity-0 group-hover:opacity-20"></div>
-                    <PlayCircleOutlined className="text-50 text-s-dark cursor-pointer opacity-40 duration-300 transform group-hover:scale-125 group-hover:opacity-100" />
+                    <div className="absolute top-0 left-0 bottom-0 right-0 bg-light opacity-0 duration-300 group-hover:opacity-20 transform"></div>
+                    <PlayCircleOutlined className="text-50 cursor-pointer opacity-40 duration-300 transform group-hover:scale-125 group-hover:opacity-100" />
                 </div>
             </div>
             <Modal
-                title={<h6 className="text-p-text font-600 text-18 uppercase italic">{film}</h6>}
+                title={<h6 className="text-primary font-600 text-18 uppercase italic">{film}</h6>}
                 visible={isTrailerOpen}
                 onCancel={() => handleToggleTrailer(false)}
                 footer={false}

@@ -1,15 +1,57 @@
-import React from 'react'
+import { Select, Button } from 'antd';
+import BlockTitle from '../../components/ContentYDT/BlockTitle';
+import ContentYDTBlock from '../../components/ContentYDT/ContentYDTBlock';
 
-interface IProps {
-    
-}
+const { Option } = Select;
+
+interface IProps {}
 
 const CinemaBlock = (props: IProps) => {
+    function onChange() {
+        console.log(`aaa`);
+    }
     return (
-        <div>
-            cinema block
-        </div>
-    )
-}
+        <ContentYDTBlock className="mt-1">
+            <BlockTitle>Chọn suất chiếu</BlockTitle>
+            <div className="grid gap-1 tablet:grid-cols-2">
+                <div className="grid gap-0.5">
+                    <Select
+                        showSearch
+                        placeholder="Chọn cụm rạp"
+                        optionFilterProp="children"
+                        onChange={onChange}
+                    >
+                        <Option value="jack">BHD</Option>
+                        <Option value="lucy">Galaxy</Option>
+                        <Option value="tom">Lotte</Option>
+                    </Select>
+                    <Select
+                        showSearch
+                        placeholder="Chọn rạp"
+                        optionFilterProp="children"
+                        onChange={onChange}
+                    >
+                        <Option value="jack">Jack</Option>
+                        <Option value="lucy">Lucy</Option>
+                        <Option value="tom">Tom</Option>
+                    </Select>
+                </div>
 
-export default CinemaBlock
+                <div className="grid grid-cols-3 gap-0.5">
+                    <Button type="dashed">13:20</Button>
+                    <Button type="dashed">16:40</Button>
+                    <Button type="dashed">20:05</Button>
+                    <Button type="dashed">21:05</Button>
+                    <Button type="dashed">23:05</Button>
+                    <Button type="dashed">11:05</Button>
+                </div>
+            </div>
+
+            {/* <div className="max-w-laptop text-s-text mx-auto grid grid-cols-1 divide-y my-3">
+                
+            </div> */}
+        </ContentYDTBlock>
+    );
+};
+
+export default CinemaBlock;

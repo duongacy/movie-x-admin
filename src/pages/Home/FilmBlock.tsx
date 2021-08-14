@@ -1,5 +1,6 @@
-import React from 'react';
 import Slider from 'react-slick';
+import BlockTitle from '../../components/ContentYDT/BlockTitle';
+import ContentYDTBlock from '../../components/ContentYDT/ContentYDTBlock';
 
 interface IProps {}
 
@@ -9,6 +10,7 @@ const FilmBlock = (props: IProps) => {
         speed: 500,
         slidesToShow: 3,
         initialSlide: 0,
+        centerPadding:"100px",
         responsive: [
             {
                 breakpoint: 1270,
@@ -46,48 +48,48 @@ const FilmBlock = (props: IProps) => {
         ],
     };
     return (
-        <div className="px-1 tablet:px-3 pt-1 pb-3 text-s-text film-block max-w-desktop laptop:mx-auto">
+        <ContentYDTBlock className="film-block">
             <div className="mt-1">
-                <h6 className="text-15 laptop:text-18 font-600 mb-0.5">Đang chiếu</h6>
-                <Slider {...settings} className="-ml-0.5">
-                    <a href="#">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
-                            <img src="images/films/film-block-1.jpg" alt="" />
+                <BlockTitle>Đang chiếu</BlockTitle>
+                <Slider {...settings} className="flex gap-1">
+                    <a href="#" className="mr-2">
+                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12">
+                            <img src="images/films/film-block-1.jpg" className="w-full" alt="" />
+                        </div>
+                    </a>
+
+                    <a href="#"  className="border-x-4">
+                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12">
+                            <img src="images/films/film-block-2.jpg" className="w-full" alt="" />
                         </div>
                     </a>
 
                     <a href="#">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
-                            <img src="images/films/film-block-2.jpg" alt="" />
+                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12">
+                            <img src="images/films/film-block-3.jpg" className="w-full" alt="" />
                         </div>
                     </a>
 
                     <a href="#">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
-                            <img src="images/films/film-block-3.jpg" alt="" />
+                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12">
+                            <img src="images/films/film-block-4.jpg" className="w-full" alt="" />
                         </div>
                     </a>
 
                     <a href="#">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
-                            <img src="images/films/film-block-4.jpg" alt="" />
+                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12">
+                            <img src="images/films/film-block-5.jpg" className="w-full" alt="" />
                         </div>
                     </a>
 
                     <a href="#">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
-                            <img src="images/films/film-block-5.jpg" alt="" />
+                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12">
+                            <img src="images/films/film-block-6.jpg" className="w-full" alt="" />
                         </div>
                     </a>
 
                     <a href="#">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
-                            <img src="images/films/film-block-6.jpg" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
+                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12">
                             <img src="images/films/film-block-7.jpg" alt="" />
                         </div>
                     </a>
@@ -100,58 +102,58 @@ const FilmBlock = (props: IProps) => {
                 </Slider>
             </div>
             <div className="mt-1">
-                <h6 className="text-15 laptop:text-18 font-600 mb-0.5">Sắp chiếu</h6>
-                <Slider {...settings} className="-ml-0.5">
+                <BlockTitle>Sắp chiếu</BlockTitle>
+                <Slider {...settings} className="gap-1">
                     <a href="#">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
-                            <img src="images/films/film-block-13.jpg" alt="" />
+                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12">
+                            <img src="images/films/film-block-13.jpg" className="w-full" alt="" />
+                        </div>
+                    </a>
+
+                    <a href="#">
+                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12">
+                            <img src="images/films/film-block-14.jpg" className="w-full" alt="" />
+                        </div>
+                    </a>
+
+                    <a href="#">
+                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12">
+                            <img src="images/films/film-block-15.jpg" className="w-full" alt="" />
+                        </div>
+                    </a>
+
+                    <a href="#">
+                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12">
+                            <img src="images/films/film-block-16.jpg" className="w-full" alt="" />
+                        </div>
+                    </a>
+
+                    <a href="#">
+                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12">
+                            <img src="images/films/film-block-17.jpg" className="w-full" alt="" />
+                        </div>
+                    </a>
+
+                    <a href="#">
+                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12">
+                            <img src="images/films/film-block-6.jpg" className="w-full" alt="" />
+                        </div>
+                    </a>
+
+                    <a href="#">
+                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12">
+                            <img src="images/films/film-block-7.jpg" alt="" />
                         </div>
                     </a>
 
                     <a href="#">
                         <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
-                            <img src="images/films/film-block-14.jpg" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
-                            <img src="images/films/film-block-15.jpg" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
-                            <img src="images/films/film-block-16.jpg" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
-                            <img src="images/films/film-block-17.jpg" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
-                            <img src="images/films/film-block-18.jpg" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
-                            <img src="images/films/film-block-19.jpg" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12">
-                            <img src="images/films/film-block-20.jpg" alt="" />
+                            <img src="images/films/film-block-8.jpg" alt="" />
                         </div>
                     </a>
                 </Slider>
             </div>
-        </div>
+        </ContentYDTBlock>
     );
 };
 

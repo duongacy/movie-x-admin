@@ -1,8 +1,7 @@
 import ChangeThemeSwitch from './ChangeThemeSwitch/ChangeThemeSwitch';
 import ProvinceSelect from './ProvinceSelect/ProvinceSelect';
 
-import React, { createRef, Fragment, useState } from 'react';
-import { Header } from 'antd/lib/layout/layout';
+import React, { createRef, useState } from 'react';
 import LogoYDT from './LogoYDT/LogoYDT';
 import MenuYDT from './MenuYDT/MenuYDT';
 import UserForm from './UserForm/UserForm';
@@ -11,9 +10,6 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 interface IHeaderYDTProps {}
 const HeaderYDT: React.FC<IHeaderYDTProps> = (props) => {
     const [showSecondMenu, setShowSecondMenu] = useState(false);
-
-    const menuRef = createRef();
-
     return (
         <div>
             <HeaderMiniWrapper>
@@ -21,26 +17,25 @@ const HeaderYDT: React.FC<IHeaderYDTProps> = (props) => {
                 <ChangeThemeSwitch />
             </HeaderMiniWrapper>
             <HeaderYDTWrapper className="relative">
-                <div className="flex gap-1 laptop:gap-0">
-                    <button onClick={() => setShowSecondMenu(true)}>
-                        <MenuUnfoldOutlined className="text-16 laptop:hidden" />
+                <div className="flex gap-1 laptop:gap-0 items-center">
+                    <button onClick={() => setShowSecondMenu(true)} className="text-16 laptop:hidden text-primary-dark flex">
+                        <MenuUnfoldOutlined />
                     </button>
                     <div
-                        className={`absolute top-0 bg-p-dark w-20 h-screen z-20 duration-500 ${
+                        className={`absolute top-0 bg-neutral w-20 h-screen z-20 duration-500 ${
                             showSecondMenu ? 'left-0' : '-left-20'
                         }`}
                     >
                         <button
-                            className="absolute right-1 top-0 h-1"
+                            className="absolute right-1 top-1 flex text-primary-dark"
                             onClick={() => setShowSecondMenu(false)}
                         >
                             <MenuFoldOutlined className="text-16" />
                         </button>
                     </div>
-                    <LogoYDT />
+                    <LogoYDT className="text-primary-dark" />
                 </div>
-
-                <MenuYDT className="hidden laptop:flex" />
+                <MenuYDT className="hidden laptop:flex text-light" />
                 <UserForm />
             </HeaderYDTWrapper>
         </div>
@@ -54,11 +49,11 @@ interface IHeaderYDTWrapperProps {
 }
 const HeaderYDTWrapper: React.FC<IHeaderYDTWrapperProps> = ({ children, className = '' }) => {
     return (
-        <Header
-            className={`px-1 tablet:px-2 laptop:px-3 h-4 bg-primary flex items-center gap-1 justify-between text-p-text ${className}`}
+        <header
+            className={`px-1 tablet:px-2 laptop:px-3 h-4 bg-neutral-dark flex items-center gap-1 justify-between text-p-text ${className}`}
         >
             {children}
-        </Header>
+        </header>
     );
 };
 

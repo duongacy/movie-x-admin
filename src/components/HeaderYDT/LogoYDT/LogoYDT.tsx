@@ -5,7 +5,7 @@ interface ILogoYDTProps {
 }
 
 const LogoYDT: React.FC<ILogoYDTProps> = ({ className = '' }) => {
-    return <a className={`text-16 font-700 opacity-80 hover:opacity-100 ${className}`}>MovieYDT</a>;
+    return <h6 className={`text-17 font-700 opacity-80 hover:opacity-100 ${className}`}><a className="block h-full">MovieYDT</a> </h6>;
 };
 
 export default LogoYDT;

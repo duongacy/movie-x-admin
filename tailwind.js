@@ -18,20 +18,35 @@ const config = {
     purge: ['./src/**/*.{js,ts,jsx,tsx}'],
     darkMode: false,
     theme: {
+        
         screens: screenConfig,
         colors: {
             'transparent': 'transparent',
-            'primary': 'var(--color-primary)',
-            'p-light': 'var(--color-p-light)',
-            'p-dark': 'var(--color-p-dark)',
-            'p-text': 'var(--color-p-text)',
+            'primary': 'var(--primary)',
+            'primary-dark':'var(--primary-dark)',
+            'primary-light':'var(--primary-light)',
 
-            'secondary': 'var(--color-secondary)',
-            's-light': 'var(--color-s-light)',
-            's-dark': 'var(--color-s-dark)',
-            's-text': 'var(--color-s-text)',
+            'neutral':'var(--neutral)',
+            'neutral-dark':'var(--neutral-dark)',
+            'neutral-light':'var(--neutral-light)',
 
-            'white': 'var(--color-white)',
+
+            'success':'var(--success)',
+            'warning':'var(--warning)',
+            'danger':'var(--danger)',
+            'success':'var(--success)',
+
+            'light':'var(--light)',
+            'dark':'var(--dark)',
+            
+            
+
+            // 'secondary': 'var(--color-secondary)',
+            // 's-light': 'var(--color-s-light)',
+            // 's-dark': 'var(--color-s-dark)',
+            // 's-text': 'var(--color-s-text)',
+
+            // 'white': 'var(--color-white)',
         },
         borderWidth: borderWidth,
         fontSize: fontSizeConfig,
