@@ -46,10 +46,6 @@ const CinemaBlock = (props: IProps) => {
                     <Button type="dashed">11:05</Button>
                 </div>
             </div>
-
-            {/* <div className="max-w-laptop text-s-text mx-auto grid grid-cols-1 divide-y my-3">
-                
-            </div> */}
         </ContentYDTBlock>
     );
 };
