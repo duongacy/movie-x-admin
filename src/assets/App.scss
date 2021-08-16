@@ -50,3 +50,9 @@ p {
     position: relative;
 }
 
+.film-item-clip {
+    clip-path: polygon(2% 0, 99% 0, 100% 57%, 99% 100%, 88% 100%, 2% 100%, 1% 100%, 0 45%);
+}
+.news-item-img{
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+}

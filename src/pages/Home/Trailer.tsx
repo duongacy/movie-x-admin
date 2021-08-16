@@ -46,7 +46,7 @@ const TrailerItem: React.FC<ITrailerItemProps> = ({ bgSrc, film, time, trailerLi
         <div>
             <div
                 style={{ backgroundImage: `url('${bgSrc}')` }}
-                className="bg-no-repeat bg-cover relative aspect-w-14 aspect-h-15 tablet:aspect-h-10 laptop:aspect-h-8 desktop:aspect-h-6 transform rotate-3"
+                className="bg-no-repeat bg-cover relative aspect-w-14 aspect-h-15 tablet:aspect-h-10 laptop:aspect-h-8 desktop:aspect-h-6 transform rotate-1"
             >
                 <ContentYDTBlock>
                     <div className="text-light h-full flex flex-col items-start justify-end gap-1 pb-4 desktop:pb-5">

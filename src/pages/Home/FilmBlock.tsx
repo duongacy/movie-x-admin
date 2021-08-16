@@ -4,6 +4,69 @@ import ContentYDTBlock from '../../components/ContentYDT/ContentYDTBlock';
 
 interface IProps {}
 
+const listDangChieu = [
+    //list nay se lay tu API
+    {
+        name: 'Phim 1',
+        imgSrc: 'images/films/film-block-1.jpg',
+    },
+    {
+        name: 'Phim 2',
+        imgSrc: 'images/films/film-block-2.jpg',
+    },
+    {
+        name: 'Phim 3',
+        imgSrc: 'images/films/film-block-3.jpg',
+    },
+    {
+        name: 'Phim 4',
+        imgSrc: 'images/films/film-block-4.jpg',
+    },
+    {
+        name: 'Phim 5',
+        imgSrc: 'images/films/film-block-5.jpg',
+    },
+    {
+        name: 'Phim 6',
+        imgSrc: 'images/films/film-block-6.jpg',
+    },
+    {
+        name: 'Phim 7',
+        imgSrc: 'images/films/film-block-7.jpg',
+    },
+];
+const listSapChieu = [
+    //list nay se lay tu API
+    {
+        name: 'Phim 1',
+        imgSrc: 'images/films/film-block-8.jpg',
+    },
+    {
+        name: 'Phim 2',
+        imgSrc: 'images/films/film-block-9.jpg',
+    },
+    {
+        name: 'Phim 3',
+        imgSrc: 'images/films/film-block-10.jpg',
+    },
+    {
+        name: 'Phim 4',
+        imgSrc: 'images/films/film-block-11.jpg',
+    },
+    {
+        name: 'Phim 5',
+        imgSrc: 'images/films/film-block-12.jpg',
+    },
+    {
+        name: 'Phim 6',
+        imgSrc: 'images/films/film-block-13.jpg',
+    },
+    {
+        name: 'Phim 7',
+        imgSrc: 'images/films/film-block-14.jpg',
+    },
+];
+
 const FilmBlock = (props: IProps) => {
     const settings = {
         infinite: true,
@@ -52,105 +115,17 @@ const FilmBlock = (props: IProps) => {
             <div className="mt-1">
                 <BlockTitle>Đang chiếu</BlockTitle>
                 <Slider {...settings} className="flex gap-1">
-                    <a href="#" className="transform hover:rotate-1">
-                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12 transform skew-x-6 ">
-                            <img src="images/films/film-block-1.jpg" className="w-full" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#" className="transform hover:rotate-1">
-                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12  transform skew-x-6">
-                            <img src="images/films/film-block-2.jpg" className="w-full" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#" className="transform hover:rotate-1">
-                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12  transform skew-x-1">
-                            <img src="images/films/film-block-3.jpg" className="w-full" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#" className="transform hover:rotate-1">
-                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12  transform skew-x-1">
-                            <img src="images/films/film-block-4.jpg" className="w-full" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#" className="transform hover:rotate-1">
-                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12  transform skew-x-1">
-                            <img src="images/films/film-block-5.jpg" className="w-full" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#" className="transform hover:rotate-1">
-                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12  transform skew-x-1">
-                            <img src="images/films/film-block-6.jpg" className="w-full" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#" className="transform hover:rotate-1">
-                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12  transform skew-x-1">
-                            <img src="images/films/film-block-7.jpg" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#" className="transform hover:rotate-1">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12  transform skew-x-1">
-                            <img src="images/films/film-block-8.jpg" alt="" />
-                        </div>
-                    </a>
+                    {listDangChieu.map((item, key) => (
+                        <FilmBlockItem imgSrc={item.imgSrc} skew={key % 2 === 0 ? 'x' : 'y'} />
+                    ))}
                 </Slider>
             </div>
             <div className="mt-1">
                 <BlockTitle>Sắp chiếu</BlockTitle>
                 <Slider {...settings} className="gap-1">
-                    <a href="#" className="transform hover:-rotate-1">
-                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12  transform skew-y-1">
-                            <img src="images/films/film-block-13.jpg" className="w-full" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#" className="transform hover:-rotate-1">
-                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12 transform skew-y-1">
-                            <img src="images/films/film-block-14.jpg" className="w-full" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#" className="transform hover:-rotate-1">
-                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12 transform skew-y-1">
-                            <img src="images/films/film-block-15.jpg" className="w-full" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#" className="transform hover:-rotate-1">
-                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12 transform skew-y-1">
-                            <img src="images/films/film-block-16.jpg" className="w-full" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#" className="transform hover:-rotate-1">
-                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12 transform skew-y-1">
-                            <img src="images/films/film-block-17.jpg" className="w-full" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#" className="transform hover:-rotate-1">
-                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12 transform skew-y-1">
-                            <img src="images/films/film-block-6.jpg" className="w-full" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#" className="transform hover:-rotate-1">
-                        <div className="h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12 transform skew-y-1">
-                            <img src="images/films/film-block-7.jpg" alt="" />
-                        </div>
-                    </a>
-
-                    <a href="#" className="transform hover:-rotate-1">
-                        <div className="h-5 bg-p-text aspect-w-16 aspect-h-9 laptop:aspect-h-12 transform skew-y-1">
-                            <img src="images/films/film-block-8.jpg" alt="" />
-                        </div>
-                    </a>
+                    {listSapChieu.map((item, key) => (
+                        <FilmBlockItem imgSrc={item.imgSrc} skew={key % 2 === 0 ? 'x' : 'y'} />
+                    ))}
                 </Slider>
             </div>
         </ContentYDTBlock>
@@ -158,3 +133,15 @@ const FilmBlock = (props: IProps) => {
 };
 
 export default FilmBlock;
+
+interface IFilmBlockItemProps {
+    imgSrc?: string;
+    skew?: string;
+}
+const FilmBlockItem: React.FC<IFilmBlockItemProps> = ({ imgSrc, skew }) => (
+    <div
+        className={`h-5 aspect-w-16 aspect-h-9 laptop:aspect-h-12 skew-${skew}-1 transform hover:rotate-1 duration-300 cursor-pointer film-item-clip`}
+    >
+        <img src={imgSrc} className="w-full" alt="" />
+    </div>
+);

@@ -2,7 +2,8 @@ import React from 'react';
 import Trailer from './Trailer';
 import FilmBlock from './FilmBlock';
 import CinemaBlock from './CinemaBlock';
-import NewsBlock from './NewsBlock';
+import NewsBlock from './MagazineBlock/MagazineBlock';
+import AppBlock from './AppBlock';
 
 const HomePage = () => {
     return (
@@ -11,6 +12,7 @@ const HomePage = () => {
             <FilmBlock/>
             <CinemaBlock/>
             <NewsBlock/>
+            <AppBlock/>
         </HomePageWrapper>
     );
 };

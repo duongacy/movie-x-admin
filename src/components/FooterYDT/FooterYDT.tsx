@@ -7,49 +7,41 @@ const FooterYDT = (props: IProps) => {
         <FooterYDTWrapper>
             <FooterTopWrapper>
                 <FooterCol>
-                    <FooterColTitle>MovieYDT</FooterColTitle>
+                    <FooterColTitle>Libraries</FooterColTitle>
                     <FooterMenu>
-                        <FooterMenuItem>FAQ</FooterMenuItem>
-                        <FooterMenuItem>Term & privacy</FooterMenuItem>
-                        <FooterMenuItem>Brand guidelines</FooterMenuItem>
+                        <FooterMenuItem>Ant Designer</FooterMenuItem>
+                        <FooterMenuItem>ReactJS</FooterMenuItem>
+                        <FooterMenuItem>Tailwind</FooterMenuItem>
+                        <FooterMenuItem>Slick carousel</FooterMenuItem>
                     </FooterMenu>
                 </FooterCol>
+                
                 <FooterCol>
                     <FooterColTitle>Partner</FooterColTitle>
-                    <FooterPartner>
-                        <FooterPartnerItem href="http://" srcUrl="images/partners/agribank.png" />
-                        <FooterPartnerItem href="http://" srcUrl="images/partners/beta.jpg" />
-                        <FooterPartnerItem href="http://" srcUrl="images/partners/touch.png" />
-                        <FooterPartnerItem href="http://" srcUrl="images/partners/zalopay.png" />
-                        <FooterPartnerItem
-                            href="http://"
-                            srcUrl="images/partners/viettinbank.png"
-                        />
-                        <FooterPartnerItem href="http://" srcUrl="images/partners/vcb.png" />
-                    </FooterPartner>
-                </FooterCol>
-                <FooterCol>
-                    <FooterColTitle>Mobile app</FooterColTitle>
-                    <FooterPartner>
-                        <FooterPartnerItem href="" srcUrl="images/socials/ios.png" />
-                        <FooterPartnerItem href="" srcUrl="images/socials/android.png" />
-                    </FooterPartner>
+                    <FooterMenu>
+                        <FooterMenuItem>CGV</FooterMenuItem>
+                        <FooterMenuItem>Lotte</FooterMenuItem>
+                        <FooterMenuItem>BHD</FooterMenuItem>
+                    </FooterMenu>
                 </FooterCol>
                 <FooterCol>
                     <FooterColTitle>Social</FooterColTitle>
                     <FooterMenu>
-                        <FooterMenuItem>
-                            <img src="images/socials/google.png" className="h-2" alt="" />
-                        </FooterMenuItem>
-                        <FooterMenuItem>
-                            <img src="images/socials/zalo.png" className="h-2" alt="" />
-                        </FooterMenuItem>
+                        <FooterMenuItem>Facebook</FooterMenuItem>
+                        <FooterMenuItem>Google</FooterMenuItem>
+                        <FooterMenuItem>Zalo</FooterMenuItem>
+                    </FooterMenu>
+                </FooterCol>
+                <FooterCol>
+                    <FooterColTitle>About us</FooterColTitle>
+                    <FooterMenu>
+                        <FooterMenuItem>Terms & privacy</FooterMenuItem>
                     </FooterMenu>
                 </FooterCol>
             </FooterTopWrapper>
             <hr className="my-1.5 max-w-laptop mx-auto" />
             <FooterBottomWrapper>
-                <div className="grid gap-1">
+                <div className="grid gap-1 col-span-3">
                     <FooterColTitle>
                         MovieYDT – SẢN PHẨM CỦA CÔNG TY CỔ PHẦN YDT
                     </FooterColTitle>
@@ -62,7 +54,7 @@ const FooterYDT = (props: IProps) => {
                         <h6>Số Điện Thoại (Hotline): 1900 545 436</h6>
                     </div>
                 </div>
-                <div>
+                <div className="col-span-1">
                     <img src="images/dtb.png" className="h-3" alt="" />
                 </div>
             </FooterBottomWrapper>
@@ -73,7 +65,7 @@ const FooterYDT = (props: IProps) => {
 export default FooterYDT;
 
 const FooterYDTWrapper: React.FC = ({ children }) => (
-    <div className="bg-neutral-light py-2 px-1 tablet:px-3 text-light text-10 ">{children}</div>
+    <div className="bg-neutral-dark py-2 px-1 tablet:px-2 text-light text-10 ">{children}</div>
 );
 
 const FooterTopWrapper: React.FC = ({ children }) => (
@@ -82,7 +74,7 @@ const FooterTopWrapper: React.FC = ({ children }) => (
     </div>
 );
 const FooterBottomWrapper: React.FC = ({ children }) => (
-    <div className="grid grid-cols-1 tablet:grid-cols-2 gap-2 max-w-laptop mx-auto">
+    <div className="grid gap-2 max-w-laptop mx-auto">
         {children}
     </div>
 );
@@ -109,16 +101,3 @@ const FooterMenuItem: React.FC = ({ children }) => {
     );
 };
 
-const FooterPartner: React.FC = ({ children }) => (
-    <div className="grid grid-cols-3 gap-1">{children}</div>
-);
-
-interface IFooterParnerItemProps {
-    srcUrl?: string;
-    href?: string;
-}
-const FooterPartnerItem: React.FC<IFooterParnerItemProps> = ({ srcUrl, ...restParam }) => (
-    <a {...restParam}>
-        <img className="rounded-full" src={srcUrl} width={40} height={40} alt="" />
-    </a>
-);
