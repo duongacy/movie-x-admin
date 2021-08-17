@@ -20,5 +20,5 @@ export default HomePage;
 
 interface IHomePageWrapperProps {}
 const HomePageWrapper: React.FC<IHomePageWrapperProps> = ({ children }) => {
-    return <div className="bg-neutral flex-auto overflow-hidden">{children}</div>;
+    return <div className=" bg-gradient-to-b from-neutral-dark to-neutral flex-auto overflow-hidden">{children}</div>;
 };

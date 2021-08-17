@@ -22,6 +22,18 @@ const config = {
         screens: screenConfig,
         colors: {
             'transparent': 'transparent',
+            'bhd': 'var(--bhd)',
+            'cgv': 'var(--cgv)',
+            'lotte': 'var(--lotte)',
+            'tailwind': 'var(--tailwind)',
+            'slick': 'var(--slick)',
+            'react': 'var(--react)',
+            'ant': 'var(--ant)',
+            'android': 'var(--android)',
+            'ios': 'var(--ios)',
+            'facebook': 'var(--facebook)',
+            'google': 'var(--google)',
+
             'primary': 'var(--primary)',
             'primary-dark':'var(--primary-dark)',
             'primary-light':'var(--primary-light)',
@@ -29,7 +41,6 @@ const config = {
             'neutral':'var(--neutral)',
             'neutral-dark':'var(--neutral-dark)',
             'neutral-light':'var(--neutral-light)',
-
 
             'success':'var(--success)',
             'warning':'var(--warning)',

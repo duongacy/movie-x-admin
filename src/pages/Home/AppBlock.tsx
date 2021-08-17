@@ -19,10 +19,10 @@ const AppBlock = (props: IProps) => {
                     <h6 className="text-13 mb-1">Tải app ngay</h6>
                     <div className="flex gap-2 justify-center">
                         <button>
-                            <AndroidOutlined className="text-light text-35" />
+                            <AndroidOutlined className="text-light text-35 hover:text-android duration-500" />
                         </button>
                         <button>
-                            <AppleOutlined className="text-light text-35" />
+                            <AppleOutlined className="text-light text-35 hover:text-ios duration-500" />
                         </button>
                     </div>
                 </div>
@@ -51,20 +51,6 @@ const AppBlock = (props: IProps) => {
                             </Carousel>
                         </div>
                     </div>
-                    {/* <Carousel effect="fade">
-                        <div>
-                            <div className="bg-dark h-20">aaaa</div>
-                        </div>
-                        <div>
-                            <h3>2</h3>
-                        </div>
-                        <div>
-                            <h3>3</h3>
-                        </div>
-                        <div>
-                            <h3>4</h3>
-                        </div>
-                    </Carousel> */}
                 </div>
             </ContentYDTBlock>
         </div>

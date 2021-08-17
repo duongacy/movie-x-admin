@@ -9,27 +9,26 @@ const FooterYDT = (props: IProps) => {
                 <FooterCol>
                     <FooterColTitle>Libraries</FooterColTitle>
                     <FooterMenu>
-                        <FooterMenuItem>Ant Designer</FooterMenuItem>
-                        <FooterMenuItem>ReactJS</FooterMenuItem>
-                        <FooterMenuItem>Tailwind</FooterMenuItem>
-                        <FooterMenuItem>Slick carousel</FooterMenuItem>
+                        <FooterMenuItem><span className="text-ant">Ant Designer</span></FooterMenuItem>
+                        <FooterMenuItem><span className="text-react">ReactJS</span></FooterMenuItem>
+                        <FooterMenuItem><span className="text-tailwind">Tailwind</span></FooterMenuItem>
+                        <FooterMenuItem><span className="text-slick">Slick carousel</span></FooterMenuItem>
                     </FooterMenu>
                 </FooterCol>
                 
                 <FooterCol>
                     <FooterColTitle>Partner</FooterColTitle>
                     <FooterMenu>
-                        <FooterMenuItem>CGV</FooterMenuItem>
-                        <FooterMenuItem>Lotte</FooterMenuItem>
-                        <FooterMenuItem>BHD</FooterMenuItem>
+                        <FooterMenuItem><span className="text-cgv">CGV</span> </FooterMenuItem>
+                        <FooterMenuItem><span className="text-lotte">Lotte</span></FooterMenuItem>
+                        <FooterMenuItem><span className="text-bhd">BHD</span></FooterMenuItem>
                     </FooterMenu>
                 </FooterCol>
                 <FooterCol>
                     <FooterColTitle>Social</FooterColTitle>
                     <FooterMenu>
-                        <FooterMenuItem>Facebook</FooterMenuItem>
-                        <FooterMenuItem>Google</FooterMenuItem>
-                        <FooterMenuItem>Zalo</FooterMenuItem>
+                        <FooterMenuItem><span className="text-facebook">Facebook</span></FooterMenuItem>
+                        <FooterMenuItem> <span className="text-google">Google</span> </FooterMenuItem>
                     </FooterMenu>
                 </FooterCol>
                 <FooterCol>
@@ -46,12 +45,12 @@ const FooterYDT = (props: IProps) => {
                         MovieYDT – SẢN PHẨM CỦA CÔNG TY CỔ PHẦN YDT
                     </FooterColTitle>
                     <div className="grid gap-0.5 text-8">
-                        <h6>
+                        <h6 className="font-100">
                             Địa chỉ: Z06 Đường số 13, Phường Tân Thuận Đông, Quận 7, Tp. Hồ Chí
                             Minh, Việt Nam.
                         </h6>
-                        <h6>Giấy chứng nhận đăng ký kinh doanh số: 0101659783</h6>
-                        <h6>Số Điện Thoại (Hotline): 1900 545 436</h6>
+                        <h6 className="font-100">Giấy chứng nhận đăng ký kinh doanh số: 0101659783</h6>
+                        <h6 className="font-100">Số Điện Thoại (Hotline): 1900 545 436</h6>
                     </div>
                 </div>
                 <div className="col-span-1">
@@ -94,7 +93,7 @@ const FooterMenu: React.FC = ({ children }) => {
 const FooterMenuItem: React.FC = ({ children }) => {
     return (
         <li>
-            <a href="" className="font-600 opacity-60 hover:opacity-100 duration-500">
+            <a href="" className="font-600 opacity-80 hover:opacity-100 duration-500">
                 {children}
             </a>
         </li>

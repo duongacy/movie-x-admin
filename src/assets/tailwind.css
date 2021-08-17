@@ -3,6 +3,17 @@
 @import 'tailwindcss/utilities';
 @layer base {
     .dark {
+        --bhd:#8AC442;
+        --lotte:#FE000E;
+        --cgv:#EE3224;
+        --tailwind:#06B6D4;
+        --slick:#3598DB;
+        --react:#61DAFB;
+        --ant:#1890FF;
+        --facebook:#4267B2;
+        --google:#DD4B39;
+        --android:#78C257;
+        --ios:#555555;
         --primary: #EA4A4A;
         --primary-dark: #C91818;
         --primary-light: #F9AEAE;
