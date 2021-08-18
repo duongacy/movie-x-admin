@@ -61,3 +61,5 @@ export const layThongTinPhimService = (maPhim: string = '') => {
     const response = getAPIOnlyToken(URL);
     response.then((rs) => console.log('layThongTinPhimService', rs.data));
 };
+console.log("hihi");
+
