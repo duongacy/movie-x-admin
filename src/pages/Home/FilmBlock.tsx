@@ -116,7 +116,11 @@ const FilmBlock = (props: IProps) => {
                 <BlockTitle>Đang chiếu</BlockTitle>
                 <Slider {...settings} className="flex gap-1">
                     {listDangChieu.map((item, key) => (
-                        <FilmBlockItem imgSrc={item.imgSrc} skew={key % 2 === 0 ? 'x' : 'y'} />
+                        <FilmBlockItem
+                            key={'film-block-' + key}
+                            imgSrc={item.imgSrc}
+                            skew={key % 2 === 0 ? 'x' : 'y'}
+                        />
                     ))}
                 </Slider>
             </div>
@@ -124,7 +128,11 @@ const FilmBlock = (props: IProps) => {
                 <BlockTitle>Sắp chiếu</BlockTitle>
                 <Slider {...settings} className="gap-1">
                     {listSapChieu.map((item, key) => (
-                        <FilmBlockItem imgSrc={item.imgSrc} skew={key % 2 === 0 ? 'x' : 'y'} />
+                        <FilmBlockItem
+                            key={'xxxx' + key}
+                            imgSrc={item.imgSrc}
+                            skew={key % 2 === 0 ? 'x' : 'y'}
+                        />
                     ))}
                 </Slider>
             </div>

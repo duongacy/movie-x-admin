@@ -1,7 +1,7 @@
 import ChangeThemeSwitch from './ChangeThemeSwitch/ChangeThemeSwitch';
 import ProvinceSelect from './ProvinceSelect/ProvinceSelect';
 
-import React, { createRef, useState } from 'react';
+import React, { useState } from 'react';
 import LogoYDT from './LogoYDT/LogoYDT';
 import MenuYDT from './MenuYDT/MenuYDT';
 import UserForm from './UserForm/UserForm';
@@ -18,7 +18,10 @@ const HeaderYDT: React.FC<IHeaderYDTProps> = (props) => {
             </HeaderMiniWrapper>
             <HeaderYDTWrapper className="relative">
                 <div className="flex gap-1 laptop:gap-0 items-center">
-                    <button onClick={() => setShowSecondMenu(true)} className="text-16 laptop:hidden text-primary-dark flex">
+                    <button
+                        onClick={() => setShowSecondMenu(true)}
+                        className="text-16 laptop:hidden text-primary-dark flex"
+                    >
                         <MenuUnfoldOutlined />
                     </button>
                     <div

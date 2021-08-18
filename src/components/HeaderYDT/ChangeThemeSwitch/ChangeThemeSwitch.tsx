@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { Switch } from 'antd';
 import SwitchYDT from '../../../designs/SwitchYDT';
 import { ISwitchCallbackChange } from '../../../designs/designTypes';
 

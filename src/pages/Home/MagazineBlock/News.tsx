@@ -31,7 +31,11 @@ const News = () => {
                 </div>
                 <div className="flex flex-col gap-0.5">
                     {newsMenuList.map((item, key) => (
-                        <NewsMenuItem imgSrc={item.imgSrc} name={item.name} />
+                        <NewsMenuItem
+                            key={'news-menu-item-' + key}
+                            imgSrc={item.imgSrc}
+                            name={item.name}
+                        />
                     ))}
                 </div>
             </div>
@@ -77,7 +81,8 @@ const NewsMenuItem: React.FC<INewsMenuItemProps> = ({ imgSrc, name }) => {
     );
 };
 
-const newsMenuList = [//lấy từ API
+const newsMenuList = [
+    //lấy từ API
     {
         name: 'Một số người bám vào máy bay Mỹ cất cánh ở Kabul',
         imgSrc: 'images/films/film-block-10.jpg',

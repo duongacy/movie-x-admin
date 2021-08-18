@@ -1,8 +1,6 @@
-export type ILayDanhSachBanner = {
-    TokenCybersoft: string;
-};
+export type ILayDanhSachBanner = {};
 export type IBanner = {
-    maBanner: number;
-    maPhim: number;
-    hinhAnh: string;
+    maBanner?: number;
+    maPhim?: number;
+    hinhAnh?: string;
 };
