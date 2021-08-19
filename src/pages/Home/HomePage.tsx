@@ -16,6 +16,14 @@ import {
     layDanhSachPhimPhanTrangService,
     layDanhSachPhimTheoNgayService,
 } from '../../services/quanLyPhim/quanLyPhim.service';
+import {
+    layDanhSachLoaiNguoiDungService,
+    layDanhSachNguoiDungPhanTrangService,
+    layDanhSachNguoiDungService,
+    timKiemNguoiDungPhanTrangService,
+    timKiemNguoiDungService,
+} from '../../services/quanLyNguoiDung/quanLyNguoiDung.service';
+import { layDanhSachPhongVeService } from '../../services/quanLyDatVe/layDanhSachPhongVe';
 
 const HomePage = () => {
     layThongTinHeThongRapService('MegaGS');
@@ -28,6 +36,13 @@ const HomePage = () => {
 
     layDanhSachPhimPhanTrangService(1, 10);
     layDanhSachPhimTheoNgayService();
+    layDanhSachLoaiNguoiDungService();
+    layDanhSachNguoiDungService('123');
+
+    layDanhSachNguoiDungPhanTrangService();
+    timKiemNguoiDungService('123a');
+    timKiemNguoiDungPhanTrangService('1');
+    layDanhSachPhongVeService(15236);
     return (
         <HomePageWrapper>
             <Trailer />
