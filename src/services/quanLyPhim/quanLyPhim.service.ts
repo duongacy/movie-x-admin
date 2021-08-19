@@ -16,6 +16,7 @@ export const layDanhSachPhimService = (tenPhim: string = ``) => {
     let URL = `/api/QuanLyPhim/LayDanhSachPhim${maNhomQuery}${tenPhimQuery}`;
     const response = getAPIOnlyToken(URL);
     response.then((rs) => console.log('layDanhSachPhimService', rs.data.content));
+    return response;
 };
 
 export const layDanhSachPhimPhanTrangService = (
