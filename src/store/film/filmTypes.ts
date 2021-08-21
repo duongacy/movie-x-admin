@@ -1,7 +1,7 @@
 export const GET_ALL_PHIM = 'GET_ALL_PHIM';
 
-export interface IPhimState {
-    danhSachPhim: IPhim[];
+export interface IFilmState {
+    listFilm: IPhim[];
 }
 export interface IPhim {
     maPhim?: number;

@@ -9,14 +9,24 @@ export const layThongTinHeThongRapService = (maHeThongRap: string = ``) => {
     });
 };
 
-export const layThongTinCumRapTheoHeThongService = (maHeThongRap: string = ``) => {
-    const maHeThongRapQuery = maHeThongRap.trim() === `` ? `` : `?maHeThongRap=${maHeThongRap}`;
-    const URL = `/api/QuanLyRap/LayThongTinCumRapTheoHeThong${maHeThongRapQuery}`;
+// export const layThongTinCumRapTheoHeThongService = (maHeThongRap: string = ``) => {
+//     const maHeThongRapQuery = maHeThongRap.trim() === `` ? `` : `?maHeThongRap=${maHeThongRap}`;
+//     const URL = `/api/QuanLyRap/LayThongTinCumRapTheoHeThong${maHeThongRapQuery}`;
+
+//     const response = getAPIOnlyToken(URL);
+//     response.then((rs) => {
+//         console.log('layThongTinCumRapTheoHeThongService: ', rs.data.content);
+//     });
+// };
+export const getTheatreByMultiplex = (maHeThongRap: string) => {
+    const maHeThongRapQuery = `maHeThongRap=${maHeThongRap}`;
+    const URL = `/api/QuanLyRap/LayThongTinCumRapTheoHeThong?${maHeThongRapQuery}`;
 
     const response = getAPIOnlyToken(URL);
     response.then((rs) => {
         console.log('layThongTinCumRapTheoHeThongService: ', rs.data.content);
     });
+    return response;
 };
 
 export const layThongTinLichChieuHeThongRapService = (maHeThongRap: string = ``) => {
@@ -28,11 +38,12 @@ export const layThongTinLichChieuHeThongRapService = (maHeThongRap: string = ``)
     });
 };
 
-export const layThongTinLichChieuPhimService = (maPhim: number) => {
+export const getAllMultiplexByFilmService = (maPhim: number) => {
     const maPhimQuery = `?MaPhim=${maPhim}`;
     const URL = `/api/QuanLyRap/LayThongTinLichChieuPhim${maPhimQuery}`;
     const response = getAPIOnlyToken(URL);
     response.then((rs) => {
         console.log('layThongTinLichChieuPhimService', rs.data.content);
     });
+    return response;
 };

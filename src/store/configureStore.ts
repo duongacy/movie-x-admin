@@ -1,13 +1,16 @@
 import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
-import { phimReducer } from './phim/phimReducer';
+import { filmReducer } from './film/filmReducer';
+import { theatreReducer } from './theatre/theatreReducer';
 
-export type IRootState ={
-    phimStore:any
-}
-const rootState: IRootState={
-    phimStore: phimReducer
-}
+export type IRootState = {
+    filmStore: any;
+    theatreStore: any;
+};
+const rootState: IRootState = {
+    filmStore: filmReducer,
+    theatreStore: theatreReducer,
+};
 const rootReducer = combineReducers(rootState);
 
 declare global {
