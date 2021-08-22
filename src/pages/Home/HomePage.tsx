@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Trailer from './Trailer';
 import FilmBlock from './FilmBlock';
 import CinemaBlock from './CinemaBlock';
 import NewsBlock from './MagazineBlock/MagazineBlock';
 import AppBlock from './AppBlock';
 import { useSelector } from 'react-redux';
+import HeaderYDT from '../../components/HeaderYDT/HeaderYDT';
+import FooterYDT from '../../components/FooterYDT/FooterYDT';
 
 const HomePage = () => {
     return (
@@ -12,7 +14,7 @@ const HomePage = () => {
             <Trailer />
             <FilmBlock />
             <CinemaBlock />
-            <NewsBlock />
+            {/* <NewsBlock /> */}
             <AppBlock />
         </HomePageWrapper>
     );

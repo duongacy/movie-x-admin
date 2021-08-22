@@ -53,6 +53,23 @@ p {
 .film-item-clip {
     clip-path: polygon(2% 0, 99% 0, 100% 57%, 99% 100%, 88% 100%, 2% 100%, 1% 100%, 0 45%);
 }
-.news-item-img{
+.news-item-img {
     clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+}
+
+.site-layout-content {
+    min-height: 280px;
+    padding: 24px;
+    background: #fff;
+}
+#components-layout-demo-top .logo {
+    float: left;
+    width: 120px;
+    height: 31px;
+    margin: 16px 24px 16px 0;
+    background: rgba(255, 255, 255, 0.3);
+}
+.ant-row-rtl #components-layout-demo-top .logo {
+    float: right;
+    margin: 16px 0 16px 24px;
 }

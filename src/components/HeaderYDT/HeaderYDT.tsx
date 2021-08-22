@@ -9,7 +9,6 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 
 interface IHeaderYDTProps {}
 const HeaderYDT: React.FC<IHeaderYDTProps> = (props) => {
-    const [showSecondMenu, setShowSecondMenu] = useState(false);
     return (
         <div>
             <HeaderMiniWrapper>
@@ -17,27 +16,7 @@ const HeaderYDT: React.FC<IHeaderYDTProps> = (props) => {
                 <ChangeThemeSwitch />
             </HeaderMiniWrapper>
             <HeaderYDTWrapper className="relative">
-                <div className="flex gap-1 laptop:gap-0 items-center">
-                    <button
-                        onClick={() => setShowSecondMenu(true)}
-                        className="text-16 laptop:hidden text-primary-dark flex"
-                    >
-                        <MenuUnfoldOutlined />
-                    </button>
-                    <div
-                        className={`absolute top-0 bg-neutral w-20 h-screen z-20 duration-500 ${
-                            showSecondMenu ? 'left-0' : '-left-20'
-                        }`}
-                    >
-                        <button
-                            className="absolute right-1 top-1 flex text-primary-dark"
-                            onClick={() => setShowSecondMenu(false)}
-                        >
-                            <MenuFoldOutlined className="text-16" />
-                        </button>
-                    </div>
-                    <LogoYDT className="text-primary-dark" />
-                </div>
+                <HiddenMenu />
                 <MenuYDT className="hidden laptop:flex text-light" />
                 <UserForm />
             </HeaderYDTWrapper>
@@ -65,6 +44,34 @@ const HeaderMiniWrapper: React.FC<IHeaderMiniWrapperProps> = ({ children }) => {
     return (
         <div className="px-1 tablet:px-2 laptop:px-3 py-4px flex gap-2 items-center justify-between">
             {children}
+        </div>
+    );
+};
+
+interface IHiddenMenuProps {}
+const HiddenMenu: React.FC<IHiddenMenuProps> = () => {
+    const [showSecondMenu, setShowSecondMenu] = useState(false);
+    return (
+        <div className="flex gap-1 laptop:gap-0 items-center">
+            <button
+                onClick={() => setShowSecondMenu(true)}
+                className="text-16 laptop:hidden text-primary-dark flex"
+            >
+                <MenuUnfoldOutlined />
+            </button>
+            <div
+                className={`absolute top-0 bg-neutral w-20 h-screen z-20 duration-500 ${
+                    showSecondMenu ? 'left-0' : '-left-20'
+                }`}
+            >
+                <button
+                    className="absolute right-1 top-1 flex text-primary-dark"
+                    onClick={() => setShowSecondMenu(false)}
+                >
+                    <MenuFoldOutlined className="text-16" />
+                </button>
+            </div>
+            <LogoYDT className="text-primary-dark" />
         </div>
     );
 };
