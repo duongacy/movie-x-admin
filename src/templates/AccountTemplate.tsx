@@ -1,14 +1,14 @@
 import React, { Fragment, ReactNode } from 'react';
 import { Route } from 'react-router-dom';
 
-interface IUserTemplateProps {
+interface IAccountTemplateProps {
     templateComponent: ReactNode;
     path: string;
     exact: boolean;
 }
 
-const UserTemplate: React.FC<IUserTemplateProps> = ({ templateComponent, ...restProps }) => {
+const AccountTemplate: React.FC<IAccountTemplateProps> = ({ templateComponent, ...restProps }) => {
     return <Route {...restProps}>{templateComponent}</Route>;
 };
 
-export default UserTemplate;
+export default AccountTemplate;

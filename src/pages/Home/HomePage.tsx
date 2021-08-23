@@ -2,21 +2,19 @@ import React, { Fragment } from 'react';
 import Trailer from './Trailer';
 import FilmBlock from './FilmBlock';
 import CinemaBlock from './CinemaBlock';
-import NewsBlock from './MagazineBlock/MagazineBlock';
 import AppBlock from './AppBlock';
-import { useSelector } from 'react-redux';
-import HeaderYDT from '../../components/HeaderYDT/HeaderYDT';
-import FooterYDT from '../../components/FooterYDT/FooterYDT';
+import MainTemplate from '../../templates/MainTemplate';
 
 const HomePage = () => {
     return (
-        <HomePageWrapper>
-            <Trailer />
-            <FilmBlock />
-            <CinemaBlock />
-            {/* <NewsBlock /> */}
-            <AppBlock />
-        </HomePageWrapper>
+        <MainTemplate>
+            <HomePageWrapper>
+                <Trailer />
+                <FilmBlock />
+                <CinemaBlock />
+                <AppBlock />
+            </HomePageWrapper>
+        </MainTemplate>
     );
 };
 export default HomePage;
