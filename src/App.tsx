@@ -7,15 +7,11 @@ import './assets/custom/reset.scss';
 import './assets/custom/antd-custom.scss';
 import './assets/custom/slick-custom.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-import { Layout, Menu, Breadcrumb } from 'antd';
 import HomePage from './pages/Home/HomePage';
 import PublicTemplate from './templates/PublicTemplate';
 import UserTemplate from './templates/UserTemplate';
 import LoginPage from './pages/User/LoginPage/LoginPage';
 import RegisterPage from './pages/User/RegisterPage/RegisterPage';
-
-const { Header, Content, Footer } = Layout;
 
 const App: React.FC = () => {
     return (
