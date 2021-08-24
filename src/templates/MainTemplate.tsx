@@ -4,20 +4,16 @@ import { Route } from 'react-router-dom';
 import FooterYDT from '../components/FooterYDT/FooterYDT';
 import HeaderYDT from '../components/HeaderYDT/HeaderYDT';
 
-interface IPropsPublicTemplateProps {
-    templateComponent: ReactNode;
-    path: string;
-    exact: boolean;
-}
+interface IPropsMainTemplateProps {}
 
-const PublicTemplate: React.FC<IPropsPublicTemplateProps> = (props) => {
+const MainTemplate: React.FC<IPropsMainTemplateProps> = ({ children }) => {
     return (
         <Fragment>
             <HeaderYDT />
-            <Route {...props}>{props.templateComponent}</Route>
+            {children}
             <FooterYDT />
         </Fragment>
     );
 };
 
-export default PublicTemplate;
+export default MainTemplate;
