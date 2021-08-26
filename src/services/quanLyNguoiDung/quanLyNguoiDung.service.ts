@@ -3,6 +3,7 @@ import {
     maNhomQuery,
     perPageQuery,
     pageQuery,
+    postAPIOnlyToken,
 } from '../APIMethods/APIMethods.service';
 
 export const layDanhSachLoaiNguoiDungService = () => {
@@ -57,4 +58,13 @@ export const timKiemNguoiDungPhanTrangService = (
     response.then((rs) => {
         console.log('timKiemNguoiDungPhanTrangService', rs.data.content);
     });
+};
+
+export const loginService = (payload: any) => {
+    const URL = '/api/QuanLyNguoiDung/DangNhap';
+    const response = postAPIOnlyToken(URL, payload);
+    response.then((rs) => {
+        console.log('rrrr:', rs.data);
+    });
+    return response;
 };

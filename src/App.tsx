@@ -6,38 +6,69 @@ import './assets/App.scss';
 import './assets/custom/reset.scss';
 import './assets/custom/antd-custom.scss';
 import './assets/custom/slick-custom.scss';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import FilmMgmt from './pages/FilmMgmt';
-import TicketMgmt from './pages/TicketMgmt';
-import UserMgmt from './pages/UserMgmt';
-import ShowtimeMgmt from './pages/ShowtimeMgmt';
+import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
+import FilmMgmt from './pages/FilmMgmt/FilmMgmt';
+import TicketMgmt from './pages/TicketMgmt/TicketMgmt';
+import UserMgmt from './pages/UserMgmt/UserMgmt';
+import ShowtimeMgmt from './pages/ShowtimeMgmt/ShowtimeMgmt';
 import AdminTemplate from './templates/AdminTemplate';
 import Dashboard from './pages/Dashboard';
+import Login from './pages/Account/Login';
+import Register from './pages/Account/Register';
+import { useSelector } from 'react-redux';
 
 const App: React.FC = () => {
     return (
         <Router>
-            <AdminTemplate>
-                <Switch>
-                    <Route exact path="/">
+            <Switch>
+                <Route exact path="/login">
+                    <Login />
+                </Route>
+                <AdminTemplate>
+                    <AdminRoute exact path="/">
                         <Dashboard />
-                    </Route>
-                    <Route exact path="/admin/film-mgmt">
+                    </AdminRoute>
+                    <AdminRoute exact path="/admin/film-mgmt">
                         <FilmMgmt />
-                    </Route>
-                    <Route exact path="/admin/ticket-mgmt">
+                    </AdminRoute>
+                    <AdminRoute exact path="/admin/ticket-mgmt">
                         <TicketMgmt />
-                    </Route>
-                    <Route exact path="/admin/user-mgmt">
+                    </AdminRoute>
+                    <AdminRoute exact path="/admin/user-mgmt">
                         <UserMgmt />
-                    </Route>
-                    <Route exact path="/admin/show-time-mgmt">
+                    </AdminRoute>
+                    <AdminRoute exact path="/admin/show-time-mgmt">
                         <ShowtimeMgmt />
-                    </Route>
-                </Switch>
-            </AdminTemplate>
+                    </AdminRoute>
+                    <AdminRoute exact path="/register">
+                        <Register />
+                    </AdminRoute>
+                </AdminTemplate>
+            </Switch>
         </Router>
     );
 };
 
 export default App;
+
+interface IAdminRouteProps {
+    path: string;
+    exact: boolean;
+}
+const AdminRoute: React.FC<IAdminRouteProps> = ({ children, ...restProps }) => {
+    const history = useHistory();
+    const { userInfo } = useSelector((root: any) => root.accountStore);
+    const { maLoaiNguoiDung } = userInfo || '';
+    return (
+        <Route
+            {...restProps}
+            render={() => {
+                if (maLoaiNguoiDung === 'QuanTri') {
+                    return children;
+                } else {
+                    history.push('/login');
+                }
+            }}
+        />
+    );
+};

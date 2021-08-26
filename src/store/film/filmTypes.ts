@@ -1,19 +1,10 @@
+import { IFilm } from '../../common/formatTypes/Film';
+
 export const GET_ALL_PHIM = 'GET_ALL_PHIM';
+export const GET_FILM_EDIT = 'GET_FILM_EDIT';
+export const RESET_FILM_MODAL = 'RESET_FILM_MODAL';
 
 export interface IFilmState {
-    listFilm: IPhim[];
-}
-export interface IPhim {
-    maPhim?: number;
-    tenPhim?: string;
-    biDanh?: string;
-    trailer?: string;
-    hinhAnh?: string;
-    moTa?: string;
-    maNhom?: string;
-    ngayKhoiChieu?: string;
-    danhGia?: number;
-    hot?: boolean;
-    dangChieu?: boolean;
-    sapChieu?: boolean;
+    listFilm: IFilm[];
+    filmDetail: IFilm | null;
 }

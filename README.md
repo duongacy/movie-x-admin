@@ -10,3 +10,11 @@
         - Click vào [Đặt vé], sẽ đi thẳng đến trang đặt vé -> chọn hệ thống rạp-> chọn cụm rạp-> chọn rạp->chọn khung giờ chiếu->chọn ghế.
         - Click vào link phim, sẽ đi đến trang detail, trong trang detail cũng có 1 button [Đặt vé].
         - Đặt vé bằng select box: Chọn phim -> chọn rạp chiếu->chọn ngày xem->chọn suất chiếu -> click vào button [Đặt vé]
+
+
+
+
+<!-- ----------------------- Tài khoản quản trị viên ----------------------- -->
+"taiKhoan": "YDT",
+"matKhau": "1@Ydtydt",
+<!-- ----------------------------------------------------------------------- -->

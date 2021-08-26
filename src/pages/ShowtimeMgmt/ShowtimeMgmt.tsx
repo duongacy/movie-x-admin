@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Table, Popconfirm, Form, Typography } from 'antd';
-import { AdminContext } from '../contexts/AdminContext';
-import { EditableCell } from '../components/EditTableCell';
+import { AdminContext } from '../../contexts/AdminContext';
+import { EditableCell } from '../../components/EditTableCell';
 
 interface Item {
     key: string;
