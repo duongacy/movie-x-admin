@@ -15,14 +15,22 @@ export const accountReducer = (state = initialState, action: IAction) => {
             state.userInfo = action.payload;
             /* --------------- Khi đăng nhập nhớ lưu userInfo xuống localStorage --------------- */
             localStorage.setItem('userInfo', JSON.stringify(action.payload));
-            if (state.userInfo.maLoaiNguoiDung === 'QuanTri') {
+            if (state.userInfo !== null && state.userInfo.maLoaiNguoiDung === 'QuanTri') {
                 state.loginStatus = 1;
             } else {
                 state.loginStatus = 2;
             }
             break;
+
         case accountTypes.LOGIN_FAILED:
             state.loginStatus = 0;
+            break;
+        case accountTypes.LOGOUT:
+            state.loginStatus = -1;
+            state.userInfo = null;
+            localStorage.removeItem('userInfo');
+            console.log('da logout');
+            
             break;
         default:
             break;

@@ -1,9 +1,8 @@
-import { Form, Input, Button, Checkbox } from 'antd';
-import { useEffect, useState } from 'react';
+import { Form, Input, Button, Checkbox, FormInstance } from 'antd';
+import { createRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { loginAction } from '../../store/account/accountActions';
-import { ILoginPayload } from '../../store/account/accountTypes';
+import { loginAction, logoutAction } from '../../store/account/accountActions';
 
 interface ILoginProps {}
 const Login: React.FC<ILoginProps> = ({}) => {
@@ -11,10 +10,20 @@ const Login: React.FC<ILoginProps> = ({}) => {
     const history = useHistory();
 
     const { loginStatus } = useSelector((root: any) => root.accountStore);
+
+    const loginRememberLocal = localStorage.getItem('loginRemember');
+    const [loginRemember, setloginRemember] = useState(JSON.parse(loginRememberLocal!));
+
     const [loginAlert, setLoginAlert] = useState('');
-    const onFinish = (values: ILoginPayload) => {
+
+    const onFinish = (values: any) => {
         dispatch(loginAction(values));
     };
+    const removeLoginHistory = () => {
+        localStorage.removeItem('loginRemember');
+    };
+    const formRef = createRef<FormInstance>();
+
     useEffect(() => {
         switch (loginStatus) {
             case 0:
@@ -30,11 +39,25 @@ const Login: React.FC<ILoginProps> = ({}) => {
                 break;
         }
     }, [loginStatus]);
+    const usingLoginHistory = () => {
+        if (loginRemember !== null) {
+            formRef.current!.setFieldsValue({
+                taiKhoan: loginRemember.taiKhoan,
+                matKhau: loginRemember.matKhau,
+            });
+        } else {
+            setLoginAlert('Không có lịch sử đăng nhập');
+            setTimeout(() => {
+                setLoginAlert('');
+            }, 3000);
+        }
+    };
 
     return (
         <>
             <h6 className="text-20 text-center my-2">Login</h6>
             <Form
+                ref={formRef}
                 name="basic"
                 labelCol={{ span: 8 }}
                 wrapperCol={{ span: 16 }}
@@ -56,18 +79,24 @@ const Login: React.FC<ILoginProps> = ({}) => {
                 >
                     <Input.Password />
                 </Form.Item>
-                {/* <Form.Item
+                <Form.Item
                     name="remember"
-                    valuePropName="checked"
                     wrapperCol={{ offset: 8, span: 16 }}
                 >
-                    <Checkbox>Remember me</Checkbox>
-                </Form.Item> */}
+                    <Checkbox >Remember me</Checkbox>
+                    <a className="ml-1" onClick={removeLoginHistory}>
+                        Xóa lịch sử đăng nhập
+                    </a>
+                </Form.Item>
 
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        Đăng nhập
                     </Button>
+
+                    <a onClick={usingLoginHistory} className="ml-2 hover:text-success">
+                        Sử dụng tài khoản đã lưu gần nhất
+                    </a>
                 </Form.Item>
 
                 <h6 style={{ color: 'red' }}>{loginAlert}</h6>

@@ -22,7 +22,6 @@ const initialState: ITheatreState = {
 export const theatreReducer = (state: ITheatreState = initialState, action: IAction) => {
     switch (action.type) {
         case GET_ALL_MULTIPLEX_BY_FILM:
-            console.log('ahahahha', action.payload);
             state.listMultiplexByFilm = action.payload;
             return { ...state };
 

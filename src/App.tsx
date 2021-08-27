@@ -1,6 +1,3 @@
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
 import './assets/main.css';
 import './assets/App.scss';
 import './assets/custom/reset.scss';
@@ -67,6 +64,7 @@ const AdminRoute: React.FC<IAdminRouteProps> = ({ children, ...restProps }) => {
                     return children;
                 } else {
                     history.push('/login');
+                    return null;
                 }
             }}
         />

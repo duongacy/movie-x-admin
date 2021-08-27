@@ -2,17 +2,27 @@ import { loginService } from '../../services/quanLyNguoiDung/quanLyNguoiDung.ser
 import { ILoginPayload } from './accountTypes';
 import * as accountTypes from './accountTypes';
 
-export const loginAction = (payload: ILoginPayload) => {
+export const loginAction = (payload: any) => {
     return (dispatch: any) => {
-        const promise = loginService(payload);
+        const { taiKhoan, matKhau, remember } = payload;
+        const loginPayload: ILoginPayload = {
+            taiKhoan,
+            matKhau,
+        };
+        const promise = loginService(loginPayload);
         promise
             .then((rs) => {
                 const userInfo = rs.data.content;
+                const { maLoaiNguoiDung } = userInfo;
+
                 dispatch({
                     type: accountTypes.REMEMBER_USER,
                     payload: userInfo,
                 });
-                console.log('dang nhap ne: ', rs.data.content);
+                //Khi check đúng tài khoản quản trị sẽ lưu thông tin đăng nhập vào local storage
+                maLoaiNguoiDung === 'QuanTri' &&
+                    remember &&
+                    localStorage.setItem('loginRemember', JSON.stringify(payload));
             })
             .catch((err) =>
                 dispatch({
@@ -20,5 +30,14 @@ export const loginAction = (payload: ILoginPayload) => {
                     payload: null,
                 })
             );
+    };
+};
+
+export const logoutAction = () => {
+    return (dispatch: any) => {
+        dispatch({
+            type: accountTypes.LOGOUT,
+            payload: null,
+        });
     };
 };

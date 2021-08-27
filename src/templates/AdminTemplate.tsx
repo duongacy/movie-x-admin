@@ -1,10 +1,12 @@
-import React from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import React, { useEffect } from 'react';
+import { Layout, Menu, Breadcrumb, Button } from 'antd';
 import { YoutubeOutlined, UserOutlined, CalendarOutlined, BookOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import '../assets/admin.scss';
 import { Link } from 'react-router-dom';
 import { AdminProvider } from '../contexts/AdminContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutAction } from '../store/account/accountActions';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -14,9 +16,19 @@ interface IAdminTemplateProps {
 }
 
 const AdminTemplate: React.FC<IAdminTemplateProps> = ({ breadCumName, children }) => {
+    const { userInfo } = useSelector((state: any) => state.accountStore);
+    const { taiKhoan } = userInfo || '';
+
+    useEffect(() => {
+        console.log('ten tai khoan:', taiKhoan);
+    }, [userInfo]);
     const [collapse, setCollapse] = useState(false);
+    const dispatch = useDispatch();
     const onCollapse = () => {
         setCollapse(!collapse);
+    };
+    const handleLogout = () => {
+        dispatch(logoutAction());
     };
     return (
         <AdminProvider>
@@ -43,7 +55,10 @@ const AdminTemplate: React.FC<IAdminTemplateProps> = ({ breadCumName, children }
                 </Sider>
 
                 <Layout className="site-layout">
-                    <Header className="site-layout-background" style={{ padding: 0 }} />
+                    <Header className="site-layout-background flex justify-end items-center gap-1 p-0">
+                        <h6>Xin chào {taiKhoan}</h6>
+                        <Button onClick={handleLogout}>Logout</Button>
+                    </Header>
                     <Content style={{ margin: '0 16px' }}>{children}</Content>
                     <Footer style={{ textAlign: 'center' }}>
                         Ant Design ©2018 Created by Ant UED
