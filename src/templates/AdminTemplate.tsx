@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Layout, Menu, Breadcrumb, Button } from 'antd';
+import { Layout, Menu, Breadcrumb, Button, Skeleton } from 'antd';
 import { YoutubeOutlined, UserOutlined, CalendarOutlined, BookOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import '../assets/admin.scss';
@@ -59,7 +59,13 @@ const AdminTemplate: React.FC<IAdminTemplateProps> = ({ breadCumName, children }
                         <h6>Xin chào {taiKhoan}</h6>
                         <Button onClick={handleLogout}>Logout</Button>
                     </Header>
-                    <Content style={{ margin: '0 16px' }}>{children}</Content>
+
+                    <Content style={{ margin: '0 16px' }}>
+                        {/* <Skeleton loading={loading}> */}
+                        {children}
+                        {/* </Skeleton> */}
+                    </Content>
+
                     <Footer style={{ textAlign: 'center' }}>
                         Ant Design ©2018 Created by Ant UED
                     </Footer>

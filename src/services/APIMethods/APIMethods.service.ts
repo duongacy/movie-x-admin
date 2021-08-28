@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IUserInput } from '../../common/formatTypes/User';
 import { DOMAIN, TOKEN_CYBERSOFT, MA_NHOM } from '../../config';
 
 export const maNhomQuery = `maNhom=${MA_NHOM}`; //Do mã nhóm này sử dụng chung cho tất cả nên được định nghĩa ở đây
@@ -21,6 +22,33 @@ export const postAPIOnlyToken = (URL: string, payload: any) => {
         data: payload,
         headers: {
             TokenCybersoft: TOKEN_CYBERSOFT,
+        },
+    });
+};
+
+export const postAPIByAdmin = (URL: string, payload: any) => {
+    const { accessToken } =
+        localStorage.getItem('userInfo') !== null
+            ? JSON.parse(localStorage.getItem('userInfo')!)
+            : null;
+
+    return axios.post(`${DOMAIN}${URL}`, payload, {
+        headers: {
+            TokenCybersoft: TOKEN_CYBERSOFT,
+            Authorization: `Bearer ${accessToken}`,
+        },
+    });
+};
+
+export const deleteAPIByAdmin = (URL: string) => {
+    const { accessToken } =
+        localStorage.getItem('userInfo') !== null
+            ? JSON.parse(localStorage.getItem('userInfo')!)
+            : null;
+    return axios.delete(`${DOMAIN}${URL}`, {
+        headers: {
+            TokenCybersoft: TOKEN_CYBERSOFT,
+            Authorization: `Bearer ${accessToken}`,
         },
     });
 };

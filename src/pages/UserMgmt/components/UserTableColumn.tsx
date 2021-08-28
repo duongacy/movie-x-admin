@@ -15,36 +15,26 @@ const UserTableColumn = (callbackShowEditUser: (taiKhoan: string) => void) => {
             dataIndex: 'hoTen',
             key: 'hoTen',
         },
-        {
-            title: 'Email',
-            dataIndex: 'email',
-            key: 'email',
-        },
-        {
-            title: 'Số điện thoại',
-            dataIndex: 'soDt',
-            key: 'soDt',
-        },
-        {
-            title: 'Mật khẩu',
-            dataIndex: 'matKhau',
-            key: 'matKhau',
-        },
+        // {
+        //     title: 'Email',
+        //     dataIndex: 'email',
+        //     key: 'email',
+        // },
+        // {
+        //     title: 'Số điện thoại',
+        //     dataIndex: 'soDt',
+        //     key: 'soDt',
+        // },
+        // {
+        //     title: 'Mật khẩu',
+        //     dataIndex: 'matKhau',
+        //     key: 'matKhau',
+        // },
         {
             title: 'Quyền truy cập',
             dataIndex: 'maLoaiNguoiDung',
             key: 'maLoaiNguoiDung',
         },
-        {
-            title: 'Action',
-            key: 'action',
-            render: (text: string, record: IUser) => (
-                <Space size="middle">
-                    <a onClick={() => callbackShowEditUser(record.taiKhoan)}>Edit</a>
-                    <a>Delete</a>
-                </Space>
-            ),
-        },
-    ]
+    ];
 };
 export default UserTableColumn;

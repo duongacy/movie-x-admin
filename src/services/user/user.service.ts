@@ -1,9 +1,12 @@
+import { IUser, IUserInput } from '../../common/formatTypes/User';
 import {
     getAPIOnlyToken,
     maNhomQuery,
     perPageQuery,
     pageQuery,
     postAPIOnlyToken,
+    postAPIByAdmin,
+    deleteAPIByAdmin,
 } from '../APIMethods/APIMethods.service';
 
 export const getAllUserTypeService = () => {
@@ -27,26 +30,37 @@ export const getAllUserPaginationService = (page: number, perPage: number) => {
 };
 
 export const getUserByTuKhoa = (tuKhoa: string) => {
-    const tuKhoaQuery = `&tuKhoa=${tuKhoa.trim()}`; //từ khóa chínhla taiKhoan
-    const URL = `/api/QuanLyNguoiDung/TimKiemNguoiDung${maNhomQuery}${tuKhoaQuery}`;
-    const response = getAPIOnlyToken(URL);
-    response.then((rs) => {
-        console.log('timKiemNguoiDungService', rs.data.content);
-    });
+    const tuKhoaQuery = `tuKhoa=${tuKhoa.trim()}`; //từ khóa chínhla taiKhoan
+    const URL = `/api/QuanLyNguoiDung/TimKiemNguoiDung?${maNhomQuery}&${tuKhoaQuery}`;
+    return getAPIOnlyToken(URL);
 };
-export const getUserByTuKhoaPagination = (
+export const getUserByNamePaginationService = (
     tuKhoa: string,
     page: number = 1,
     perPage: number = 10
 ) => {
-    const tuKhoaQuery = `&tuKhoa=${tuKhoa.trim()}`; //từ khóa chính là taiKhoan
-    const URL = `/api/QuanLyNguoiDung/TimKiemNguoiDungPhanTrang${maNhomQuery}${tuKhoaQuery}${pageQuery(
+    const tuKhoaQuery = tuKhoa === `` ? `` : `&tuKhoa=${tuKhoa.trim()}`; //từ khóa chính là taiKhoan
+    const URL = `/api/QuanLyNguoiDung/TimKiemNguoiDungPhanTrang?${maNhomQuery}${tuKhoaQuery}&${pageQuery(
         page
-    )}${perPageQuery(perPage)}`;
-    const response = getAPIOnlyToken(URL);
-    response.then((rs) => {
-        console.log('timKiemNguoiDungPhanTrangService', rs.data.content);
-    });
+    )}&${perPageQuery(perPage)}`;
+    return getAPIOnlyToken(URL);
+};
+
+export const addUserService = (payload: IUserInput) => {
+    const URL = '/api/QuanLyNguoiDung/ThemNguoiDung';
+    return postAPIByAdmin(URL, payload);
+};
+
+export const updateUserService = (payload: IUserInput) => {
+    const URL = '/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung';
+    return postAPIByAdmin(URL, payload);
+};
+
+export const deleteUserServices = (payload: string) => {
+    const taiKhoanQuery = `TaiKhoan=${payload}`;
+    const URL = `/api/QuanLyNguoiDung/XoaNguoiDung?${taiKhoanQuery}`;
+
+    return deleteAPIByAdmin(URL);
 };
 
 export const loginService = (payload: any) => {

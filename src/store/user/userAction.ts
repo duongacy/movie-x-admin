@@ -1,31 +1,25 @@
-import { getAllUserServices, getAllUserPaginationService } from '../../services/user/user.service';
+import { IUser, IUserInput } from '../../common/formatTypes/User';
+import {
+    addUserService,
+    getUserByTuKhoa,
+    getUserByNamePaginationService,
+    updateUserService,
+    deleteUserServices,
+} from '../../services/user/user.service';
 import { IAction } from '../../type';
-import { GET_USER_LIST, SET_LIST_USER_LOADING } from './userTypes';
+import { setLoadingAction } from '../parent/parentAction';
+import {
+    SHOW_USER_MODAL_UPDATE,
+    GET_USER_LIST,
+    SHOW_USER_MODAL_ADD,
+    HIDE_MODAL,
+    SET_USER_HANDLE_STATUS,
+} from './userTypes';
 
-export const getAllUserAction = () => {
+export const getUserByNameAction = (taiKhoan: string, page: number, pageSize: number) => {
     return (dispatch: any) => {
-        const listUserPromise = getAllUserServices();
-        listUserPromise.then((rs) => {
-            const action: IAction = {
-                type: GET_USER_LIST,
-                payload: rs.data.content,
-            };
-            dispatch(action);
-        });
-    };
-};
-
-const setUserLoadingAction = (isLoading: boolean) => {
-    return {
-        type: SET_LIST_USER_LOADING,
-        payload: isLoading,
-    };
-};
-
-export const getAllUserPaginationAction = (page: number, pageSize: number) => {
-    return (dispatch: any) => {
-        const listUserPromise = getAllUserPaginationService(page, pageSize);
-        dispatch(setUserLoadingAction(true));
+        dispatch(setLoadingAction(true));
+        const listUserPromise = getUserByNamePaginationService(taiKhoan, page, pageSize);
         listUserPromise.then((rs) => {
             const { content } = rs.data;
             const action: IAction = {
@@ -33,7 +27,80 @@ export const getAllUserPaginationAction = (page: number, pageSize: number) => {
                 payload: content,
             };
             dispatch(action);
-            dispatch(setUserLoadingAction(false));
+            dispatch(setLoadingAction(false));
         });
+    };
+};
+
+export const showModalAddUserAction = () => {
+    return (dispatch: any) => {
+        const action: IAction = {
+            type: SHOW_USER_MODAL_ADD,
+            payload: null,
+        };
+        dispatch(action);
+    };
+};
+export const showModalEditUserAction = (taiKhoan: string) => {
+    return (dispatch: any) => {
+        const userPromise = getUserByTuKhoa(taiKhoan);
+        userPromise.then((rs) => {
+            const action: IAction = {
+                type: SHOW_USER_MODAL_UPDATE,
+                payload: rs.data.content[0],
+            };
+            dispatch(action);
+        });
+    };
+};
+export const hideModalUserAction = () => {
+    return (dispatch: any) => {
+        const action: IAction = {
+            type: HIDE_MODAL,
+            payload: null,
+        };
+        dispatch(action);
+    };
+};
+
+export const addUserAction = (user: IUserInput) => {
+    return (dispatch: any) => {
+        dispatch(setLoadingAction(true));
+        const promise = addUserService(user);
+        promise.then((rs) => {
+            dispatch(hideModalUserAction());
+        });
+    };
+};
+
+export const updateUserAction = (user: IUserInput) => {
+    return (dispatch: any) => {
+        const promise = updateUserService(user);
+        promise.then((rs) => {
+            dispatch(hideModalUserAction());
+        });
+    };
+};
+
+export const setUserHandleStatusAction = (status: string) => {
+    return (dispatch: any) => {
+        const action: IAction = {
+            type: SET_USER_HANDLE_STATUS,
+            payload: status,
+        };
+        dispatch(action);
+    };
+};
+
+export const deleteUserAction = (taiKhoan: string) => {
+    return (dispatch: any) => {
+        const promise = deleteUserServices(taiKhoan);
+        promise
+            .then((rs) => {
+                dispatch(hideModalUserAction());
+            })
+            .catch((err) => {
+                // dispatch(setUserHandleStatusAction("Xóa không thành công"))
+            });
     };
 };

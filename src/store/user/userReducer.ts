@@ -1,18 +1,23 @@
 import { IAction } from '../../type';
 import * as userTypes from './userTypes';
+import { IUser } from '../../common/formatTypes/User';
 
+const userDefault: IUser = {
+    taiKhoan: '',
+    hoTen: '',
+    email: '',
+    soDt: '',
+    matKhau: '',
+    maLoaiNguoiDung: 'KhachHang',
+};
 const initialState: userTypes.IUserState = {
     listUser: [],
     listUserLoading: false,
-    userDefault: {
-        taiKhoan: '',
-        hoTen: '',
-        email: '',
-        soDt: '',
-        matKhau: '',
-        maLoaiNguoiDung: 'KhachHang',
-    },
+    userInfo: userDefault,
     userTotalCount: 0,
+    isEdit: false,
+    isUserModalShow: false,
+    userHandleStatus: '',
 };
 
 export const userReducer = (state = initialState, action: IAction) => {
@@ -23,21 +28,28 @@ export const userReducer = (state = initialState, action: IAction) => {
             state.userTotalCount = totalCount;
             break;
 
-        case userTypes.GET_USER_EDIT:
+        case userTypes.SHOW_USER_MODAL_UPDATE:
+            state.userInfo = { ...action.payload };
+            state.isEdit = true;
+            state.isUserModalShow = true;
+            return { ...state };
+        case userTypes.SHOW_USER_MODAL_ADD:
+            state.userInfo = { ...userDefault };
+            state.isEdit = false;
+            state.isUserModalShow = true;
             break;
 
-        case userTypes.ADD_USER:
+        case userTypes.SUBMIT_USER:
             break;
 
-        case userTypes.EDIT_USER:
+        case userTypes.HIDE_MODAL:
+            state.isUserModalShow = false;
             break;
 
-        case userTypes.DELETE_USER:
+        case userTypes.SET_USER_HANDLE_STATUS:
+            state.userHandleStatus = action.payload;
             break;
 
-        case userTypes.SET_LIST_USER_LOADING:
-            state.listUserLoading = action.payload;
-            break;
         default:
             return state;
     }
