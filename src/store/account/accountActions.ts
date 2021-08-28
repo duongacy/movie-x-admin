@@ -1,4 +1,4 @@
-import { loginService } from '../../services/quanLyNguoiDung/quanLyNguoiDung.service';
+import { loginService } from '../../services/user/user.service';
 import { ILoginPayload } from './accountTypes';
 import * as accountTypes from './accountTypes';
 

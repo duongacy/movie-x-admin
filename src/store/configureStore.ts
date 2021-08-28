@@ -3,16 +3,20 @@ import reduxThunk from 'redux-thunk';
 import { accountReducer } from './account/accountReducer';
 import { filmReducer } from './film/filmReducer';
 import { theatreReducer } from './theatre/theatreReducer';
+import { userReducer } from './user/userReducer';
+import { IUserState } from './user/userTypes';
 
 export type IRootState = {
     filmStore: any;
     theatreStore: any;
     accountStore: any;
+    userStore: any
 };
 const rootState: IRootState = {
     filmStore: filmReducer,
     theatreStore: theatreReducer,
     accountStore: accountReducer,
+    userStore: userReducer,
 };
 const rootReducer = combineReducers(rootState);
 

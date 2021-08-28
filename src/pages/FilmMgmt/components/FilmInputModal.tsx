@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, useEffect, EventHandler } from 'react';
 import { Modal, Form, Input, Button, Upload } from 'antd';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import { InboxOutlined } from '@ant-design/icons';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import TextArea from 'antd/lib/input/TextArea';
 import { IFilmInput } from '../../../common/formatTypes/Film';
 
@@ -12,8 +12,6 @@ interface IFilmInputModalProps {
     callbackCancel?: () => void;
 }
 export const FilmInputModal: React.FC<IFilmInputModalProps> = ({ show, callbackCancel }) => {
-    const dispatch = useDispatch();
-
     /* -------------------------------- useState -------------------------------- */
     const { filmDetail } = useSelector((root: any) => root.filmStore);
     const [inputFields, setInputFields] = useState<IFilmInput>(filmDetail);
@@ -129,7 +127,7 @@ export const FilmInputModal: React.FC<IFilmInputModalProps> = ({ show, callbackC
                     />
                 </Form.Item>
                 <div className="flex justify-end">
-                    <Button type="default" htmlType="button" onClick={callbackCancel} >
+                    <Button type="default" htmlType="button" onClick={callbackCancel}>
                         Cancel
                     </Button>
                     <Button type="primary" htmlType="submit" className="ml-1">

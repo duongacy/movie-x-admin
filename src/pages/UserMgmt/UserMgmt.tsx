@@ -1,86 +1,72 @@
-import { Table, Tag, Space, Breadcrumb } from 'antd';
+import { Table, Breadcrumb, Button, Pagination } from 'antd';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { IUser } from '../../common/formatTypes/User';
+import { getAllUserPaginationAction } from '../../store/user/userAction';
+import UserInputModal from './components/UserInputModal';
+import UserTableColumn from './components/UserTableColumn';
 
-const columns = [
-    {
-        title: 'Name',
-        dataIndex: 'name',
-        key: 'name',
-        render: (text: string) => <a>{text}</a>,
-    },
-    {
-        title: 'Age',
-        dataIndex: 'age',
-        key: 'age',
-    },
-    {
-        title: 'Address',
-        dataIndex: 'address',
-        key: 'address',
-    },
-    {
-        title: 'Tags',
-        key: 'tags',
-        dataIndex: 'tags',
-        render: (tags: any) => (
-            <>
-                {tags.map((tag: any) => {
-                    let color = tag.length > 5 ? 'geekblue' : 'green';
-                    if (tag === 'loser') {
-                        color = 'volcano';
-                    }
-                    return (
-                        <Tag color={color} key={tag}>
-                            {tag.toUpperCase()}
-                        </Tag>
-                    );
-                })}
-            </>
-        ),
-    },
-    {
-        title: 'Action',
-        key: 'action',
-        render: (text: string, record: any) => (
-            <Space size="middle">
-                <a>Invite {record.name}</a>
-                <a>Delete</a>
-            </Space>
-        ),
-    },
-];
-
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-];
+const PAGE_SIZE = 10;
 
 const UserMgmt = () => {
+    const dispatch = useDispatch();
+    const { listUser, userDefault, userTotalCount, listUserLoading } = useSelector(
+        (root: any) => root.userStore
+    );
+    useEffect(() => {
+        dispatch(getAllUserPaginationAction(1, 10));
+    }, []);
+    const tableData = listUser.map((item: IUser) => ({
+        ...item,
+        key: item.taiKhoan,
+    }));
+
+    const [showModal, setShowModal] = useState(false);
+
+    const handleCancel = () => {
+        setShowModal(false);
+    };
+
+    const showEditUser = (taiKhoan: string) => {
+        console.log('tai khoan ne:', taiKhoan);
+
+        setShowModal(true);
+    };
+    const columns = UserTableColumn(showEditUser);
+    const showAddUser = () => {
+        setShowModal(true);
+    };
+
+    const hangleChangePagination = (page: number, pageSize: number = 10) => {
+        dispatch(getAllUserPaginationAction(page, pageSize));
+    };
     return (
         <>
             <Breadcrumb style={{ margin: '16px 0' }}>
                 <Breadcrumb.Item>Admin</Breadcrumb.Item>
                 <Breadcrumb.Item>User management</Breadcrumb.Item>
-            </Breadcrumb>{' '}
-            <Table columns={columns} dataSource={data} />
+            </Breadcrumb>
+            <Button type="primary" className="my-1" onClick={showAddUser}>
+                Thêm người dùng mới
+            </Button>
+            <Table
+                columns={columns}
+                dataSource={tableData}
+                pagination={false}
+                loading={listUserLoading}
+            />
+            {/* Lưu ý table và pagination là 2 thành phần tách biệt, dùng pagination chỉ để dispatch đến các hàm phân trang và trả về record mới */}
+            <Pagination
+                total={userTotalCount}
+                onChange={hangleChangePagination}
+                defaultPageSize={PAGE_SIZE}
+                defaultCurrent={1}
+            />
+            <UserInputModal
+                show={showModal}
+                callbackCancel={handleCancel}
+                initialValues={userDefault}
+            />
         </>
     );
 };
