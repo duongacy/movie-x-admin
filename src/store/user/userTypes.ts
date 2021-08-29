@@ -9,9 +9,11 @@ export const SUBMIT_USER = 'SUBMIT_USER';
 export const DELETE_USER = 'DELETE_USER';
 export const SET_USER_HANDLE_STATUS = 'SET_USER_HANDLE_STATUS';
 
+export interface IUserRow extends IUser {
+    key: string;
+}
 export type IUserState = {
-    listUserLoading: boolean;
-    listUser: IUser[];
+    listUserRow: IUserRow[];
     userInfo: IUser;
     userTotalCount: number;
     isEdit: boolean;

@@ -1,30 +1,22 @@
-import { Table, Breadcrumb, Button, Pagination, Input, Skeleton } from 'antd';
+import { Breadcrumb, Button, Pagination, Input } from 'antd';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IUser } from '../../common/formatTypes/User';
-import {
-    getUserByNameAction,
-    showModalAddUserAction,
-    showModalEditUserAction,
-} from '../../store/user/userAction';
+import { getUserByNameAction, showModalAddUserAction } from '../../store/user/userAction';
 import UserInputModal from './components/UserInputModal';
-import UserTableColumn from './components/UserTableColumn';
+import { UserTable } from './components/UserTable';
 
+const PAGE = 1;
+const PER_PAGE = 10;
 const UserMgmt = () => {
     const dispatch = useDispatch();
     /* -------------------------------- useState -------------------------------- */
-    const [pageState, setPageState] = useState(1);
-    const [pageSizeState, setPageSizeState] = useState(10);
+    const [pageState, setPageState] = useState(PAGE);
+    const [pageSizeState, setPageSizeState] = useState(PER_PAGE);
     const [taiKhoanState, setTaiKhoanState] = useState('');
     /* -------------------------------------------------------------------------- */
 
     /* ----------------------- useSelector and handle data ---------------------- */
-    const { loading } = useSelector((state: any) => state.parentStore);
-    const { listUser, userTotalCount } = useSelector((root: any) => root.userStore);
-    const tableData = listUser.map((item: IUser) => ({
-        ...item,
-        key: item.taiKhoan,
-    }));
+    const { userTotalCount } = useSelector((root: any) => root.userStore);
     /* -------------------------------------------------------------------------- */
 
     /* -------------------------------- useEffect ------------------------------- */
@@ -38,9 +30,6 @@ const UserMgmt = () => {
         setTaiKhoanState(value.toLowerCase());
         dispatch(getUserByNameAction(value.toLowerCase(), pageState, pageSizeState));
     };
-    const showEditUser = (taiKhoan: string) => {
-        dispatch(showModalEditUserAction(taiKhoan));
-    };
     const showAddUser = () => {
         dispatch(showModalAddUserAction());
     };
@@ -50,11 +39,6 @@ const UserMgmt = () => {
         dispatch(getUserByNameAction(taiKhoanState, page, pageSize));
     };
     /* -------------------------------------------------------------------------- */
-
-    /* -------------------------------- call HOF -------------------------------- */
-    const columns = UserTableColumn(showEditUser);
-    /* -------------------------------------------------------------------------- */
-
     return (
         <>
             <Breadcrumb style={{ margin: '16px 0' }}>
@@ -65,21 +49,8 @@ const UserMgmt = () => {
                 Thêm người dùng mới
             </Button>
             <Input.Search placeholder="input search text" onSearch={handleSearch} enterButton />
-            <Table
-                columns={columns}
-                dataSource={tableData}
-                pagination={false}
-                loading={loading}
-                onRow={(record: IUser, index: any) => {
-                    return {
-                        onDoubleClick: (event: any) => {
-                            showEditUser(record.taiKhoan);
-                        },
-                    };
-                }}
-                rowClassName="cursor-pointer"
-            />
-            {/* Lưu ý table và pagination là 2 thành phần tách biệt, dùng pagination chỉ để dispatch đến các hàm phân trang và trả về record mới */}
+
+            <UserTable />
             <Pagination
                 total={userTotalCount}
                 onChange={hangleChangePagination}

@@ -100,9 +100,6 @@ const UserInputModal: React.FC<IFilmInputModalProps> = () => {
                         Cancel
                     </Button>
                     {isEdit && (
-                        // <Button type="ghost" onClick={handleDelete}>
-                        //     Delete
-                        // </Button>
                         <Popconfirm title="Sure to delete?" onConfirm={handleDelete}>
                             <Button>Delete</Button>
                         </Popconfirm>

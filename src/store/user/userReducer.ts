@@ -11,8 +11,7 @@ const userDefault: IUser = {
     maLoaiNguoiDung: 'KhachHang',
 };
 const initialState: userTypes.IUserState = {
-    listUser: [],
-    listUserLoading: false,
+    listUserRow: [],
     userInfo: userDefault,
     userTotalCount: 0,
     isEdit: false,
@@ -24,7 +23,10 @@ export const userReducer = (state = initialState, action: IAction) => {
     switch (action.type) {
         case userTypes.GET_USER_LIST: // type này phụ thuộc nhiều trường hợp query
             const { items, totalCount } = action.payload;
-            state.listUser = items;
+            state.listUserRow = items.map((item: IUser) => ({
+                ...item,
+                key: item.taiKhoan,
+            }));
             state.userTotalCount = totalCount;
             break;
 
@@ -33,19 +35,24 @@ export const userReducer = (state = initialState, action: IAction) => {
             state.isEdit = true;
             state.isUserModalShow = true;
             return { ...state };
+
         case userTypes.SHOW_USER_MODAL_ADD:
             state.userInfo = { ...userDefault };
             state.isEdit = false;
             state.isUserModalShow = true;
             break;
 
-        case userTypes.SUBMIT_USER:
-            break;
-
         case userTypes.HIDE_MODAL:
             state.isUserModalShow = false;
+            state.userHandleStatus = '';
             break;
-
+            
+        case userTypes.DELETE_USER:
+            const newListUserRow = state.listUserRow.filter(
+                (item) => item.taiKhoan !== action.payload
+            );
+            state.listUserRow = newListUserRow;
+            break;
         case userTypes.SET_USER_HANDLE_STATUS:
             state.userHandleStatus = action.payload;
             break;

@@ -1,4 +1,4 @@
-import { IUser, IUserInput } from '../../common/formatTypes/User';
+import { IUserInput } from '../../common/formatTypes/User';
 import {
     addUserService,
     getUserByTuKhoa,
@@ -14,6 +14,7 @@ import {
     SHOW_USER_MODAL_ADD,
     HIDE_MODAL,
     SET_USER_HANDLE_STATUS,
+    DELETE_USER,
 } from './userTypes';
 
 export const getUserByNameAction = (taiKhoan: string, page: number, pageSize: number) => {
@@ -67,9 +68,14 @@ export const addUserAction = (user: IUserInput) => {
     return (dispatch: any) => {
         dispatch(setLoadingAction(true));
         const promise = addUserService(user);
-        promise.then((rs) => {
-            dispatch(hideModalUserAction());
-        });
+        promise
+            .then((rs) => {
+                dispatch(hideModalUserAction());
+            })
+            .catch((err) => {
+                const { content } = err.response.data;
+                dispatch(setUserHandleStatusAction(content));
+            });
     };
 };
 
@@ -98,9 +104,15 @@ export const deleteUserAction = (taiKhoan: string) => {
         promise
             .then((rs) => {
                 dispatch(hideModalUserAction());
+                const action: IAction = {
+                    type: DELETE_USER,
+                    payload: taiKhoan,
+                };
+                dispatch(action);
             })
             .catch((err) => {
-                // dispatch(setUserHandleStatusAction("Xóa không thành công"))
+                const { content } = err.response.data;
+                dispatch(setUserHandleStatusAction(content));
             });
     };
 };
