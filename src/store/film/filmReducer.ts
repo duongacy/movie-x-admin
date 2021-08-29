@@ -1,38 +1,33 @@
-import { IFilmState } from './filmTypes';
-import * as filmTypes from './filmTypes';
+import { IFilm, IFilmInput } from '../../common/formatTypes/Film';
 import { IAction } from '../../type';
-import { IFilm } from '../../common/formatTypes/Film';
 
-const filmDetailInit: IFilm = {
-    maPhim: 0,
+export interface IFilmTable extends IFilm {
+    key: string;
+}
+
+const filmInputFieldsDefault: IFilmInput = {
     tenPhim: '',
     biDanh: '',
     trailer: '',
-    hinhAnh: '',
     moTa: '',
     maNhom: '',
-    hot: false,
-    dangChieu: false,
-    sapChieu: false,
     ngayKhoiChieu: '',
+    sapChieu: false,
+    dangChieu: false,
+    hot: false,
+    danhGia: 1,
+    hinhAnh: undefined,
 };
-const initialState: IFilmState = {
-    listFilm: [],
-    filmDetail: filmDetailInit,
+const initialState = {
+    listFilmTable: <IFilmTable[]>[],
+    filmInputFields: <IFilmInput>filmInputFieldsDefault,
 };
 
 export const filmReducer = (state = initialState, action: IAction) => {
-    switch (action.type) {
-        case filmTypes.GET_ALL_PHIM:
-            state.listFilm = action.payload;
-            return { ...state };
-        case filmTypes.GET_FILM_EDIT:
-            state.filmDetail = { ...action.payload.film };
-            return { ...state };
-
-        case filmTypes.RESET_FILM_MODAL:
-            state.filmDetail = filmDetailInit;
-            return { ...state };
+    const { type, payload } = action;
+    switch (type) {
+        case 'typeName':
+            return { ...state, ...payload };
 
         default:
             return { ...state };
