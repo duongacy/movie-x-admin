@@ -1,18 +1,19 @@
+import { FilmProvider } from '../../contexts/FilmContext';
 import FilmBreadcumb from './components/FilmBreadcumb';
 import FilmInputModal from './components/FilmInputModal';
 import FilmPagination from './components/FilmPagination';
-import FilmSearch from './components/FilmSearch';
+import FilmSearchName from './components/FilmSearchName';
 import FilmTable from './components/FilmTable';
 
 const FilmMgmt = () => {
     return (
-        <>
+        <FilmProvider>
             <FilmBreadcumb />
-            <FilmSearch />
+            <FilmSearchName />
             <FilmTable />
             <FilmPagination />
             <FilmInputModal />
-        </>
+        </FilmProvider>
     );
 };
 

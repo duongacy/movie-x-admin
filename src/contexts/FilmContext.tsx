@@ -12,6 +12,11 @@ export const FilmProvider: React.FC = ({ children }) => {
     const [searchKey, setSearchKey] = useState('');
     /* -------------------------------------------------------------------------- */
 
+    /* ------------------------------- searchDate ------------------------------- */
+    const [fromDate, setFromDate] = useState('');
+    const [toDate, setToDate] = useState('');
+    /* -------------------------------------------------------------------------- */
+
     /* ---------------------------- pagination state ---------------------------- */
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
@@ -19,8 +24,27 @@ export const FilmProvider: React.FC = ({ children }) => {
 
     /* ------------------------------- modal state ------------------------------ */
     const [show, setShow] = useState(false);
+    const [inputFields, setInputFields] = useState<any>({});
     /* -------------------------------------------------------------------------- */
 
-    const data = {};
+    const data = {
+        searchKeyState: {
+            searchKey,
+            setSearchKey,
+        },
+        searchDateState:{},
+        paginationState: {
+            page,
+            setPage,
+            pageSize,
+            setPageSize,
+        },
+        formModalState: {
+            show,
+            setShow,
+            inputFields,
+            setInputFields,
+        },
+    };
     return <FilmContext.Provider value={data}>{children}</FilmContext.Provider>;
 };
