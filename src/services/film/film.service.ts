@@ -1,4 +1,10 @@
-import { getAPIOnlyToken, maNhomQuery } from '../APIMethods/APIMethods.service';
+import { IFilmInput } from '../../common/formatTypes/Film';
+import {
+    getAPIOnlyToken,
+    maNhomQuery,
+    postAPIByAdmin,
+    postAPIOnlyToken,
+} from '../APIMethods/APIMethods.service';
 
 const tenPhimQuery = (tenPhim: string = ``) => {
     return tenPhim === `` ? `` : `&tenPhim=${tenPhim.trim()}`;
@@ -38,4 +44,9 @@ export const getAllFilmByDatePaginationService = (
         tenPhim
     )}${pageQuery(page)}${perPageQuery(perPage)}${fromDateQuery(tuNgay)}${toDateQuery(denNgay)}`;
     return getAPIOnlyToken(URL);
+};
+
+export const addNewFilmService = (film: FormData) => {
+    const URL = '/api/QuanLyPhim/ThemPhimUploadHinh';
+    return postAPIOnlyToken(URL, film);
 };

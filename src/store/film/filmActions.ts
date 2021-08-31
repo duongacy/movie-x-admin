@@ -1,6 +1,8 @@
+import { IFilmInput } from '../../common/formatTypes/Film';
 import {
     getAllFilmByNamePaginationService,
     getAllFilmByDatePaginationService,
+    addNewFilmService,
 } from '../../services/film/film.service';
 import { IAction } from '../../type';
 import { setLoadingAction } from '../parent/parentAction';
@@ -19,5 +21,19 @@ export const getAllFilmByNameAction = (filmName: string, page: number, pageSize:
             dispatch(action);
             dispatch(setLoadingAction(false));
         });
+    };
+};
+
+export const addFilmAction = (film: FormData, setShow: (isShow: boolean) => void) => {
+    return (dispatch: any) => {
+        console.log('film: ', film);
+
+        const promise = addNewFilmService(film);
+        promise
+            .then((rs) => console.log('rs ne hehehe', rs))
+            .catch((err) => {
+                // const { content } = err.response.data;
+                console.log('err:');
+            });
     };
 };

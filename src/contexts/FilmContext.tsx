@@ -24,7 +24,9 @@ export const FilmProvider: React.FC = ({ children }) => {
 
     /* ------------------------------- modal state ------------------------------ */
     const [show, setShow] = useState(false);
+    const [isEdit, setIsEdit] = useState(false);
     const [inputFields, setInputFields] = useState<any>({});
+
     /* -------------------------------------------------------------------------- */
 
     const data = {
@@ -32,7 +34,7 @@ export const FilmProvider: React.FC = ({ children }) => {
             searchKey,
             setSearchKey,
         },
-        searchDateState:{},
+        searchDateState: {},
         paginationState: {
             page,
             setPage,
@@ -44,6 +46,8 @@ export const FilmProvider: React.FC = ({ children }) => {
             setShow,
             inputFields,
             setInputFields,
+            isEdit,
+            setIsEdit,
         },
     };
     return <FilmContext.Provider value={data}>{children}</FilmContext.Provider>;

@@ -11,7 +11,7 @@ interface Props {}
 const FilmTable = (props: Props) => {
     /* ---------------------------- get from context ---------------------------- */
     const { formModalState, paginationState, searchKeyState } = useContext(FilmContext);
-    const { setShow, setInputFields } = formModalState;
+    const { setShow, setInputFields, setIsEdit } = formModalState;
     const { page, pageSize } = paginationState;
     const { searchKey } = searchKeyState;
     /* -------------------------------------------------------------------------- */
@@ -35,6 +35,7 @@ const FilmTable = (props: Props) => {
             <Button
                 onClick={() => {
                     setShow(true);
+                    setIsEdit(false);
                     setInputFields({});
                 }}
             >
@@ -48,6 +49,7 @@ const FilmTable = (props: Props) => {
                     return {
                         onDoubleClick: (event) => {
                             setShow(true);
+                            setIsEdit(true);
                             setInputFields({ ...record });
                         }, // double click row
                     };

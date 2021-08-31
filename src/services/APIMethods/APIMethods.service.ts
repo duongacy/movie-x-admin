@@ -15,6 +15,8 @@ export const getAPIOnlyToken = (URL: string) => {
 };
 
 export const postAPIOnlyToken = (URL: string, payload: any) => {
+    console.log('payload: xx', payload);
+
     return axios({
         url: `${DOMAIN + URL}`,
         method: 'POST',
@@ -30,7 +32,6 @@ export const postAPIByAdmin = (URL: string, payload: any) => {
         localStorage.getItem('userInfo') !== null
             ? JSON.parse(localStorage.getItem('userInfo')!)
             : null;
-
     return axios.post(`${DOMAIN}${URL}`, payload, {
         headers: {
             TokenCybersoft: TOKEN_CYBERSOFT,
