@@ -1,4 +1,4 @@
-import { FilmProvider } from '../../contexts/FilmContext';
+import { FilmProvider } from '../../contexts/ManagementContext';
 import FilmBreadcumb from './components/FilmBreadcumb';
 import FilmInputModal from './components/FilmInputModal';
 import FilmPagination from './components/FilmPagination';

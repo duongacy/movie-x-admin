@@ -1,0 +1,1 @@
+export const FETCH_SHOW_TIME_LIST = 'FETCH_FILM_LIST';

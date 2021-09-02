@@ -1,13 +1,9 @@
 import { createContext, useState } from 'react';
+import { setInterval } from 'timers';
 
-export const FilmContext = createContext<any | null>(null);
-
+export const ManagementContext = createContext<any | null>(null);
+export type IPushModalStatus = (code: 'SUCCESS' | 'FAIL', message: string) => void;
 export const FilmProvider: React.FC = ({ children }) => {
-    // Film management có sử dụng các state chung với nhau (ví dụ người dùng đang search 1 từ khóa nào đó,
-    // xong lại bấm chuyển page dưới phần paginator,
-    // thì sẽ phải trả về kết quả phân trang của cái từ khóa đó thôi, không trả về tất cả
-    // => nên sử dụng context để lưu các state chung, mỗi lần search hoặc bấm phân trang thì sẽ lưu state ở đây
-
     /* ------------------------------ search state ------------------------------ */
     const [searchKey, setSearchKey] = useState('');
     /* -------------------------------------------------------------------------- */
@@ -26,7 +22,36 @@ export const FilmProvider: React.FC = ({ children }) => {
     const [show, setShow] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
     const [inputFields, setInputFields] = useState<any>({});
+    const [formAlert, setFormAlert] = useState<{ code: 'SUCCESS' | 'FAIL'; message: string }>({
+        code: 'SUCCESS',
+        message: '',
+    });
 
+    const pushModalStatus: IPushModalStatus = (code, message) => {
+        setFormAlert({ code, message });
+        if (code === 'SUCCESS') {
+            setTimeout(() => {
+                setShow(false);
+            }, 2000);
+        }
+    };
+    const showEdit = () => {
+        setShow(true);
+        setIsEdit(true);
+        setFormAlert({
+            code: 'SUCCESS',
+            message: '',
+        });
+    };
+    const showAdd = () => {
+        setShow(true);
+        setIsEdit(false);
+        setFormAlert({
+            code: 'SUCCESS',
+            message: '',
+        });
+        setInputFields({});
+    };
     /* -------------------------------------------------------------------------- */
 
     const data = {
@@ -37,18 +62,21 @@ export const FilmProvider: React.FC = ({ children }) => {
         searchDateState: {},
         paginationState: {
             page,
-            setPage,
             pageSize,
+            setPage,
             setPageSize,
         },
         formModalState: {
             show,
-            setShow,
             inputFields,
-            setInputFields,
             isEdit,
-            setIsEdit,
+            formAlert,
+            setShow,
+            setInputFields,
+            pushModalStatus, // khi thêm hoặc sửa cần trả lại status
+            showEdit,
+            showAdd,
         },
     };
-    return <FilmContext.Provider value={data}>{children}</FilmContext.Provider>;
+    return <ManagementContext.Provider value={data}>{children}</ManagementContext.Provider>;
 };

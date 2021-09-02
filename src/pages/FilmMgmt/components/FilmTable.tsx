@@ -1,17 +1,18 @@
 import { Button, Popconfirm, Table } from 'antd';
 import Column from 'antd/lib/table/Column';
 import React, { useContext, useEffect } from 'react';
-import { FilmContext } from '../../../contexts/FilmContext';
+import { ManagementContext } from '../../../contexts/ManagementContext';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllFilmByNameAction } from '../../../store/film/filmActions';
+import { deleteFilmAction, getAllFilmByNameAction } from '../../../store/film/filmActions';
 import { IFilm } from '../../../common/formatTypes/Film';
+import { Link } from 'react-router-dom';
 
 interface Props {}
 
 const FilmTable = (props: Props) => {
     /* ---------------------------- get from context ---------------------------- */
-    const { formModalState, paginationState, searchKeyState } = useContext(FilmContext);
-    const { setShow, setInputFields, setIsEdit } = formModalState;
+    const { formModalState, paginationState, searchKeyState } = useContext(ManagementContext);
+    const { setInputFields, showEdit, showAdd } = formModalState;
     const { page, pageSize } = paginationState;
     const { searchKey } = searchKeyState;
     /* -------------------------------------------------------------------------- */
@@ -25,18 +26,22 @@ const FilmTable = (props: Props) => {
     const dispatch = useDispatch();
     // chỉ cần gọi dispatch đúng 1 lần, bất cứ khi nào search hay chuyển page sẽ tự động dispatch
     useEffect(() => {
-        console.log(searchKey);
-
         dispatch(getAllFilmByNameAction(searchKey, page, pageSize));
     }, [searchKey, page, pageSize]);
+
+    const handleDeleteFilm = (maPhim: number) => {
+        dispatch(deleteFilmAction(maPhim, reloadFilm));
+    };
+
+    const reloadFilm = () => {
+        dispatch(getAllFilmByNameAction(searchKey, page, pageSize));
+    };
 
     return (
         <>
             <Button
                 onClick={() => {
-                    setShow(true);
-                    setIsEdit(false);
-                    setInputFields({});
+                    showAdd();
                 }}
             >
                 Them phim moi
@@ -48,8 +53,7 @@ const FilmTable = (props: Props) => {
                 onRow={(record: IFilm, rowIndex) => {
                     return {
                         onDoubleClick: (event) => {
-                            setShow(true);
-                            setIsEdit(true);
+                            showEdit();
                             setInputFields({ ...record });
                         }, // double click row
                     };
@@ -67,18 +71,23 @@ const FilmTable = (props: Props) => {
                     title="Action"
                     dataIndex="action"
                     key="action"
-                    render={() => (
-                        <Popconfirm
-                            title="Are you sure to delete this row?"
-                            onConfirm={() => {}}
-                            onCancel={() => {}}
-                            okText="Yes"
-                            cancelText="No"
-                        >
-                            <a href="#" style={{ color: 'red' }}>
-                                Delete
-                            </a>
-                        </Popconfirm>
+                    render={(value: any, record: IFilm) => (
+                        <>
+                            <Popconfirm
+                                title="Are you sure to delete this row?"
+                                onConfirm={() => {
+                                    handleDeleteFilm(record.maPhim);
+                                }}
+                                onCancel={() => {}}
+                                okText="Yes"
+                                cancelText="No"
+                            >
+                                <a href="#" style={{ color: 'red' }}>
+                                    Delete
+                                </a>
+                            </Popconfirm>
+                            <Link to={`/show-time-mgmt/${record.maPhim}`}>Lịch chiếu</Link>
+                        </>
                     )}
                 />
             </Table>

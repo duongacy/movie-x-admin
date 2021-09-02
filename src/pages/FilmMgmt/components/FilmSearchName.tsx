@@ -1,11 +1,11 @@
 import { Input, Space } from 'antd';
 import React, { ChangeEvent, useContext } from 'react';
-import { FilmContext } from '../../../contexts/FilmContext';
+import { ManagementContext } from '../../../contexts/ManagementContext';
 
 interface Props {}
 
 const FilmSearchName = (props: Props) => {
-    const { searchKeyState } = useContext(FilmContext);
+    const { searchKeyState } = useContext(ManagementContext);
     const { setSearchKey } = searchKeyState;
     return (
         <Input.Search

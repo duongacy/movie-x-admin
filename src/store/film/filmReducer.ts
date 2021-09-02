@@ -1,7 +1,7 @@
 import { IFilm, IFilmInput } from '../../common/formatTypes/Film';
 import { IAction } from '../../type';
 import { mapKeyToData } from '../../utils/mapKeyToData';
-import { FETCH_FILM_LIST } from './filmTypes';
+import { DELETE_FILM, FETCH_FILM_LIST } from './filmTypes';
 
 export interface IFilmTable extends IFilm {
     key: string;
@@ -23,7 +23,7 @@ const filmInputFieldsDefault: IFilmInput = {
 const initialState = {
     listFilmTable: <IFilmTable[]>[],
     filmInputFields: <IFilmInput>filmInputFieldsDefault,
-    totalCount: 0,// chỉ định số record trả về
+    totalCount: 0, // chỉ định số record trả về
 };
 
 export const filmReducer = (state = initialState, action: IAction) => {
@@ -34,6 +34,9 @@ export const filmReducer = (state = initialState, action: IAction) => {
             state.totalCount = payload.totalCount;
             return { ...state };
 
+        case DELETE_FILM:
+            state.listFilmTable = state.listFilmTable.filter((item) => item.maPhim !== payload);
+            return { ...state };
         default:
             return { ...state };
     }

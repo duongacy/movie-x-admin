@@ -5,18 +5,18 @@ export const maNhomQuery = `maNhom=${MA_NHOM}`; //Do mã nhóm này sử dụng 
 export const pageQuery = (page: number) => `soTrang=${page}`; // dùng cho các page phân trang
 export const perPageQuery = (perPage: number) => `soPhanTuTrenTrang=${perPage}`; // dùng cho các page phân trang
 
+/* ----------------------------------- GET ---------------------------------- */
 export const getAPIOnlyToken = (URL: string) => {
-    // dùng chung cho tất cả các phương thức GET
     return axios.get(`${DOMAIN + URL}`, {
         headers: {
             TokenCybersoft: TOKEN_CYBERSOFT,
         },
     });
 };
+/* -------------------------------------------------------------------------- */
 
-export const postAPIOnlyToken = (URL: string, payload: any) => {
-    console.log('payload: xx', payload);
-
+/* ---------------------------------- POST ---------------------------------- */
+export const postAPIToken = (URL: string, payload: any) => {
     return axios({
         url: `${DOMAIN + URL}`,
         method: 'POST',
@@ -27,7 +27,7 @@ export const postAPIOnlyToken = (URL: string, payload: any) => {
     });
 };
 
-export const postAPIByAdmin = (URL: string, payload: any) => {
+export const postAPITokenAuthor = (URL: string, payload: any) => {
     const { accessToken } =
         localStorage.getItem('userInfo') !== null
             ? JSON.parse(localStorage.getItem('userInfo')!)
@@ -39,8 +39,11 @@ export const postAPIByAdmin = (URL: string, payload: any) => {
         },
     });
 };
+/* -------------------------------------------------------------------------- */
 
-export const deleteAPIByAdmin = (URL: string) => {
+/* --------------------------------- DELETE --------------------------------- */
+
+export const deleteAPITokenAuthor = (URL: string) => {
     const { accessToken } =
         localStorage.getItem('userInfo') !== null
             ? JSON.parse(localStorage.getItem('userInfo')!)
@@ -52,3 +55,4 @@ export const deleteAPIByAdmin = (URL: string) => {
         },
     });
 };
+/* -------------------------------------------------------------------------- */

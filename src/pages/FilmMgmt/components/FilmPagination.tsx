@@ -1,12 +1,12 @@
 import { Button, Pagination } from 'antd';
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
-import { FilmContext } from '../../../contexts/FilmContext';
+import { ManagementContext } from '../../../contexts/ManagementContext';
 
 interface Props {}
 
 const FilmPagination = (props: Props) => {
-    const { paginationState } = useContext(FilmContext);
+    const { paginationState } = useContext(ManagementContext);
     const { setPage, setPageSize } = paginationState;
     const { filmStore } = useSelector((root: any) => root);
     const { totalCount } = filmStore;
@@ -18,7 +18,6 @@ const FilmPagination = (props: Props) => {
             onChange={(page, pageSize) => {
                 setPage(page);
                 setPageSize(pageSize);
-                // mỗi lần change page sẽ set 2 thằng này trên context
             }}
         />
     );

@@ -4,9 +4,9 @@ import {
     maNhomQuery,
     perPageQuery,
     pageQuery,
-    postAPIOnlyToken,
-    postAPIByAdmin,
-    deleteAPIByAdmin,
+    postAPIToken,
+    postAPITokenAuthor,
+    deleteAPITokenAuthor,
 } from '../APIMethods/APIMethods.service';
 
 export const getAllUserTypeService = () => {
@@ -48,23 +48,23 @@ export const getUserByNamePaginationService = (
 
 export const addUserService = (payload: IUserInput) => {
     const URL = '/api/QuanLyNguoiDung/ThemNguoiDung';
-    return postAPIByAdmin(URL, payload);
+    return postAPITokenAuthor(URL, payload);
 };
 
 export const updateUserService = (payload: IUserInput) => {
     const URL = '/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung';
-    return postAPIByAdmin(URL, payload);
+    return postAPITokenAuthor(URL, payload);
 };
 
 export const deleteUserServices = (payload: string) => {
     const taiKhoanQuery = `TaiKhoan=${payload}`;
     const URL = `/api/QuanLyNguoiDung/XoaNguoiDung?${taiKhoanQuery}`;
 
-    return deleteAPIByAdmin(URL);
+    return deleteAPITokenAuthor(URL);
 };
 
 export const loginService = (payload: any) => {
     const URL = '/api/QuanLyNguoiDung/DangNhap';
-    const response = postAPIOnlyToken(URL, payload);
+    const response = postAPIToken(URL, payload);
     return response;
 };
