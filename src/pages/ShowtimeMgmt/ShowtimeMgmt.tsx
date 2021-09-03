@@ -12,9 +12,11 @@ import { ICineplex, ITheatre } from 'common/formatTypes/Cinema';
 import { IShowTimeInput } from 'common/formatTypes/SxhowTime';
 import moment from 'moment';
 
-interface Props {}
+interface IShowtimeMgmtProps {
+    title?: string
+}
 
-const ShowtimeMgmt = (props: Props) => {
+const ShowtimeMgmt:React.FC<IShowtimeMgmtProps> = ({title}) => {
     const dispatch = useDispatch();
     const [maHeThongRapSelected, setMaHeThongRapSelected] = useState<string>('');
 

@@ -35,7 +35,7 @@ const App: React.FC = () => {
                         <UserMgmt />
                     </AdminRoute>
                     <AdminRoute exact path="/admin/show-time-mgmt/:maPhim">
-                        <ShowtimeMgmt />
+                        <ShowtimeMgmt title='aa' />
                     </AdminRoute>
                     <AdminRoute exact path="/register">
                         <Register />

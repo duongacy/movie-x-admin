@@ -38,11 +38,12 @@ const FilmTable = (props: Props) => {
     };
 
     return (
-        <>
+        <div className="my-2">
             <Button
                 onClick={() => {
                     showAdd();
                 }}
+                className="mb-1"
             >
                 Them phim moi
             </Button>
@@ -55,7 +56,7 @@ const FilmTable = (props: Props) => {
                         onDoubleClick: (event) => {
                             showEdit();
                             setInputFields({ ...record });
-                        }, // double click row
+                        },
                     };
                 }}
             >
@@ -91,7 +92,7 @@ const FilmTable = (props: Props) => {
                     )}
                 />
             </Table>
-        </>
+        </div>
     );
 };
 

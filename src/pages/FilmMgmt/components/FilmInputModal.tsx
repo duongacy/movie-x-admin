@@ -19,8 +19,7 @@ const FilmInputModal = (props: Props) => {
 
     /* --------------------------------- context -------------------------------- */
     const { formModalState, searchKeyState, paginationState } = useContext(ManagementContext);
-    const { inputFields, show, setShow, isEdit, pushModalStatus, formAlert } =
-        formModalState;
+    const { inputFields, show, setShow, isEdit, pushModalStatus, formAlert } = formModalState;
     const { page, pageSize } = paginationState;
     const { searchKey } = searchKeyState;
     /* -------------------------------------------------------------------------- */
@@ -92,7 +91,13 @@ const FilmInputModal = (props: Props) => {
             onCancel={() => setShow(false)}
             footer={false}
         >
-            <Form name="nest-messages" onFinish={handleFinish} ref={formRef}>
+            <Form
+                name="nest-messages"
+                onFinish={handleFinish}
+                ref={formRef}
+                labelCol={{ span: 6 }}
+                wrapperCol={{ span: 18 }}
+            >
                 {isEdit ? (
                     <Form.Item label="Mã phim" name="maPhim">
                         <Input disabled />
