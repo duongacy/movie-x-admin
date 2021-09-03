@@ -86,7 +86,7 @@ const FilmTable = (props: Props) => {
                                     Delete
                                 </a>
                             </Popconfirm>
-                            <Link to={`/show-time-mgmt/${record.maPhim}`}>Lịch chiếu</Link>
+                            <Link to={`/admin/show-time-mgmt/${record.maPhim}`}>Lịch chiếu</Link>
                         </>
                     )}
                 />

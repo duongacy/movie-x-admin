@@ -6,7 +6,7 @@ export const pageQuery = (page: number) => `soTrang=${page}`; // dùng cho các 
 export const perPageQuery = (perPage: number) => `soPhanTuTrenTrang=${perPage}`; // dùng cho các page phân trang
 
 /* ----------------------------------- GET ---------------------------------- */
-export const getAPIOnlyToken = (URL: string) => {
+export const getAPIToken = (URL: string) => {
     return axios.get(`${DOMAIN + URL}`, {
         headers: {
             TokenCybersoft: TOKEN_CYBERSOFT,

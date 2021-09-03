@@ -1,5 +1,4 @@
 import { createContext, useState } from 'react';
-import { setInterval } from 'timers';
 
 export const ManagementContext = createContext<any | null>(null);
 export type IPushModalStatus = (code: 'SUCCESS' | 'FAIL', message: string) => void;

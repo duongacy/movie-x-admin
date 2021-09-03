@@ -1,6 +1,6 @@
 import { IFilmInput } from '../../common/formatTypes/Film';
 import {
-    getAPIOnlyToken,
+    getAPIToken,
     maNhomQuery,
     postAPITokenAuthor,
     postAPIToken,
@@ -19,7 +19,7 @@ const maPhimQuery = (maPhim: number) => `MaPhim=${maPhim}`;
 
 export const getALlBannerService = () => {
     const URL = `/api/QuanLyPhim/LayDanhSachBanner`;
-    const response = getAPIOnlyToken(URL);
+    const response = getAPIToken(URL);
     response.then((rs) => console.log('layDanhSachBannerService', rs.data.content));
     return response;
 };
@@ -32,7 +32,7 @@ export const getAllFilmByNamePaginationService = (
     const URL = `/api/QuanLyPhim/LayDanhSachPhimPhanTrang?${maNhomQuery}${tenPhimQuery(
         tenPhim
     )}${pageQuery(page)}${perPageQuery(perPage)}`;
-    return getAPIOnlyToken(URL);
+    return getAPIToken(URL);
 };
 
 export const getAllFilmByDatePaginationService = (
@@ -45,7 +45,7 @@ export const getAllFilmByDatePaginationService = (
     const URL = `/api/QuanLyPhim/LayDanhSachPhimTheoNgay?${maNhomQuery}${tenPhimQuery(
         tenPhim
     )}${pageQuery(page)}${perPageQuery(perPage)}${fromDateQuery(tuNgay)}${toDateQuery(denNgay)}`;
-    return getAPIOnlyToken(URL);
+    return getAPIToken(URL);
 };
 
 export const addFilmService = (film: FormData) => {
@@ -61,4 +61,9 @@ export const updateFilmService = (film: FormData) => {
 export const deleteFilmService = (maPhim: number) => {
     const URL = `/api/QuanLyPhim/XoaPhim?${maPhimQuery(maPhim)}`;
     return deleteAPITokenAuthor(URL);
+};
+
+export const getFilmByIdService = (maPhim: number) => {
+    const URL = `/api/QuanLyPhim/LayThongTinPhim?${maPhimQuery(maPhim)}`;
+    return getAPIToken(URL);
 };

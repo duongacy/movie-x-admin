@@ -2,7 +2,7 @@ import { Form, Input, Button, Checkbox, FormInstance } from 'antd';
 import { createRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { loginAction, logoutAction } from '../../store/account/accountActions';
+import { loginAction } from '../../store/account/accountActions';
 
 interface ILoginProps {}
 const Login: React.FC<ILoginProps> = ({}) => {
