@@ -1,4 +1,4 @@
-import { IShowTimeInput } from 'common/formatTypes/showTime';
+import { IShowTimeInput } from 'common/formatTypes/SxhowTime';
 import {
     getAllCineplexService,
     getAllTheatreByCineplexService,
@@ -7,6 +7,7 @@ import { getFilmByIdService } from 'services/film/film.service';
 import { addShowtimeService } from 'services/showTime/showTime.services';
 import { IAction } from 'type';
 import { FETCH_CINEPLEX_LIST, FETCH_FILM_DETAIL, FETCH_THEATRE_LIST } from './showTimeTypes';
+import { message } from 'antd';
 
 export const getFilmByIdAction = (maPhim: number) => {
     const filmPromise = getFilmByIdService(maPhim);
@@ -15,6 +16,8 @@ export const getFilmByIdAction = (maPhim: number) => {
             console.log('phim theo id:', rs);
             const action: IAction = { type: FETCH_FILM_DETAIL, payload: rs.data.content };
             dispatch(action);
+        }).catch(err=>{
+            message.error("Phim này không có thật, vui lòng không tự thay đổi đường dẫn")
         });
     };
 };
@@ -23,7 +26,6 @@ export const getAllCineplexAction = (maHeThongRap: string) => {
     const cineplexPromise = getAllCineplexService(maHeThongRap);
     return (dispatch: any) => {
         cineplexPromise.then((rs) => {
-            console.log('cineplex list:', rs.data.content);
             const action: IAction = {
                 type: FETCH_CINEPLEX_LIST,
                 payload: rs.data.content,
@@ -51,10 +53,10 @@ export const addShowtimeAction = (showTime: IShowTimeInput) => {
     return (dispatch: any) => {
         promiseAdd
             .then((rs) => {
-                console.log('them showtimes thanh cong:', rs);
+                message.success('Them showtime thanh cong');
             })
             .catch((err) => {
-                console.log('error them showtime:', err.response);
+                message.error(err.response.data.content);
             });
     };
 };

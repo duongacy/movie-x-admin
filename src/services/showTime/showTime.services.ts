@@ -1,4 +1,4 @@
-import { IShowTimeInput } from 'common/formatTypes/showTime';
+import { IShowTimeInput } from 'common/formatTypes/SxhowTime';
 import { postAPITokenAuthor } from 'services/APIMethods/APIMethods.service';
 
 export const addShowtimeService = (showTime: IShowTimeInput) => {
