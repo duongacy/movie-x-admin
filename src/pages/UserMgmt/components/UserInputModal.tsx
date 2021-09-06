@@ -11,9 +11,9 @@ import {
     updateUserAction,
 } from '../../../store/user/userAction';
 
-interface IFilmInputModalProps {}
+interface IFilmEditModalProps {}
 
-const UserInputModal: React.FC<IFilmInputModalProps> = () => {
+const UserInputModal: React.FC<IFilmEditModalProps> = () => {
     const dispatch = useDispatch();
     const { userInfo, isEdit, isUserModalShow, userHandleStatus } = useSelector(
         (root: any) => root.userStore

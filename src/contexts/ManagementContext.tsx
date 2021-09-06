@@ -1,8 +1,10 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getAllFilmByNameAction } from 'store/film/filmActions';
 
 export const ManagementContext = createContext<any | null>(null);
-export type IPushModalStatus = (code: 'SUCCESS' | 'FAIL', message: string) => void;
 export const FilmProvider: React.FC = ({ children }) => {
+    const dispatch = useDispatch();
     /* ------------------------------ search state ------------------------------ */
     const [searchKey, setSearchKey] = useState('');
     /* -------------------------------------------------------------------------- */
@@ -17,43 +19,27 @@ export const FilmProvider: React.FC = ({ children }) => {
     const [pageSize, setPageSize] = useState(10);
     /* -------------------------------------------------------------------------- */
 
-    /* ------------------------------- modal state ------------------------------ */
-    const [show, setShow] = useState(false);
-    const [isEdit, setIsEdit] = useState(false);
-    const [inputFields, setInputFields] = useState<any>({});
-    const [formAlert, setFormAlert] = useState<{ code: 'SUCCESS' | 'FAIL'; message: string }>({
-        code: 'SUCCESS',
-        message: '',
-    });
+    /* ----------------------------- add modal state ---------------------------- */
+    const [showAddModal, setShowAddModal] = useState(false);
+    /* -------------------------------------------------------------------------- */
 
-    const pushModalStatus: IPushModalStatus = (code, message) => {
-        setFormAlert({ code, message });
-        if (code === 'SUCCESS') {
-            setTimeout(() => {
-                setShow(false);
-            }, 2000);
-        }
-    };
-    const showEdit = () => {
-        setShow(true);
-        setIsEdit(true);
-        setFormAlert({
-            code: 'SUCCESS',
-            message: '',
-        });
-    };
-    const showAdd = () => {
-        setShow(true);
-        setIsEdit(false);
-        setFormAlert({
-            code: 'SUCCESS',
-            message: '',
-        });
-        setInputFields({});
+    /* ---------------------------- edit modal state ---------------------------- */
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [inputFields, setInputFields] = useState<any>({});
+
+    const reloadFilm = (sk = searchKey, p = page, ps = pageSize) => {
+        dispatch(getAllFilmByNameAction(sk, p, ps));
     };
     /* -------------------------------------------------------------------------- */
 
+    /* -------------------------------- useEffect ------------------------------- */
+    useEffect(() => {
+        reloadFilm();
+    }, [page, pageSize, searchKey]);
+    /* -------------------------------------------------------------------------- */
+
     const data = {
+        common: { reloadFilm },
         searchKeyState: {
             searchKey,
             setSearchKey,
@@ -65,16 +51,16 @@ export const FilmProvider: React.FC = ({ children }) => {
             setPage,
             setPageSize,
         },
-        formModalState: {
-            show,
+
+        editModalState: {
+            showEditModal,
+            setShowEditModal,
             inputFields,
-            isEdit,
-            formAlert,
-            setShow,
             setInputFields,
-            pushModalStatus, // khi thêm hoặc sửa cần trả lại status
-            showEdit,
-            showAdd,
+        },
+        addModalState: {
+            showAddModal,
+            setShowAddModal,
         },
     };
     return <ManagementContext.Provider value={data}>{children}</ManagementContext.Provider>;

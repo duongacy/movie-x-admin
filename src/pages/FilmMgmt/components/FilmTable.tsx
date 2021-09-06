@@ -6,15 +6,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteFilmAction, getAllFilmByNameAction } from '../../../store/film/filmActions';
 import { IFilm } from '../../../common/formatTypes/Film';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 interface Props {}
 
 const FilmTable = (props: Props) => {
     /* ---------------------------- get from context ---------------------------- */
-    const { formModalState, paginationState, searchKeyState } = useContext(ManagementContext);
-    const { setInputFields, showEdit, showAdd } = formModalState;
-    const { page, pageSize } = paginationState;
-    const { searchKey } = searchKeyState;
+    const { addModalState, paginationState, searchKeyState, editModalState, common } =
+        useContext(ManagementContext);
+    const { setShowEditModal, setInputFields } = editModalState;
+    const { setShowAddModal } = addModalState;
+    const { reloadFilm } = common;
     /* -------------------------------------------------------------------------- */
 
     /* -------------------------- get from store(redux) ------------------------- */
@@ -24,27 +26,14 @@ const FilmTable = (props: Props) => {
     /* -------------------------------------------------------------------------- */
 
     const dispatch = useDispatch();
-    // chỉ cần gọi dispatch đúng 1 lần, bất cứ khi nào search hay chuyển page sẽ tự động dispatch
-    useEffect(() => {
-        dispatch(getAllFilmByNameAction(searchKey, page, pageSize));
-    }, [searchKey, page, pageSize]);
 
     const handleDeleteFilm = (maPhim: number) => {
         dispatch(deleteFilmAction(maPhim, reloadFilm));
     };
 
-    const reloadFilm = () => {
-        dispatch(getAllFilmByNameAction(searchKey, page, pageSize));
-    };
-
     return (
         <div className="my-2">
-            <Button
-                onClick={() => {
-                    showAdd();
-                }}
-                className="mb-1"
-            >
+            <Button onClick={() => setShowAddModal(true)} className="mb-1">
                 Them phim moi
             </Button>
             <Table
@@ -54,7 +43,7 @@ const FilmTable = (props: Props) => {
                 onRow={(record: IFilm, rowIndex) => {
                     return {
                         onDoubleClick: (event) => {
-                            showEdit();
+                            setShowEditModal(true);
                             setInputFields({ ...record });
                         },
                     };

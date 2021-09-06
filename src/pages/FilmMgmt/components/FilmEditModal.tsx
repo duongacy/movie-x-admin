@@ -5,23 +5,18 @@ import { ChangeEvent, createRef, useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { MA_NHOM } from '../../../config';
 import { ManagementContext } from '../../../contexts/ManagementContext';
-import {
-    addFilmAction,
-    getAllFilmByNameAction,
-    updateFilmAction,
-} from '../../../store/film/filmActions';
+import { updateFilmAction } from '../../../store/film/filmActions';
 
 interface Props {}
 
-const FilmInputModal = (props: Props) => {
+const FilmEditModal = (props: Props) => {
     const dispatch = useDispatch();
     const formRef = createRef<FormInstance>();
 
     /* --------------------------------- context -------------------------------- */
-    const { formModalState, searchKeyState, paginationState } = useContext(ManagementContext);
-    const { inputFields, show, setShow, isEdit, pushModalStatus, formAlert } = formModalState;
-    const { page, pageSize } = paginationState;
-    const { searchKey } = searchKeyState;
+    const { editModalState, common } = useContext(ManagementContext);
+    const { showEditModal, setShowEditModal, inputFields } = editModalState;
+    const { reloadFilm } = common;
     /* -------------------------------------------------------------------------- */
 
     /* -------------------------------- useState -------------------------------- */
@@ -37,31 +32,7 @@ const FilmInputModal = (props: Props) => {
         });
     }, [inputFields]);
     /* -------------------------------------------------------------------------- */
-    const reloadFilm = () => {
-        dispatch(getAllFilmByNameAction(searchKey, page, pageSize));
-    };
-    const handleFinish = (values: any) => {
-        const formData = new FormData();
-        if (image !== null) {
-            formData.append('hinhAnh', image.file, image.name);
-        }
-        formData.append('tenPhim', values.tenPhim);
-        formData.append('trailer', values.trailer);
-        formData.append('moTa', values.moTa);
-        formData.append('maNhom', MA_NHOM);
-        formData.append('ngayKhoiChieu', moment(values.ngayKhoiChieu).format('DD/MM/YYYY'));
-        formData.append('sapChieu', values.sapChieu);
-        formData.append('danhGia', values.danhGia);
-        formData.append('dangChieu', values.dangChieu);
-        formData.append('hot', values.hot);
-        if (isEdit) {
-            formData.append('maPhim', values.maPhim);
-            dispatch(updateFilmAction(formData, pushModalStatus, reloadFilm));
-        } else {
-            dispatch(addFilmAction(formData, pushModalStatus, reloadFilm));
-        }
-    };
-    const imgRef = createRef<HTMLImageElement>();
+
     const handleChangeImage = (event: ChangeEvent<HTMLInputElement>) => {
         const { files } = event.target;
         if (files) {
@@ -83,12 +54,26 @@ const FilmInputModal = (props: Props) => {
         }
     };
 
+    const handleFinish = (values: any) => {
+        const formData = new FormData();
+        if (image !== null) {
+            formData.append('hinhAnh', image.file, image.name);
+        }
+        formData.append('maNhom', MA_NHOM);
+        formData.append('ngayKhoiChieu', moment(values.ngayKhoiChieu).format('DD/MM/YYYY'));
+        for (let key in values) {
+            formData.append(key, values[key]);
+        }
+        dispatch(updateFilmAction(formData, reloadFilm));
+    };
+    const imgRef = createRef<HTMLImageElement>();
+
     return (
         <Modal
-            title={isEdit ? 'Cập nhật phim' : 'Thêm phim mới'}
-            visible={show}
+            title="Cập nhật phim"
+            visible={showEditModal}
             onOk={() => {}}
-            onCancel={() => setShow(false)}
+            onCancel={() => setShowEditModal(false)}
             footer={false}
         >
             <Form
@@ -98,13 +83,9 @@ const FilmInputModal = (props: Props) => {
                 labelCol={{ span: 6 }}
                 wrapperCol={{ span: 18 }}
             >
-                {isEdit ? (
-                    <Form.Item label="Mã phim" name="maPhim">
-                        <Input disabled />
-                    </Form.Item>
-                ) : (
-                    ``
-                )}
+                <Form.Item label="Mã phim" name="maPhim">
+                    <Input disabled />
+                </Form.Item>
 
                 <Form.Item
                     label="Tên phim"
@@ -164,10 +145,9 @@ const FilmInputModal = (props: Props) => {
                     </Button>
                 </Form.Item>
             </Form>
-            <Button onClick={() => setShow(false)}>Cancel</Button>
-            {formAlert.message}
+            <Button onClick={() => setShowEditModal(false)}>Cancel</Button>
         </Modal>
     );
 };
 
-export default FilmInputModal;
+export default FilmEditModal;

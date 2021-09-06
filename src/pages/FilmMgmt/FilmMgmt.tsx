@@ -1,6 +1,7 @@
 import { FilmProvider } from '../../contexts/ManagementContext';
+import FilmAddModal from './components/FilmAddModal';
 import FilmBreadcumb from './components/FilmBreadcumb';
-import FilmInputModal from './components/FilmInputModal';
+import FilmEditModal from './components/FilmEditModal';
 import FilmPagination from './components/FilmPagination';
 import FilmSearchName from './components/FilmSearchName';
 import FilmTable from './components/FilmTable';
@@ -12,7 +13,8 @@ const FilmMgmt = () => {
             <FilmSearchName />
             <FilmTable />
             <FilmPagination />
-            <FilmInputModal />
+            <FilmEditModal />
+            <FilmAddModal />
         </FilmProvider>
     );
 };

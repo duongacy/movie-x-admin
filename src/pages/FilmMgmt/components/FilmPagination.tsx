@@ -7,18 +7,20 @@ interface Props {}
 
 const FilmPagination = (props: Props) => {
     const { paginationState } = useContext(ManagementContext);
-    const { setPage, setPageSize } = paginationState;
+    const { page, setPage, setPageSize, pageSize } = paginationState;
     const { filmStore } = useSelector((root: any) => root);
     const { totalCount } = filmStore;
 
     return (
         <Pagination
+            current={page}
             total={totalCount}
-            showTotal={(total: number, range: [number, number]) => <Button>{total}</Button>}
-            onChange={(page, pageSize) => {
-                setPage(page);
-                setPageSize(pageSize);
+            showTotal={(total: number) => <Button>{total}</Button>}
+            onChange={(p, ps) => {
+                setPage(p);
+                setPageSize(ps);
             }}
+            defaultPageSize={pageSize}
         />
     );
 };

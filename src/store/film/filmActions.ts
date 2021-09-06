@@ -1,4 +1,4 @@
-import { IPushModalStatus } from '../../contexts/ManagementContext';
+import { message } from 'antd';
 import {
     getAllFilmByNamePaginationService,
     addFilmService,
@@ -25,42 +25,31 @@ export const getAllFilmByNameAction = (filmName: string, page: number, pageSize:
     };
 };
 
-export const addFilmAction = (
-    film: FormData,
-    pushModalStatus: IPushModalStatus,
-    reloadFilm: () => void
-) => {
+export const addFilmAction = (film: FormData, reloadFilm: () => void) => {
     return (dispatch: any) => {
         const promise = addFilmService(film);
         promise
             .then((rs) => {
-                pushModalStatus('SUCCESS', 'Them moi thanh cong');
+                message.success('Them phim thanh cong');
                 reloadFilm();
             })
             .catch((err) => {
-                console.log(err.response);
-
-                pushModalStatus('FAIL', 'Them moi that bai');
+                message.error(err.response.data.content);
             });
     };
 };
 
-export const updateFilmAction = (
-    film: FormData,
-    pushModalStatus: IPushModalStatus,
-    reloadFilm: () => void
-) => {
+export const updateFilmAction = (film: FormData, reloadFilm: () => void) => {
     return (dispatch: any) => {
         const promise = updateFilmService(film);
         promise
             .then((rs) => {
-                pushModalStatus('SUCCESS', 'Update thanh cong');
                 reloadFilm();
+                message.success('chinh sua thanh cong');
             })
 
             .catch((err) => {
-                console.log(err.response.data.content);
-                pushModalStatus('FAIL', err.response.data.content);
+                message.error(err.response.data.content);
             });
     };
 };
@@ -68,13 +57,18 @@ export const updateFilmAction = (
 export const deleteFilmAction = (maPhim: number, reloadFilm: () => void) => {
     return (dispatch: any) => {
         const promise = deleteFilmService(maPhim);
-        promise.then((rs) => {
-            const action: IAction = {
-                payload: maPhim,
-                type: DELETE_FILM,
-            };
-            dispatch(action);
-            reloadFilm();
-        });
+        promise
+            .then((rs) => {
+                const action: IAction = {
+                    payload: maPhim,
+                    type: DELETE_FILM,
+                };
+                dispatch(action);
+                message.error('Xoa thanh cong');
+                reloadFilm();
+            })
+            .catch((err) => {
+                message.error('Xoa that bai');
+            });
     };
 };
