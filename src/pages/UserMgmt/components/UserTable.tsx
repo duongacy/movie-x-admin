@@ -1,10 +1,26 @@
-import { Table } from 'antd';
+import { Button, Popconfirm, Table } from 'antd';
+import { ManagementContext } from 'contexts/ManagementContext';
+import { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { IFilmTable } from 'store/film/filmReducer';
+import { deleteUserAction } from 'store/user/userAction';
+import { IUserRow } from 'store/user/userTypes';
 import { IUser } from '../../../common/formatTypes/User';
-import { showModalEditUserAction } from '../../../store/user/userAction';
+import UserPagination from './UserPagination';
+import UserSearchName from './UserSearchName';
 
 export const UserTable = () => {
     const dispatch = useDispatch();
+    const { addModalState, editModalState, searchState, paginationState, userContext } =
+        useContext(ManagementContext);
+    const { setShowAddModal } = addModalState;
+    const { setShowEditModal, setInputFields } = editModalState;
+    const { page, pageSize } = paginationState;
+    const { searchKey } = searchState;
+    const { reloadUser } = userContext;
+    useEffect(() => {
+        reloadUser();
+    }, [page, pageSize, searchKey]);
     const columns = [
         {
             title: 'Tài khoản',
@@ -22,26 +38,45 @@ export const UserTable = () => {
             dataIndex: 'maLoaiNguoiDung',
             key: 'maLoaiNguoiDung',
         },
+        {
+            title: 'Action',
+            dataIndex: '',
+            key: 'x',
+            render: (record: IUserRow) => (
+                <Popconfirm
+                    title="Bạn có muốn xóa tài khoản này?"
+                    onConfirm={() => {
+                        dispatch(deleteUserAction(record.taiKhoan, reloadUser));
+                    }}
+                >
+                    <a>Delete</a>
+                </Popconfirm>
+            ),
+        },
     ];
-    const showEditUser = (taiKhoan: string) => {
-        dispatch(showModalEditUserAction(taiKhoan));
-    };
+
     const { loading } = useSelector((root: any) => root.parentStore);
     const { listUserRow } = useSelector((root: any) => root.userStore);
     return (
-        <Table
-            columns={columns}
-            dataSource={listUserRow}
-            pagination={false}
-            loading={loading}
-            onRow={(record: IUser) => {
-                return {
-                    onDoubleClick: () => {
-                        showEditUser(record.taiKhoan);
-                    },
-                };
-            }}
-            rowClassName="cursor-pointer"
-        />
+        <>
+            <Button type="primary" className="my-1" onClick={() => setShowAddModal(true)}>
+                Thêm người dùng mới
+            </Button>
+            <Table
+                columns={columns}
+                dataSource={listUserRow}
+                pagination={false}
+                loading={loading}
+                onRow={(record: IUser) => {
+                    return {
+                        onDoubleClick: () => {
+                            setShowEditModal(true);
+                            setInputFields(record);
+                        },
+                    };
+                }}
+                rowClassName="cursor-pointer"
+            />
+        </>
     );
 };

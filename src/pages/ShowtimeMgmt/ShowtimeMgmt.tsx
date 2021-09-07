@@ -9,7 +9,7 @@ import {
 } from 'store/showTimes/showTimeAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { ICineplex, ITheatre } from 'common/formatTypes/Cinema';
-import { IShowTimeInput } from 'common/formatTypes/SxhowTime';
+import { IShowTimeInput } from 'common/formatTypes/ShowTime';
 import moment from 'moment';
 
 interface IShowtimeMgmtProps {

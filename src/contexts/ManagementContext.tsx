@@ -1,9 +1,10 @@
 import { createContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllFilmByNameAction } from 'store/film/filmActions';
+import { getUserByNameAction } from 'store/user/userAction';
 
 export const ManagementContext = createContext<any | null>(null);
-export const FilmProvider: React.FC = ({ children }) => {
+export const ManagementProvider: React.FC = ({ children }) => {
     const dispatch = useDispatch();
     /* ------------------------------ search state ------------------------------ */
     const [searchKey, setSearchKey] = useState('');
@@ -26,21 +27,24 @@ export const FilmProvider: React.FC = ({ children }) => {
     /* ---------------------------- edit modal state ---------------------------- */
     const [showEditModal, setShowEditModal] = useState(false);
     const [inputFields, setInputFields] = useState<any>({});
+    /* -------------------------------------------------------------------------- */
 
-    const reloadFilm = (sk = searchKey, p = page, ps = pageSize) => {
-        dispatch(getAllFilmByNameAction(sk, p, ps));
+    /* ------------------------------ film context ------------------------------ */
+    const reloadFilm = () => {
+        dispatch(getAllFilmByNameAction(searchKey, page, pageSize));
     };
     /* -------------------------------------------------------------------------- */
 
+    /* ------------------------------ user context ------------------------------ */
+    const reloadUser = () => {
+        dispatch(getUserByNameAction(searchKey, page, pageSize));
+    };
+    /* -------------------------------------------------------------------------- */
     /* -------------------------------- useEffect ------------------------------- */
-    useEffect(() => {
-        reloadFilm();
-    }, [page, pageSize, searchKey]);
     /* -------------------------------------------------------------------------- */
 
     const data = {
-        common: { reloadFilm },
-        searchKeyState: {
+        searchState: {
             searchKey,
             setSearchKey,
         },
@@ -62,6 +66,8 @@ export const FilmProvider: React.FC = ({ children }) => {
             showAddModal,
             setShowAddModal,
         },
+        filmContext: { reloadFilm },
+        userContext: { reloadUser },
     };
     return <ManagementContext.Provider value={data}>{children}</ManagementContext.Provider>;
 };

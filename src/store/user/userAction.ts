@@ -1,7 +1,7 @@
+import { message } from 'antd';
 import { IUserInput } from '../../common/formatTypes/User';
 import {
     addUserService,
-    getUserByTuKhoa,
     getUserByNamePaginationService,
     updateUserService,
     deleteUserServices,
@@ -9,12 +9,7 @@ import {
 import { IAction } from '../../type';
 import { setLoadingAction } from '../parent/parentAction';
 import {
-    SHOW_USER_MODAL_UPDATE,
     GET_USER_LIST,
-    SHOW_USER_MODAL_ADD,
-    HIDE_MODAL,
-    SET_USER_HANDLE_STATUS,
-    DELETE_USER,
 } from './userTypes';
 
 export const getUserByNameAction = (taiKhoan: string, page: number, pageSize: number) => {
@@ -33,86 +28,45 @@ export const getUserByNameAction = (taiKhoan: string, page: number, pageSize: nu
     };
 };
 
-export const showModalAddUserAction = () => {
-    return (dispatch: any) => {
-        const action: IAction = {
-            type: SHOW_USER_MODAL_ADD,
-            payload: null,
-        };
-        dispatch(action);
-    };
-};
-export const showModalEditUserAction = (taiKhoan: string) => {
-    return (dispatch: any) => {
-        const userPromise = getUserByTuKhoa(taiKhoan);
-        userPromise.then((rs) => {
-            const action: IAction = {
-                type: SHOW_USER_MODAL_UPDATE,
-                payload: rs.data.content[0],
-            };
-            dispatch(action);
-        });
-    };
-};
-export const hideModalUserAction = () => {
-    return (dispatch: any) => {
-        const action: IAction = {
-            type: HIDE_MODAL,
-            payload: null,
-        };
-        dispatch(action);
-    };
-};
-
 export const addUserAction = (user: IUserInput) => {
     return (dispatch: any) => {
         dispatch(setLoadingAction(true));
         const promise = addUserService(user);
         promise
             .then((rs) => {
-                dispatch(hideModalUserAction());
+                message.success('Them thanh cong');
             })
             .catch((err) => {
-                const { content } = err.response.data;
-                dispatch(setUserHandleStatusAction(content));
+                message.error(err.response.data.content);
             });
     };
 };
 
-export const updateUserAction = (user: IUserInput) => {
+export const updateUserAction = (user: IUserInput, reloadUser: () => void) => {
     return (dispatch: any) => {
         const promise = updateUserService(user);
-        promise.then((rs) => {
-            dispatch(hideModalUserAction());
-        });
+        promise
+            .then((rs) => {
+                message.success('Update thanh cong');
+                reloadUser();
+            })
+            .catch((err) => {
+                message.error(err.response.data.content);
+            });
     };
 };
 
-export const setUserHandleStatusAction = (status: string) => {
-    return (dispatch: any) => {
-        const action: IAction = {
-            type: SET_USER_HANDLE_STATUS,
-            payload: status,
-        };
-        dispatch(action);
-    };
-};
-
-export const deleteUserAction = (taiKhoan: string) => {
+export const deleteUserAction = (taiKhoan: string, callbackReload: () => void) => {
     return (dispatch: any) => {
         const promise = deleteUserServices(taiKhoan);
         promise
             .then((rs) => {
-                dispatch(hideModalUserAction());
-                const action: IAction = {
-                    type: DELETE_USER,
-                    payload: taiKhoan,
-                };
-                dispatch(action);
+                message.success('Xoa tai khoan thanh cong');
+                callbackReload();
             })
             .catch((err) => {
                 const { content } = err.response.data;
-                dispatch(setUserHandleStatusAction(content));
+                message.error(content);
             });
     };
 };

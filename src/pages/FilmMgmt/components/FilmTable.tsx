@@ -6,17 +6,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteFilmAction, getAllFilmByNameAction } from '../../../store/film/filmActions';
 import { IFilm } from '../../../common/formatTypes/Film';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
 
 interface Props {}
 
 const FilmTable = (props: Props) => {
+    const dispatch = useDispatch();
     /* ---------------------------- get from context ---------------------------- */
-    const { addModalState, paginationState, searchKeyState, editModalState, common } =
+    const { addModalState, paginationState, searchState, editModalState, filmContext } =
         useContext(ManagementContext);
     const { setShowEditModal, setInputFields } = editModalState;
     const { setShowAddModal } = addModalState;
-    const { reloadFilm } = common;
+    const { searchKey } = searchState;
+    const { page, pageSize } = paginationState;
+    const { reloadFilm } = filmContext;
     /* -------------------------------------------------------------------------- */
 
     /* -------------------------- get from store(redux) ------------------------- */
@@ -25,7 +27,11 @@ const FilmTable = (props: Props) => {
     const { listFilmTable } = filmStore;
     /* -------------------------------------------------------------------------- */
 
-    const dispatch = useDispatch();
+    /* -------------------------------- useEffect ------------------------------- */
+    useEffect(() => {
+        reloadFilm();
+    }, [searchKey, page, pageSize]);
+    /* -------------------------------------------------------------------------- */
 
     const handleDeleteFilm = (maPhim: number) => {
         dispatch(deleteFilmAction(maPhim, reloadFilm));
@@ -84,5 +90,4 @@ const FilmTable = (props: Props) => {
         </div>
     );
 };
-
 export default FilmTable;

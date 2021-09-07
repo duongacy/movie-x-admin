@@ -1,4 +1,4 @@
-import { Button, Modal, Form, Input, FormInstance, DatePicker, Upload } from 'antd';
+import { Button, Modal, Form, Input, FormInstance, DatePicker } from 'antd';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import moment from 'moment';
 import { ChangeEvent, createRef, useContext, useEffect, useState } from 'react';
@@ -14,13 +14,16 @@ const FilmEditModal = (props: Props) => {
     const formRef = createRef<FormInstance>();
 
     /* --------------------------------- context -------------------------------- */
-    const { editModalState, common } = useContext(ManagementContext);
+    const { editModalState, filmContext } = useContext(ManagementContext);
     const { showEditModal, setShowEditModal, inputFields } = editModalState;
-    const { reloadFilm } = common;
+    const { reloadFilm } = filmContext;
     /* -------------------------------------------------------------------------- */
 
     /* -------------------------------- useState -------------------------------- */
-    const [image, setImage] = useState<any>(null);
+    const [image, setImage] = useState<{
+        file: File;
+        name: string;
+    } | null>(null);
     /* -------------------------------------------------------------------------- */
 
     /* -------------------------------- useEffect ------------------------------- */
@@ -53,7 +56,6 @@ const FilmEditModal = (props: Props) => {
             console.log('Khong co file');
         }
     };
-
     const handleFinish = (values: any) => {
         const formData = new FormData();
         if (image !== null) {
@@ -66,6 +68,7 @@ const FilmEditModal = (props: Props) => {
         }
         dispatch(updateFilmAction(formData, reloadFilm));
     };
+
     const imgRef = createRef<HTMLImageElement>();
 
     return (

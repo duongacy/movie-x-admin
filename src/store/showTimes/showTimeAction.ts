@@ -1,4 +1,4 @@
-import { IShowTimeInput } from 'common/formatTypes/SxhowTime';
+import { IShowTimeInput } from 'common/formatTypes/ShowTime';
 import {
     getAllCineplexService,
     getAllTheatreByCineplexService,

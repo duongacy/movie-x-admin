@@ -1,17 +1,17 @@
-import { Input, Space } from 'antd';
-import React, { ChangeEvent, useContext } from 'react';
-import { ManagementContext } from '../../../contexts/ManagementContext';
+import { Input } from 'antd';
+import { ManagementContext } from 'contexts/ManagementContext';
+import { useContext } from 'react';
 
 interface Props {}
 
-const FilmSearchName = (props: Props) => {
+const UserSearchName = (props: Props) => {
     const { searchState, paginationState } = useContext(ManagementContext);
     const { setSearchKey } = searchState;
     const { setPage } = paginationState;
     return (
         <Input.Search
             placeholder="input search text"
-            onSearch={(value: string) => {
+            onSearch={(value) => {
                 setSearchKey(value);
                 setPage(1);
             }}
@@ -20,4 +20,4 @@ const FilmSearchName = (props: Props) => {
     );
 };
 
-export default FilmSearchName;
+export default UserSearchName;

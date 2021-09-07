@@ -5,7 +5,6 @@ import { filmReducer } from './film/filmReducer';
 import { parentReducer } from './parent/parentReducer';
 import { showTimeReducer } from './showTimes/showTimeReducer';
 import { userReducer } from './user/userReducer';
-import { IUserState } from './user/userTypes';
 
 const rootState = {
     filmStore: filmReducer,

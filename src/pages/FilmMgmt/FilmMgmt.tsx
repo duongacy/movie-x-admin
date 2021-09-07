@@ -1,4 +1,5 @@
-import { FilmProvider } from '../../contexts/ManagementContext';
+import { BackTop, Button } from 'antd';
+import { ManagementProvider } from '../../contexts/ManagementContext';
 import FilmAddModal from './components/FilmAddModal';
 import FilmBreadcumb from './components/FilmBreadcumb';
 import FilmEditModal from './components/FilmEditModal';
@@ -8,14 +9,14 @@ import FilmTable from './components/FilmTable';
 
 const FilmMgmt = () => {
     return (
-        <FilmProvider>
+        <ManagementProvider>
             <FilmBreadcumb />
             <FilmSearchName />
             <FilmTable />
             <FilmPagination />
             <FilmEditModal />
             <FilmAddModal />
-        </FilmProvider>
+        </ManagementProvider>
     );
 };
 

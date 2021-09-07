@@ -1,20 +1,60 @@
 import { DatePicker, Input, Form, Button } from 'antd';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import Modal from 'antd/lib/modal/Modal';
-import { IFilmInput } from 'common/formatTypes/Film';
+import { MA_NHOM } from 'config';
 import { ManagementContext } from 'contexts/ManagementContext';
-import { useContext } from 'react';
+import moment from 'moment';
+import { ChangeEvent, createRef, useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { addFilmAction } from 'store/film/filmActions';
 
 interface Props {}
 const FilmAddModal = (props: Props) => {
     const dispatch = useDispatch();
-    const { addModalState } = useContext(ManagementContext);
+    const { addModalState, filmContext } = useContext(ManagementContext);
+    const { reloadFilm } = filmContext;
     const { showAddModal, setShowAddModal } = addModalState;
+    const [image, setImage] = useState<{
+        file: File;
+        name: string;
+    } | null>(null);
 
-    const handleFinish = (values: any) => {
-        console.log(values);
+    const imgRef = createRef<HTMLImageElement>();
+
+    const handleChangeImage = (event: ChangeEvent<HTMLInputElement>) => {
+        const { files } = event.target;
+        const reader = new FileReader();
+        if (files) {
+            const file = files[0];
+            const { name } = file;
+            reader.readAsDataURL(file);
+            reader.onload = (e) => {
+                if (typeof e.target?.result === 'string') {
+                    imgRef.current?.setAttribute('src', e.target?.result);
+                }
+                setImage({
+                    file,
+                    name,
+                });
+            };
+        }
     };
+    const handleFinish = (values: any) => {
+        const formData = new FormData();
+        if (image !== null) {
+            formData.append('hinhAnh', image?.file, image?.name);
+        }
+        formData.append('maNhom', MA_NHOM);
+        formData.append('ngayKhoiChieu', moment(values.ngayKhoiChieu).format('DD/MM/YYYY'));
+        console.log('ngay khoi chieu ne:', formData.get('ngayKhoiChieu'));
+        console.log('hinhANh ne:', formData.get('hinhAnh'));
+
+        for (let key in values) {
+            formData.append(key, values[key]);
+        }
+        dispatch(addFilmAction(formData, reloadFilm));
+    };
+
     return (
         <Modal
             title="Thêm phim mới"
@@ -61,12 +101,12 @@ const FilmAddModal = (props: Props) => {
                     <Input type="number" />
                 </Form.Item>
                 <Form.Item label="Hình ảnh">
-                    <input type="file" onChange={() => {}} />
+                    <input type="file" onChange={handleChangeImage} />
                     <img
+                        ref={imgRef}
                         alt="..."
                         style={{ width: 200, height: 200 }}
                         src="https://fakeimg.pl/200x200/"
-                        // ref={imgRef}
                         onErrorCapture={() => {
                             return <div></div>;
                         }}

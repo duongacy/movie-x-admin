@@ -5,7 +5,6 @@ import './assets/custom/antd-custom.scss';
 import './assets/custom/slick-custom.scss';
 import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
 import FilmMgmt from './pages/FilmMgmt/FilmMgmt';
-import TicketMgmt from './pages/TicketMgmt/TicketMgmt';
 import UserMgmt from './pages/UserMgmt/UserMgmt';
 import ShowtimeMgmt from './pages/ShowtimeMgmt/ShowtimeMgmt';
 import AdminTemplate from './templates/AdminTemplate';
@@ -27,9 +26,6 @@ const App: React.FC = () => {
                     </AdminRoute>
                     <AdminRoute exact path="/admin/film-mgmt">
                         <FilmMgmt />
-                    </AdminRoute>
-                    <AdminRoute exact path="/admin/ticket-mgmt">
-                        <TicketMgmt />
                     </AdminRoute>
                     <AdminRoute exact path="/admin/user-mgmt">
                         <UserMgmt />
