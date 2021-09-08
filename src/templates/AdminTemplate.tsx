@@ -68,10 +68,6 @@ const AdminTemplate: React.FC<IAdminTemplateProps> = ({ children }) => {
                             onClick: toggle,
                         })}
                         <div>
-                            <Button onClick={handleLogout} className="mr-1">
-                                {t('common:logout')}
-                            </Button>
-
                             <Radio.Group
                                 onChange={handleChangeLanguage}
                                 defaultValue={i18n.language}
@@ -79,6 +75,9 @@ const AdminTemplate: React.FC<IAdminTemplateProps> = ({ children }) => {
                                 <Radio value="en">English</Radio>
                                 <Radio value="vi">Tiếng Việt</Radio>
                             </Radio.Group>
+                            <Button onClick={handleLogout} className="mr-4 w-32" >
+                                {t('common:logout')}
+                            </Button>
                         </div>
                     </Header>
                     <Content
