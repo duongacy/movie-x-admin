@@ -58,25 +58,20 @@ export const UserTable = () => {
     const { loading } = useSelector((root: any) => root.parentStore);
     const { listUserRow } = useSelector((root: any) => root.userStore);
     return (
-        <>
-            <Button type="primary" className="my-1" onClick={() => setShowAddModal(true)}>
-                Thêm người dùng mới
-            </Button>
-            <Table
-                columns={columns}
-                dataSource={listUserRow}
-                pagination={false}
-                loading={loading}
-                onRow={(record: IUser) => {
-                    return {
-                        onDoubleClick: () => {
-                            setShowEditModal(true);
-                            setInputFields(record);
-                        },
-                    };
-                }}
-                rowClassName="cursor-pointer"
-            />
-        </>
+        <Table
+            columns={columns}
+            dataSource={listUserRow}
+            pagination={false}
+            loading={loading}
+            onRow={(record: IUser) => {
+                return {
+                    onDoubleClick: () => {
+                        setShowEditModal(true);
+                        setInputFields(record);
+                    },
+                };
+            }}
+            rowClassName="cursor-pointer"
+        />
     );
 };

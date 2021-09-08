@@ -1,6 +1,6 @@
 import React from 'react';
-import { Layout, Menu, Button, Radio, RadioChangeEvent } from 'antd';
-import {
+import { Layout, Menu, Breadcrumb, Button, Radio, RadioChangeEvent } from 'antd';
+import Icon, {
     YoutubeOutlined,
     UserOutlined,
     MenuUnfoldOutlined,
@@ -8,13 +8,14 @@ import {
     DesktopOutlined,
 } from '@ant-design/icons';
 import { useState } from 'react';
-import '../assets/admin.scss';
 import { Link, useLocation } from 'react-router-dom';
 import { AdminProvider } from '../contexts/AdminContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutAction } from '../store/account/accountActions';
 import { useTranslation } from 'react-i18next';
+import { Footer } from 'antd/lib/layout/layout';
 
+const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 interface IAdminTemplateProps {}
@@ -41,55 +42,78 @@ const AdminTemplate: React.FC<IAdminTemplateProps> = ({ children }) => {
 
     return (
         <AdminProvider>
-            <Layout>
-                <Sider trigger={null} collapsible collapsed={collapse}>
-                    <div className="logo">
-                        {t('common:hello')} {taiKhoan}
-                    </div>
-                    <Menu theme="dark" mode="inline" defaultSelectedKeys={[location.pathname]}>
-                        <Menu.Item key="/" icon={<DesktopOutlined />}>
-                            <Link to="/">{t('common:dashboard')}</Link>
-                        </Menu.Item>
-                        <Menu.Item key="/admin/film-mgmt" icon={<YoutubeOutlined />}>
-                            <Link to="/admin/film-mgmt">{t('common:film-management')}</Link>
-                        </Menu.Item>
-                        <Menu.Item key="/admin/user-mgmt" icon={<UserOutlined />}>
-                            <Link to="/admin/user-mgmt">{t('common:user-management')}</Link>
-                        </Menu.Item>
-                    </Menu>
-                </Sider>
-                <Layout className="site-layout">
-                    <Header
-                        className="site-layout-background flex items-center justify-between"
-                        style={{ padding: 0 }}
-                    >
-                        {React.createElement(collapse ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                            className: 'trigger',
-                            onClick: toggle,
-                        })}
-                        <div>
-                            <Radio.Group
-                                onChange={handleChangeLanguage}
-                                defaultValue={i18n.language}
-                            >
-                                <Radio value="en">English</Radio>
-                                <Radio value="vi">Tiếng Việt</Radio>
-                            </Radio.Group>
-                            <Button onClick={handleLogout} className="mr-4 w-32" >
-                                {t('common:logout')}
-                            </Button>
-                        </div>
-                    </Header>
-                    <Content
-                        className="site-layout-background"
+            <Layout style={{ minHeight: '100vh' }}>
+                <Header
+                    className="header"
+                    style={{ display: 'flex', justifyContent: 'space-between' }}
+                >
+                    <div
+                        className="logo"
                         style={{
-                            margin: '24px 16px',
-                            padding: 24,
-                            minHeight: 280,
+                            minWidth: '120px',
+                            height: '31px',
+                            lineHeight: '31px',
+                            background: '#fff',
+                            borderRadius: '6px',
+                            margin: '16px 28px 16px 0',
+                            padding: '0 10px',
+                            float: 'left',
                         }}
                     >
-                        {children}
-                    </Content>
+                        {t('common:hello')} {taiKhoan}
+                    </div>
+                    <div>
+                        <Radio.Group onChange={handleChangeLanguage} defaultValue={i18n.language}>
+                            <Radio value="en" style={{ color: '#fff' }}>
+                                English
+                            </Radio>
+                            <Radio value="vi" style={{ color: '#fff' }}>
+                                Tiếng Việt
+                            </Radio>
+                        </Radio.Group>
+                        <Button onClick={handleLogout} style={{ minWidth: '150px' }}>
+                            {t('common:logout')}
+                        </Button>
+                    </div>
+                </Header>
+                <Layout>
+                    <Sider width={200} style={{ background: '#fff' }}>
+                        <Menu
+                            mode="inline"
+                            defaultSelectedKeys={[location.pathname]}
+                            style={{ height: '100%', borderRight: 0 }}
+                        >
+                            <Menu.Item key="/" icon={<DesktopOutlined />}>
+                                <Link to="/">{t('common:dashboard')}</Link>
+                            </Menu.Item>
+                            <Menu.Item key="/admin/film-mgmt" icon={<YoutubeOutlined />}>
+                                <Link to="/admin/film-mgmt">{t('common:film-management')}</Link>
+                            </Menu.Item>
+                            <Menu.Item key="/admin/user-mgmt" icon={<UserOutlined />}>
+                                <Link to="/admin/user-mgmt">{t('common:user-management')}</Link>
+                            </Menu.Item>
+                        </Menu>
+                    </Sider>
+                    <Layout style={{ padding: '0 24px 24px' }}>
+                        <Breadcrumb style={{ margin: '16px 0' }}>
+                            <Breadcrumb.Item>Home</Breadcrumb.Item>
+                            <Breadcrumb.Item>List</Breadcrumb.Item>
+                            <Breadcrumb.Item>App</Breadcrumb.Item>
+                        </Breadcrumb>
+                        <Content
+                            style={{
+                                background: '#fff',
+                                padding: 24,
+                                margin: 0,
+                                minHeight: '280',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'space-between',
+                            }}
+                        >
+                            {children}
+                        </Content>
+                    </Layout>
                 </Layout>
             </Layout>
         </AdminProvider>

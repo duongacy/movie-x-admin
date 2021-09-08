@@ -1,8 +1,4 @@
-import './assets/main.css';
 import './assets/App.scss';
-import './assets/custom/reset.scss';
-import './assets/custom/antd-custom.scss';
-import './assets/custom/slick-custom.scss';
 import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
 import FilmMgmt from './pages/FilmMgmt/FilmMgmt';
 import UserMgmt from './pages/UserMgmt/UserMgmt';
@@ -12,7 +8,6 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Account/Login';
 import Register from './pages/Account/Register';
 import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
 
 const App: React.FC = () => {
     return (
