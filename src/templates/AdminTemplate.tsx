@@ -1,9 +1,8 @@
 import React from 'react';
-import { Layout, Menu, Button } from 'antd';
+import { Layout, Menu, Button, Radio, RadioChangeEvent } from 'antd';
 import {
     YoutubeOutlined,
     UserOutlined,
-    CalendarOutlined,
     MenuUnfoldOutlined,
     MenuFoldOutlined,
     DesktopOutlined,
@@ -21,7 +20,7 @@ const { Header, Content, Sider } = Layout;
 interface IAdminTemplateProps {}
 
 const AdminTemplate: React.FC<IAdminTemplateProps> = ({ children }) => {
-    const { t, i18n } = useTranslation('common');
+    const { t, i18n } = useTranslation(['common']);
     const location = useLocation();
     const { userInfo } = useSelector((state: any) => state.accountStore);
     const { taiKhoan } = userInfo || '';
@@ -35,26 +34,27 @@ const AdminTemplate: React.FC<IAdminTemplateProps> = ({ children }) => {
     const toggle = () => {
         setCollapse(!collapse);
     };
-    const handleChangeLanguage = (lang: string) => {
-        i18n.changeLanguage(lang);
+    const handleChangeLanguage = (event: RadioChangeEvent) => {
+        const { value } = event.target;
+        i18n.changeLanguage(value);
     };
+
     return (
         <AdminProvider>
             <Layout>
                 <Sider trigger={null} collapsible collapsed={collapse}>
-                    <div className="logo">{t('fish')} {taiKhoan}</div>
+                    <div className="logo">
+                        {t('common:hello')} {taiKhoan}
+                    </div>
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={[location.pathname]}>
                         <Menu.Item key="/" icon={<DesktopOutlined />}>
-                            <Link to="/">Dashboard</Link>
+                            <Link to="/">{t('common:dashboard')}</Link>
                         </Menu.Item>
                         <Menu.Item key="/admin/film-mgmt" icon={<YoutubeOutlined />}>
-                            <Link to="/admin/film-mgmt">Film management</Link>
+                            <Link to="/admin/film-mgmt">{t('common:film-management')}</Link>
                         </Menu.Item>
                         <Menu.Item key="/admin/user-mgmt" icon={<UserOutlined />}>
-                            <Link to="/admin/user-mgmt">User management</Link>
-                        </Menu.Item>
-                        <Menu.Item key="/admin/show-time-mgmt" icon={<CalendarOutlined />}>
-                            <Link to="/admin/show-time-mgmt"> Show times management</Link>
+                            <Link to="/admin/user-mgmt">{t('common:user-management')}</Link>
                         </Menu.Item>
                     </Menu>
                 </Sider>
@@ -69,14 +69,16 @@ const AdminTemplate: React.FC<IAdminTemplateProps> = ({ children }) => {
                         })}
                         <div>
                             <Button onClick={handleLogout} className="mr-1">
-                                Đăng xuất
+                                {t('common:logout')}
                             </Button>
-                            <Button onClick={() => handleChangeLanguage('en')} className="mr-1">
-                                English
-                            </Button>
-                            <Button onClick={() => handleChangeLanguage('vi')} className="mr-1">
-                                Tiếng Việt
-                            </Button>
+
+                            <Radio.Group
+                                onChange={handleChangeLanguage}
+                                defaultValue={i18n.language}
+                            >
+                                <Radio value="en">English</Radio>
+                                <Radio value="vi">Tiếng Việt</Radio>
+                            </Radio.Group>
                         </div>
                     </Header>
                     <Content
