@@ -12,33 +12,36 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Account/Login';
 import Register from './pages/Account/Register';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const App: React.FC = () => {
     return (
-        <Router>
-            <Switch>
-                <Route exact path="/login">
-                    <Login />
-                </Route>
-                <AdminTemplate>
-                    <AdminRoute exact path="/">
-                        <Dashboard />
-                    </AdminRoute>
-                    <AdminRoute exact path="/admin/film-mgmt">
-                        <FilmMgmt />
-                    </AdminRoute>
-                    <AdminRoute exact path="/admin/user-mgmt">
-                        <UserMgmt />
-                    </AdminRoute>
-                    <AdminRoute exact path="/admin/show-time-mgmt/:maPhim">
-                        <ShowtimeMgmt title='aa' />
-                    </AdminRoute>
-                    <AdminRoute exact path="/register">
-                        <Register />
-                    </AdminRoute>
-                </AdminTemplate>
-            </Switch>
-        </Router>
+        <>
+            <Router>
+                <Switch>
+                    <Route exact path="/login">
+                        <Login />
+                    </Route>
+                    <AdminTemplate>
+                        <AdminRoute exact path="/">
+                            <Dashboard />
+                        </AdminRoute>
+                        <AdminRoute exact path="/admin/film-mgmt">
+                            <FilmMgmt />
+                        </AdminRoute>
+                        <AdminRoute exact path="/admin/user-mgmt">
+                            <UserMgmt />
+                        </AdminRoute>
+                        <AdminRoute exact path="/admin/show-time-mgmt/:maPhim">
+                            <ShowtimeMgmt title="aa" />
+                        </AdminRoute>
+                        <AdminRoute exact path="/register">
+                            <Register />
+                        </AdminRoute>
+                    </AdminTemplate>
+                </Switch>
+            </Router>
+        </>
     );
 };
 

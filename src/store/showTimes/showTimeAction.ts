@@ -13,7 +13,6 @@ export const getFilmByIdAction = (maPhim: number) => {
     const filmPromise = getFilmByIdService(maPhim);
     return (dispatch: any) => {
         filmPromise.then((rs) => {
-            console.log('phim theo id:', rs);
             const action: IAction = { type: FETCH_FILM_DETAIL, payload: rs.data.content };
             dispatch(action);
         }).catch(err=>{

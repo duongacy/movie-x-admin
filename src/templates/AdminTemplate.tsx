@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react';
-import { Layout, Menu, Breadcrumb, Button, Skeleton } from 'antd';
+import React from 'react';
+import { Layout, Menu, Button } from 'antd';
 import {
     YoutubeOutlined,
     UserOutlined,
     CalendarOutlined,
-    BookOutlined,
-    VideoCameraAddOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
     MenuUnfoldOutlined,
     MenuFoldOutlined,
     DesktopOutlined,
@@ -18,13 +14,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { AdminProvider } from '../contexts/AdminContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutAction } from '../store/account/accountActions';
+import { useTranslation } from 'react-i18next';
 
-const { Header, Content, Footer, Sider } = Layout;
-const { SubMenu } = Menu;
+const { Header, Content, Sider } = Layout;
 
 interface IAdminTemplateProps {}
 
 const AdminTemplate: React.FC<IAdminTemplateProps> = ({ children }) => {
+    const { t, i18n } = useTranslation('common');
     const location = useLocation();
     const { userInfo } = useSelector((state: any) => state.accountStore);
     const { taiKhoan } = userInfo || '';
@@ -38,11 +35,14 @@ const AdminTemplate: React.FC<IAdminTemplateProps> = ({ children }) => {
     const toggle = () => {
         setCollapse(!collapse);
     };
+    const handleChangeLanguage = (lang: string) => {
+        i18n.changeLanguage(lang);
+    };
     return (
         <AdminProvider>
             <Layout>
                 <Sider trigger={null} collapsible collapsed={collapse}>
-                    <div className="logo">Xin chào {taiKhoan}</div>
+                    <div className="logo">{t('fish')} {taiKhoan}</div>
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={[location.pathname]}>
                         <Menu.Item key="/" icon={<DesktopOutlined />}>
                             <Link to="/">Dashboard</Link>
@@ -67,9 +67,17 @@ const AdminTemplate: React.FC<IAdminTemplateProps> = ({ children }) => {
                             className: 'trigger',
                             onClick: toggle,
                         })}
-                        <Button onClick={handleLogout} className="mr-1">
-                            Đăng xuất
-                        </Button>
+                        <div>
+                            <Button onClick={handleLogout} className="mr-1">
+                                Đăng xuất
+                            </Button>
+                            <Button onClick={() => handleChangeLanguage('en')} className="mr-1">
+                                English
+                            </Button>
+                            <Button onClick={() => handleChangeLanguage('vi')} className="mr-1">
+                                Tiếng Việt
+                            </Button>
+                        </div>
                     </Header>
                     <Content
                         className="site-layout-background"
