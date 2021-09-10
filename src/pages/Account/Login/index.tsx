@@ -1,8 +1,11 @@
-import { Form, Input, Button, Checkbox, FormInstance } from 'antd';
+import { Form, Input, Button, Checkbox, FormInstance, Divider} from 'antd';
 import { createRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { loginAction } from '../../store/account/accountActions';
+import { loginAction } from '../../../store/account/accountActions';
+
+import './styles.scss'
+
 
 interface ILoginProps {}
 const Login: React.FC<ILoginProps> = ({}) => {
@@ -46,7 +49,7 @@ const Login: React.FC<ILoginProps> = ({}) => {
                 matKhau: loginRemember.matKhau,
             });
         } else {
-            setLoginAlert('Không có lịch sử đăng nhập');
+            setLoginAlert('Không có lịch sử đăng nhập !');
             setTimeout(() => {
                 setLoginAlert('');
             }, 3000);
@@ -55,52 +58,68 @@ const Login: React.FC<ILoginProps> = ({}) => {
 
     return (
         <>
-            <h6 className="text-20 text-center my-2">Login</h6>
-            <Form
+            <div className="form-login-page">
+
+                <div className="form-login">
+                <div className="form-login-page__img-wrapper">
+                <img src="/images/background/imglogin.jpeg"/>
+                </div>
+                <Form
                 ref={formRef}
                 name="basic"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
+                // labelCol={{ span: 8 }}
+                // wrapperCol={{ span: 16 }}
                 initialValues={{ remember: true }}
                 onFinish={onFinish}
+                className="form-login-page__form"
             >
+                <div className="form-login-page__login-title">
+                <h6 className="text-20 text-center text-white my-2">ĐĂNG NHẬP</h6>
+                </div>
                 <Form.Item
-                    label="Username"
+                    label="Tên đăng nhập"
                     name="taiKhoan"
                     rules={[{ required: true, message: 'Please input your username!' }]}
+                    className="form-login-page__form-item form-login-page__form-item-username"
                 >
                     <Input />
                 </Form.Item>
 
                 <Form.Item
-                    label="Password"
+                    label="Mật khẩu"
                     name="matKhau"
                     rules={[{ required: true, message: 'Please input your password!' }]}
+                    className="form-login-page__form-item"
                 >
                     <Input.Password />
                 </Form.Item>
                 <Form.Item
                     name="remember"
-                    wrapperCol={{ offset: 8, span: 16 }}
                 >
-                    <Checkbox >Remember me</Checkbox>
-                    <a className="ml-1" onClick={removeLoginHistory}>
-                        Xóa lịch sử đăng nhập
-                    </a>
+                    <Checkbox >Ghi nhớ tài khoản</Checkbox>
+                    
                 </Form.Item>
 
-                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button type="primary" htmlType="submit">
+                <Form.Item className="form-login-page__form-item-last">
+                    <Button type="primary" htmlType="submit" className="btn-login">
                         Đăng nhập
                     </Button>
 
+                    <Divider />
+
+                    <a className="ml-1" onClick={removeLoginHistory}>
+                        Xóa lịch sử đăng nhập ?
+                    </a>
+                    <br/>
                     <a onClick={usingLoginHistory} className="ml-2 hover:text-success">
-                        Sử dụng tài khoản đã lưu gần nhất
+                        Sử dụng tài khoản đã lưu gần nhất ?
                     </a>
                 </Form.Item>
-
+                
                 <h6 style={{ color: 'red' }}>{loginAlert}</h6>
             </Form>
+                </div>
+            </div>
         </>
     );
 };
