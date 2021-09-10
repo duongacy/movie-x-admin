@@ -101,7 +101,7 @@ const Login: React.FC<ILoginProps> = ({}) => {
                 </Form.Item>
 
                 <Form.Item className="form-login-page__form-item-last">
-                    <Button type="primary" htmlType="submit" className="btn-login">
+                    <Button htmlType="submit" className="btn-login">
                         Đăng nhập
                     </Button>
 
