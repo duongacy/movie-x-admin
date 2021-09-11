@@ -1,0 +1,53 @@
+.form-login-page {
+  h6 {
+    font-size: 36px;
+    text-align: center;
+  }
+  .form-login {
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 100px;
+    padding-right: 200px;
+    min-height: 100vh;
+  }
+  //   &__login-title {
+  //     background-color: #1990ff;
+  //   }
+  &__form {
+    flex: 1;
+  }
+  &__img-wrapper {
+    flex: 1;
+    img {
+      max-width: 100%;
+      height: 700px;
+    }
+  }
+  &__form-item {
+    flex-direction: column;
+
+    .ant-input-password {
+      border-radius: 8px;
+    }
+  }
+  &__form-item-username {
+    input {
+      border-radius: 8px;
+    }
+  }
+  &__form-item-last {
+    text-align: center;
+  }
+  .ant-form-item-label {
+    text-align: left;
+    font-weight: bold;
+  }
+  .btn-login {
+    width: 100%;
+    border-radius: 8px;
+    background-color: #00b2ee;
+  }
+}
