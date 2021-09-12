@@ -1,21 +1,13 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb, Button, Radio, RadioChangeEvent } from 'antd';
-import Icon, {
-    YoutubeOutlined,
-    UserOutlined,
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
-    DesktopOutlined,
-} from '@ant-design/icons';
+import { YoutubeOutlined, UserOutlined, DesktopOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AdminProvider } from '../contexts/AdminContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutAction } from '../store/account/accountActions';
 import { useTranslation } from 'react-i18next';
-import { Footer } from 'antd/lib/layout/layout';
 
-const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 interface IAdminTemplateProps {}

@@ -1,23 +1,20 @@
-import { Button, Popconfirm, Table } from 'antd';
+import { Popconfirm, Table } from 'antd';
 import { ManagementContext } from 'contexts/ManagementContext';
 import { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IFilmTable } from 'store/film/filmReducer';
 import { deleteUserAction } from 'store/user/userAction';
 import { IUserRow } from 'store/user/userTypes';
 import { IUser } from '../../../common/formatTypes/User';
-import UserPagination from './UserPagination';
-import UserSearchName from './UserSearchName';
 
 export const UserTable = () => {
     const dispatch = useDispatch();
     const { addModalState, editModalState, searchState, paginationState, userContext } =
         useContext(ManagementContext);
-    const { setShowAddModal } = addModalState;
     const { setShowEditModal, setInputFields } = editModalState;
     const { page, pageSize } = paginationState;
     const { searchKey } = searchState;
     const { reloadUser } = userContext;
+
     useEffect(() => {
         reloadUser();
     }, [page, pageSize, searchKey]);
