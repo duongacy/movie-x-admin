@@ -6,12 +6,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteFilmAction, getAllFilmByNameAction } from '../../../store/film/filmActions';
 import { IFilm } from '../../../common/formatTypes/Film';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 interface Props {}
 
 const FilmTable = (props: Props) => {
     const dispatch = useDispatch();
+    const { t } = useTranslation(['film-mgmt']);
     /* ---------------------------- get from context ---------------------------- */
+    
     const { addModalState, paginationState, searchState, editModalState, filmContext } =
         useContext(ManagementContext);
     const { setShowEditModal, setInputFields } = editModalState;
@@ -40,7 +43,7 @@ const FilmTable = (props: Props) => {
     return (
         <div className="my-2">
             <Button onClick={() => setShowAddModal(true)} className="mb-1">
-                Them phim moi
+            {t('add-movie')}
             </Button>
             <Table
                 loading={loading}
@@ -55,34 +58,34 @@ const FilmTable = (props: Props) => {
                     };
                 }}
             >
-                <Column title="Tên phim" dataIndex="tenPhim" key="tenPhim" />
+                <Column title={t('name-movie')} dataIndex="tenPhim" key="tenPhim" />
                 <Column
-                    title="Hình ảnh"
+                    title={t('poster')}
                     dataIndex="hinhAnh"
                     key="hinhAnh"
                     render={(imgSrc: string) => <img src={imgSrc} width={50} />}
                 />
-                <Column title="Ngày khởi chiếu" dataIndex="ngayKhoiChieu" key="ngayKhoiChieu" />
+                <Column title={t('release-date')} dataIndex="ngayKhoiChieu" key="ngayKhoiChieu" />
                 <Column
-                    title="Action"
+                    title={t('action')}
                     dataIndex="action"
                     key="action"
                     render={(value: any, record: IFilm) => (
                         <>
                             <Popconfirm
-                                title="Are you sure to delete this row?"
+                                title={t('remind-delete')}
                                 onConfirm={() => {
                                     handleDeleteFilm(record.maPhim);
                                 }}
                                 onCancel={() => {}}
-                                okText="Yes"
-                                cancelText="No"
+                                okText={t('yes')}
+                                cancelText={t('no')}
                             >
                                 <a href="#" style={{ color: 'red' }}>
-                                    Delete
+                                    {t('delete')}
                                 </a>
                             </Popconfirm>
-                            <Link to={`/admin/show-time-mgmt/${record.maPhim}`}>Lịch chiếu</Link>
+                            <Link to={`/admin/show-time-mgmt/${record.maPhim}`}>{t('running-time')}</Link>
                         </>
                     )}
                 />

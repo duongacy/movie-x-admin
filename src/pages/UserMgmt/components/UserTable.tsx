@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteUserAction } from 'store/user/userAction';
 import { IUserRow } from 'store/user/userTypes';
 import { IUser } from '../../../common/formatTypes/User';
+import { useTranslation } from 'react-i18next';
 
 export const UserTable = () => {
+    const { t } = useTranslation(['user-mgmt']);
     const dispatch = useDispatch();
     const { addModalState, editModalState, searchState, paginationState, userContext } =
         useContext(ManagementContext);
@@ -20,33 +22,35 @@ export const UserTable = () => {
     }, [page, pageSize, searchKey]);
     const columns = [
         {
-            title: 'Tài khoản',
+            title: t('username'),
             dataIndex: 'taiKhoan',
             key: 'taiKhoan',
             render: (text: string) => <a>{text}</a>,
         },
         {
-            title: 'Họ tên',
+            title: t('fullname'),
             dataIndex: 'hoTen',
             key: 'hoTen',
         },
         {
-            title: 'Quyền truy cập',
+            title: t('permission'),
             dataIndex: 'maLoaiNguoiDung',
             key: 'maLoaiNguoiDung',
         },
         {
-            title: 'Action',
+            title: t('action'),
             dataIndex: '',
             key: 'x',
             render: (record: IUserRow) => (
                 <Popconfirm
-                    title="Bạn có muốn xóa tài khoản này?"
+                    title={t('remind-delete')}
                     onConfirm={() => {
                         dispatch(deleteUserAction(record.taiKhoan, reloadUser));
                     }}
+                    okText={t('ok-text')}
+                    cancelText={t('cancel-text')}
                 >
-                    <a>Delete</a>
+                    <a>{t('delete')}</a>
                 </Popconfirm>
             ),
         },

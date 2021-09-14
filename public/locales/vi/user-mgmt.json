@@ -1,0 +1,21 @@
+{
+    "search": "Nhập nội dung tìm kiếm",
+    "add-user" : "Thêm người dùng mới",
+    "username" : "Tài khoản",
+    "fullname" : "Họ tên",
+    "permission" : "Quyền truy cập",
+    "action": "Thao tác",
+    "delete": "Xóa",
+    "remind-delete": "Bạn muốn xóa tài khoản này?",
+    "alert-delete-success": "Xoá tài khoản thành công!",
+    "password" : "Mật khẩu",
+    "user-type" : "Loại người dùng",
+    "administrators" : "Quản trị viên",
+    "client" : "Khách hàng",
+    "submit" : "Xác nhận",
+    "reset" : "Nhập lại",
+    "required": " không được bỏ trống!",
+    "not-valid": " không đúng định dạng!",
+    "ok-text": "Đúng",
+    "cancel-text": "Không"
+    }

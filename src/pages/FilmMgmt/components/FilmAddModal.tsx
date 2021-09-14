@@ -7,9 +7,11 @@ import moment from 'moment';
 import { ChangeEvent, createRef, useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addFilmAction } from 'store/film/filmActions';
+import { useTranslation } from 'react-i18next';
 
 interface Props {}
 const FilmAddModal = (props: Props) => {
+    const { t } = useTranslation(['film-mgmt']);
     const dispatch = useDispatch();
     const { addModalState, filmContext } = useContext(ManagementContext);
     const { reloadFilm } = filmContext;
@@ -57,7 +59,7 @@ const FilmAddModal = (props: Props) => {
 
     return (
         <Modal
-            title="Thêm phim mới"
+            title={t('add-movie')}
             visible={showAddModal}
             onCancel={() => setShowAddModal(false)}
             onOk={() => {}}
@@ -70,38 +72,41 @@ const FilmAddModal = (props: Props) => {
                 wrapperCol={{ span: 18 }}
             >
                 <Form.Item
-                    label="Tên phim"
+                    label={t('name-movie')}
                     name="tenPhim"
-                    rules={[{ required: true, message: 'Tên phim không được bỏ trống' }]}
+                    rules={[{ required: true, message: (t('remind-name-movie')) }]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
                     label="Trailer"
                     name="trailer"
-                    rules={[{ required: true, message: 'Trailer không được bỏ trống' }]}
+                    rules={[{ required: true, message: (t('remind-trailer')) }]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Mô tả"
+                    label={t('description')}
                     name="moTa"
-                    rules={[{ required: true, message: 'Mô tả không được bỏ trống' }]}
+                    rules={[{ required: true, message: (t('remind-description')) }]}
                 >
                     <Input />
                 </Form.Item>
                 <Form.Item
-                    label="Ngày khởi chiếu"
+                    label={t('release-date')}
                     name="ngayKhoiChieu"
-                    rules={[{ required: true, message: 'Ngày khởi chiếu không được bỏ trống' }]}
+                    rules={[{ required: true, message: (t('remind-release-date')) }]}
                 >
-                    <DatePicker format="DD/MM/YYYY" />
+                    <DatePicker 
+                    format="DD/MM/YYYY"
+                    placeholder={t('select-date')} />
                 </Form.Item>
-                <Form.Item label="Đánh giá" name="danhGia">
+                <Form.Item label={t('comment')} name="danhGia">
                     <Input type="number" />
                 </Form.Item>
-                <Form.Item label="Hình ảnh">
-                    <input type="file" onChange={handleChangeImage} />
+                <Form.Item label={t('poster')}>
+                    <input type="file" onChange={handleChangeImage}
+                    />
                     <img
                         ref={imgRef}
                         alt="..."
@@ -112,22 +117,22 @@ const FilmAddModal = (props: Props) => {
                         }}
                     />
                 </Form.Item>
-                <Form.Item label="Sắp chiếu" name="sapChieu" valuePropName="checked">
+                <Form.Item label={t('upcoming')} name="sapChieu" valuePropName="checked">
                     <Checkbox />
                 </Form.Item>
-                <Form.Item label="Đang chiếu" name="dangChieu" valuePropName="checked">
+                <Form.Item label={t('releasing')} name="dangChieu" valuePropName="checked">
                     <Checkbox />
                 </Form.Item>
-                <Form.Item label="Hot" name="hot" valuePropName="checked">
+                <Form.Item label={t('hot')} name="hot" valuePropName="checked">
                     <Checkbox />
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
-                        Submit
+                    {t('submit')}
                     </Button>
                 </Form.Item>
             </Form>
-            <Button onClick={() => {}}>Cancel</Button>
+            <Button onClick={() => {}}>{t('cancel')}</Button>
         </Modal>
     );
 };

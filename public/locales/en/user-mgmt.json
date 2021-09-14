@@ -1,0 +1,22 @@
+{
+    "search": "Please enter your search text",
+    "add-user" : "Add new user",
+    "username" : "User name",
+    "fullname" : "Full Name",
+    "permission" : "Permission",
+    "action": "Action",
+    "delete": "Delete",
+    "remind-delete": "Are you sure to delete this account ?",
+    "alert-delete-success": "Account deleted successfully!",
+    "password" : "Password",
+    "user-type" : "User type",
+    "administrators" : "Administrators",
+    "client" : "Client",
+    "submit" : "Submit",
+    "reset" : "Reset",
+    "required": " is required!",
+    "not-valid": "is not a valid email!",
+    "ok-text": "OK",
+    "cancel-text": "Cancel"
+    
+}

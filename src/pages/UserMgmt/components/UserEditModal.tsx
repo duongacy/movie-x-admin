@@ -6,19 +6,21 @@ import { ManagementContext } from 'contexts/ManagementContext';
 import { createRef, useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateUserAction } from 'store/user/userAction';
+import { useTranslation } from 'react-i18next';
 
 interface Props {}
 
 const UserEditModal = (props: Props) => {
+    const { t } = useTranslation(['user-mgmt']);
     const dispatch = useDispatch();
     const { editModalState, userContext } = useContext(ManagementContext);
     const { showEditModal, setShowEditModal, inputFields } = editModalState;
     const { reloadUser } = userContext;
 
     const validateMessages = {
-        required: '${label} is required!',
+        required: '${label}' + t('required'),
         types: {
-            email: '${label} is not a valid email!',
+            email: '${label}' + t('not-valid'),
         },
     };
     const handleFinish = (values: any) => {
@@ -48,12 +50,12 @@ const UserEditModal = (props: Props) => {
                 <Form.Item
                     name="taiKhoan"
                     hidden
-                    label="Tên tài khoản"
+                    label={t('username')}
                     rules={[{ required: true }]}
                 >
                     <Input />
                 </Form.Item>
-                <Form.Item name="hoTen" label="Họ tên" rules={[{ required: true }]}>
+                <Form.Item name="hoTen" label={t('fullname')} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
                 <Form.Item name="email" label="Email" rules={[{ required: true, type: 'email' }]}>
@@ -62,19 +64,19 @@ const UserEditModal = (props: Props) => {
                 {/* <Form.Item name="soDt" label="Số điện thoại" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item> */}
-                <Form.Item name="matKhau" label="Mật khẩu" rules={[{ required: true }]}>
+                <Form.Item name="matKhau" label={t('password')} rules={[{ required: true }]}>
                     <Input.Password />
                 </Form.Item>
-                <Form.Item name="maLoaiNguoiDung" label="Loại người dùng">
+                <Form.Item name="maLoaiNguoiDung" label={t('user-type')}>
                     <Radio.Group>
-                        <Radio value="KhachHang">Khách hàng</Radio>
-                        <Radio value="QuanTri">Quản trị viên</Radio>
+                        <Radio value="KhachHang">{t('client')}</Radio>
+                        <Radio value="QuanTri">{t('administrators')}</Radio>
                     </Radio.Group>
                 </Form.Item>
 
                 <Form.Item wrapperCol={{ offset: 8 }}>
                     <Button type="primary" htmlType="submit">
-                        Submit
+                    {t('submit')}
                     </Button>
                 </Form.Item>
             </Form>
