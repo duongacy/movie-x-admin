@@ -48,9 +48,6 @@ const FilmAddModal = (props: Props) => {
         }
         formData.append('maNhom', MA_NHOM);
         formData.append('ngayKhoiChieu', moment(values.ngayKhoiChieu).format('DD/MM/YYYY'));
-        console.log('ngay khoi chieu ne:', formData.get('ngayKhoiChieu'));
-        console.log('hinhANh ne:', formData.get('hinhAnh'));
-
         for (let key in values) {
             formData.append(key, values[key]);
         }
