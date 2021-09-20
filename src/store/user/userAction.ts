@@ -12,6 +12,7 @@ import {
     GET_USER_LIST,
 } from './userTypes';
 
+
 export const getUserByNameAction = (taiKhoan: string, page: number, pageSize: number) => {
     return (dispatch: any) => {
         dispatch(setLoadingAction(true));
@@ -61,7 +62,7 @@ export const deleteUserAction = (taiKhoan: string, callbackReload: () => void) =
         const promise = deleteUserServices(taiKhoan);
         promise
             .then((rs) => {
-                message.success('Xoa tai khoan thanh cong');
+                message.success('Xóa tài khoản thành công');
                 callbackReload();
             })
             .catch((err) => {

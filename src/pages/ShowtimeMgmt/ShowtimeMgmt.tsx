@@ -11,12 +11,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ICineplex, ITheatre } from 'common/formatTypes/Cinema';
 import { IShowTimeInput } from 'common/formatTypes/ShowTime';
 import moment from 'moment';
+import { useTranslation } from 'react-i18next';
 
 interface IShowtimeMgmtProps {
     title?: string
 }
 
+
 const ShowtimeMgmt:React.FC<IShowtimeMgmtProps> = ({title}) => {
+    const { t } = useTranslation(['film-mgmt']);
     const dispatch = useDispatch();
     const [maHeThongRapSelected, setMaHeThongRapSelected] = useState<string>('');
 
@@ -63,8 +66,8 @@ const ShowtimeMgmt:React.FC<IShowtimeMgmtProps> = ({title}) => {
                 </div>
                 <div>
                     <Form {...layout} name="nest-messages" onFinish={onFinish} ref={formRef}>
-                        <Form.Item label="Hệ thống rạp">
-                            <Select placeholder="Chọn hệ thống rạp" onChange={handleChangeCineplex}>
+                        <Form.Item label={t('system-cinemas')}>
+                            <Select placeholder={t('select-system-cinemas')} onChange={handleChangeCineplex}>
                                 {cineplexList.map((item: ICineplex, key: number) => (
                                     <Select.Option
                                         value={item.maHeThongRap}
@@ -76,11 +79,11 @@ const ShowtimeMgmt:React.FC<IShowtimeMgmtProps> = ({title}) => {
                             </Select>
                         </Form.Item>
                         <Form.Item
-                            label="Cụm rạp"
+                            label={t('theaters')}
                             name="maRap"
-                            rules={[{ required: true, message: 'Chọn cụm rạp chiếu' }]}
+                            rules={[{ required: true, message: (t('select-theaters')) }]}
                         >
-                            <Select placeholder="Chọn cụm rạp">
+                            <Select placeholder={t('select-theaters')}>
                                 {theatreList.map((item: ITheatre, key: number) => (
                                     <Select.Option value={item.maCumRap} key={'theatre-' + key}>
                                         {item.tenCumRap}
@@ -90,22 +93,22 @@ const ShowtimeMgmt:React.FC<IShowtimeMgmtProps> = ({title}) => {
                         </Form.Item>
 
                         <Form.Item
-                            label="Ngày giờ chiếu"
+                            label={t('date')}
                             name="ngayChieuGioChieu"
-                            rules={[{ required: true, message: 'Chọn ngày chiếu giờ chiếu' }]}
+                            rules={[{ required: true, message: (t('select-date')) }]}
                         >
                             <DatePicker showTime />
                         </Form.Item>
                         <Form.Item
-                            label="Giá vé"
+                            label={t('ticket-price')}
                             name="giaVe"
-                            rules={[{ required: true, message: 'Nhập giá vé' }]}
+                            rules={[{ required: true, message: (t('input-ticket-price')) }]}
                         >
                             <Input min={75000} max={200000} type="number" />
                         </Form.Item>
                         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
                             <Button type="primary" htmlType="submit">
-                                Submit
+                            {t('submit')}
                             </Button>
                         </Form.Item>
                     </Form>
