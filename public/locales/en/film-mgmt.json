@@ -30,5 +30,6 @@
     "input-ticket-price" :"Input ticket price",
     "submit" : "Submit",
     "update-movie" : "Update movie",
-    "movie-code" : "Movie code"
+    "movie-code" : "Movie code",
+    "create-showtimes" : "Create movie showtimes"
 }

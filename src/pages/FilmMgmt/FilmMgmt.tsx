@@ -8,8 +8,10 @@ import FilmTable from './components/FilmTable';
 const FilmMgmt = () => {
     return (
         <ManagementProvider>
+            <div style={{display:"flex", flexDirection:"column", gap:"16px"}}>
             <FilmSearchName />
             <FilmTable />
+            </div>
             <FilmPagination />
             <FilmEditModal />
             <FilmAddModal />

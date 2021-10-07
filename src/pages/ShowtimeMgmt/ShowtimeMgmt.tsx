@@ -55,16 +55,16 @@ const ShowtimeMgmt:React.FC<IShowtimeMgmtProps> = ({title}) => {
     };
 
     return (
-        <>
-            <h6>Tao lich chieu - {filmDetail.tenPhim}</h6>
+        <>  <div style={{justifyContent: 'space-between'}}>
+            <h2>{t('create-showtimes')} - {filmDetail.tenPhim}</h2>
             <div className="flex">
-                <div>
+                <div className="showtime-picture" style={{ justifyContent: "center"}}>
                     <img
                         src="https://znews-photo.zadn.vn/w660/Uploaded/rohunwa/2021_09_02/PC2_1.jpg"
                         alt="..."
                     />
                 </div>
-                <div>
+                <div className="form-showtime">
                     <Form {...layout} name="nest-messages" onFinish={onFinish} ref={formRef}>
                         <Form.Item label={t('system-cinemas')}>
                             <Select placeholder={t('select-system-cinemas')} onChange={handleChangeCineplex}>
@@ -113,6 +113,7 @@ const ShowtimeMgmt:React.FC<IShowtimeMgmtProps> = ({title}) => {
                         </Form.Item>
                     </Form>
                 </div>
+            </div>
             </div>
         </>
     );

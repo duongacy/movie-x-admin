@@ -30,5 +30,6 @@
     "input-ticket-price" :"Nhập giá vé",
     "submit" : "Xác nhận",
     "update-movie" : "Cập nhật phim",
-    "movie-code" : "Mã phim"
+    "movie-code" : "Mã phim",
+    "create-showtimes" : "Tạo lịch chiếu phim "
 }

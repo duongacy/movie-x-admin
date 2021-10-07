@@ -2,17 +2,17 @@
 // @import '~antd/dist/antd.less';
 
 #news-block {
-    .ant-tabs-nav::before {
-        border-bottom: 0;
-    }
-    
-    .ant-tabs-tab-active .tab-title{
-        color: var(--primary-dark);
-        transition: all .3s;
-    }
-    .ant-tabs-tab{
-        background-color: transparent;
-        border:none;
-        padding: 0;
-    }
+  .ant-tabs-nav::before {
+    border-bottom: 0;
+  }
+
+  .ant-tabs-tab-active .tab-title {
+    color: var(--primary-dark);
+    transition: all 0.3s;
+  }
+  .ant-tabs-tab {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+  }
 }

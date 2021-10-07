@@ -11,6 +11,7 @@ const FilmSearchName = (props: Props) => {
     const { setSearchKey } = searchState;
     const { setPage } = paginationState;
     return (
+        <div>
         <Input.Search
             placeholder={t('search')}
             onSearch={(value: string) => {
@@ -19,6 +20,7 @@ const FilmSearchName = (props: Props) => {
             }}
             enterButton
         /> 
+        </div>
     );
 };
 
