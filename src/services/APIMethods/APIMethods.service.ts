@@ -22,7 +22,8 @@ export const postAPIToken = (URL: string, payload: any) => {
         method: 'POST',
         data: payload,
         headers: {
-            TokenCybersoft: TOKEN_CYBERSOFT,
+            'TokenCybersoft': TOKEN_CYBERSOFT,
+            'Access-Control-Allow-Origin': '*',
         },
     });
 };
