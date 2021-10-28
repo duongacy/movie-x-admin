@@ -41,10 +41,13 @@ const FilmTable = (props: Props) => {
     };
 
     return (
-        <div className="my-2">
-            <Button onClick={() => setShowAddModal(true)} className="mb-1">
+        <div style={{display:"flex", flexDirection:"column", gap:"16px"}}>
+            <div>
+            <Button type="primary" className="mb-1" onClick={() => setShowAddModal(true)} >
             {t('add-movie')}
             </Button>
+            </div>
+            <div>
             <Table
                 loading={loading}
                 dataSource={listFilmTable}
@@ -72,6 +75,8 @@ const FilmTable = (props: Props) => {
                     key="action"
                     render={(value: any, record: IFilm) => (
                         <>
+                        <div style={{display:"flex", flexDirection:"row", gap:"16px"}}>
+                        <div>
                             <Popconfirm
                                 title={t('remind-delete')}
                                 onConfirm={() => {
@@ -85,11 +90,16 @@ const FilmTable = (props: Props) => {
                                     {t('delete')}
                                 </a>
                             </Popconfirm>
+                            </div>
+                            <div>
                             <Link to={`/admin/show-time-mgmt/${record.maPhim}`}>{t('running-time')}</Link>
+                            </div>
+                            </div>
                         </>
                     )}
                 />
             </Table>
+            </div>
         </div>
     );
 };

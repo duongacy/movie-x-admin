@@ -139,22 +139,36 @@ const FilmEditModal = (props: Props) => {
                         }}
                     />
                 </Form.Item>
+                <div style={{ justifyContent:"space-between", display:"flex", flexDirection:"row"}}>
+                <div className="custom-film">
                 <Form.Item label={t('upcoming')} name="sapChieu" valuePropName="checked">
                     <Checkbox />
                 </Form.Item>
+                </div>
+                <div className="custom-film">
                 <Form.Item label={t('releasing')} name="dangChieu" valuePropName="checked">
                     <Checkbox />
                 </Form.Item>
+                </div>
+                <div className="custom-film">
                 <Form.Item label={t('hot')} name="hot" valuePropName="checked">
                     <Checkbox />
                 </Form.Item>
+                </div>
+                </div>
+                <div style={{ justifyContent:"center", display:"flex", flexDirection:"row", gap:"200px"}}>
+                <div>
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
                     {t('submit')}
                     </Button>
                 </Form.Item>
+                </div>
+                <div>
+                    <Button onClick={() => setShowEditModal(false)}>{t('cancel')}</Button>
+                </div>
+                </div>  
             </Form>
-            <Button onClick={() => setShowEditModal(false)}>{t('cancel')}</Button>
         </Modal>
     );
 };

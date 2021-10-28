@@ -64,8 +64,8 @@ const UserAddModal = (props: Props) => {
                         <Radio value="QuanTri">{t('administrators')}</Radio>
                     </Radio.Group>
                 </Form.Item>
-
-                <Form.Item wrapperCol={{ offset: 8 }}>
+                <div className="custom-user">
+                <Form.Item >
                     <Button type="primary" htmlType="submit">
                     {t('submit')}
                     </Button>
@@ -73,6 +73,7 @@ const UserAddModal = (props: Props) => {
                     {t('reset')}
                     </Button>
                 </Form.Item>
+                </div>
             </Form>
         </Modal>
     );

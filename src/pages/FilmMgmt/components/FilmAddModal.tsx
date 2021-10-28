@@ -55,6 +55,7 @@ const FilmAddModal = (props: Props) => {
     };
 
     return (
+        <div>
         <Modal
             title={t('add-movie')}
             visible={showAddModal}
@@ -65,13 +66,13 @@ const FilmAddModal = (props: Props) => {
             <Form
                 name="nest-messages"
                 onFinish={handleFinish}
-                labelCol={{ span: 6 }}
-                wrapperCol={{ span: 18 }}
-            >
+                labelCol={{ span: 8 }}
+                wrapperCol={{ span: 16 }}
+            >  
                 <Form.Item
                     label={t('name-movie')}
                     name="tenPhim"
-                    rules={[{ required: true, message: (t('remind-name-movie')) }]}
+                    rules={[{ required: true, message: (t('remind-name-movie')) }]} style={{ textAlign: 'left' }}
                 >
                     <Input />
                 </Form.Item>
@@ -113,24 +114,44 @@ const FilmAddModal = (props: Props) => {
                             return <div></div>;
                         }}
                     />
-                </Form.Item>
-                <Form.Item label={t('upcoming')} name="sapChieu" valuePropName="checked">
+                </Form.Item >
+                <div style={{ justifyContent:"space-between", display:"flex", flexDirection:"row" , }}>
+                <div className="custom-film"  >
+                <Form.Item 
+                    label={t('upcoming')} name="sapChieu" valuePropName="checked" style={{ overflow: 'visible' }}>
                     <Checkbox />
                 </Form.Item>
-                <Form.Item label={t('releasing')} name="dangChieu" valuePropName="checked">
+                </div >
+                <div className="custom-film" >
+                <Form.Item 
+                    label={t('releasing')} name="dangChieu" valuePropName="checked">
                     <Checkbox />
                 </Form.Item>
-                <Form.Item label={t('hot')} name="hot" valuePropName="checked">
+                </div>
+                <div className="custom-film" >
+                <Form.Item 
+                    label={t('hot')} name="hot" valuePropName="checked">
                     <Checkbox />
                 </Form.Item>
-                <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                    {t('submit')}
-                    </Button>
-                </Form.Item>
-            </Form>
-            <Button onClick={() => {}}>{t('cancel')}</Button>
+                </div>
+                </div>
+                <div style={{ justifyContent:"center", display:"flex", flexDirection:"row", gap:"200px"}}>
+                    <div>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit">
+                        {t('submit')}
+                        </Button>
+                    </Form.Item>
+                    </div>
+                    <div>
+                        <Form.Item>
+                        <Button onClick={() => {}}>{t('cancel')}</Button>
+                        </Form.Item>
+                    </div>
+                </div>
+                </Form>   
         </Modal>
+        </div>
     );
 };
 

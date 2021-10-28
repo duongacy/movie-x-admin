@@ -1,0 +1,24 @@
+.custom-film .ant-form-item-label {
+  overflow: visible;
+}
+.custom-film .ant-form-item-control {
+  position: absolute;
+  right: 0;
+  padding-right: 20px;
+}
+.custom-film {
+  position: relative;
+  width: 33.33%;
+}
+.ant-form-item-label {
+  text-align: left;
+}
+
+.custom-user .ant-form-item-control-input-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.custom-user .ant-form-item-control {
+  max-width: unset;
+}
